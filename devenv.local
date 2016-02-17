@@ -1,0 +1,7 @@
+export REPORTS_API=https://s3.amazonaws.com/tw-analytics-staging
+export THE_NUMBERS_ENABLE_FEATURES=show-monthly-missing-timesheets:show-headcount-drilldown:show-cp-tile
+export BYPASS_AUTHENTICATION=true
+export SALES_FUNNEL_URL=https://s3.amazonaws.com/tw-analytics-staging
+export ENVIRONMENT=staging
+export ACCOUNTS_SERVICE_URL=https://uat.accounts-service.thoughtworks.net
+export AWS_PROFILE=Dev
