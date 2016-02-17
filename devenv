@@ -3,7 +3,7 @@
 DIR=$(cd `dirname ${BASH_SOURCE}` > /dev/null && pwd)
 
 function install_lein {
-    sudo yum install --quiet --assumeyes java-1.7.0-openjdk > /dev/null
+    sudo yum install --quiet java-1.7.0-openjdk > /dev/null
 
     if [ ! -f $LEIN_ROOT/lein ]
     then
@@ -13,7 +13,7 @@ function install_lein {
 }
 
 function install_nodejs {
-    sudo yum install --quiet --assumeyes nodejs npm > /dev/null
+    sudo yum install --quiet nodejs npm > /dev/null
 }
 
 install_sass() {
@@ -24,17 +24,17 @@ install_sass() {
     then
         echo "Sass already installed"
     else
-        sudo yum install --quiet --assumeyes ruby rubygems > /dev/null
+        sudo yum install --quiet ruby rubygems > /dev/null
         /usr/bin/gem install sass --version '=3.2.8' --no-rdoc --no-ri --bindir $LOCAL_GEMS_BIN --install-dir $LOCAL_GEMS
     fi
 }
 
 function install_ansible {
-    sudo yum install --quiet --assumeyes ansible > /dev/null
+    sudo yum install --quiet ansible > /dev/null
 }
 
 function install_package_tools {
-    sudo yum install --quiet --assumeyes rpm-build  > /dev/null
+    sudo yum install --quiet rpm-build  > /dev/null
 }
 
 
@@ -63,7 +63,6 @@ export GEM_HOME=$LOCAL_GEMS
 
 install_lein
 install_nodejs
-install_sass
 install_package_tools
 install_ansible
 install_galen
