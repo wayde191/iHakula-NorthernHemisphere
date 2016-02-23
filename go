@@ -1,5 +1,5 @@
 #!/bin/bash -eu
 
-#. devenv
+. devenv
 
 lein "$@"
