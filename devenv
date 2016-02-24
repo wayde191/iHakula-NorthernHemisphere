@@ -68,7 +68,7 @@ install_package_tools
 install_ansible
 install_galen
 
-#npm install --quiet
+npm install --quiet
 
 export PATH=$LOCAL_GEMS_BIN:$LEIN_ROOT:$NODE_PATH:$GALEN_PATH:$PATH
 

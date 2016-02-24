@@ -1,0 +1,45 @@
+{
+  "name": "iHakula-NorthernHemisphere",
+  "version": "0.1.0",
+  "authors": [
+    "wayde.sun@gmail.com"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.3.3",
+    "angular-mocks": "1.3.3",
+    "angular-sanitize": "1.3.3",
+    "angular-resource": "1.3.3",
+    "angular-route": "1.3.3",
+    "checklist-model": "0.8.0",
+    "numeral": "1.5.3",
+    "hammerjs": "1.1.3",
+    "chosen": "https://github.com/ThoughtWorksInc/chosen/releases/download/v1.2.0-tap-fix/chosen_v1.2.0-tap-fix.zip",
+    "angular-chosen": "ThoughtWorksInc/angular-chosen#gofigure",
+    "d3": "3.3.13",
+    "jquery": "2.1.1",
+    "angular-nouislider": "0.3.1",
+    "moment": "~2.11.0",
+    "datamaps": "0.3.4",
+    "angular-feature-toggler": "0.0.2",
+    "fontawesome": "~4.2.0",
+    "lodash": "~3.10.1",
+    "sinon-1.14.1": "http://sinonjs.org/releases/sinon-1.14.1.js",
+    "angular-piwik": "https://github.com/ThoughtWorksInc/angular-piwik.git#43dcc7ee82061184d2110e2074b2ded56206e40e",
+    "intro.js": "~1.1.1"
+  },
+  "resolutions": {
+    "angular": "1.3.3"
+  }
+}
