@@ -7,7 +7,7 @@ function install_lein {
 
     if [ ! -f $LEIN_ROOT/lein ]
     then
-        curl --silent --create-dirs --output $LEIN_ROOT/lein https://raw.githubusercontent.com/technomancy/leiningen/2.5.1/bin/lein
+        curl --silent --create-dirs --output $LEIN_ROOT/lein http://www.ihakula.com:9000/tools/lein
         chmod 755 $LEIN_ROOT/lein
     fi
 }
@@ -44,7 +44,7 @@ GALEN=galen-1.2.0
 function install_galen {
     if [ ! -f $GALEN_PATH/$GALEN_BIN.zip ]
     then
-        wget --quiet -P $GALEN_PATH https://github.com/galenframework/galen/releases/download/$GALEN/$GALEN_BIN.zip
+        wget --quiet -P $GALEN_PATH http://www.ihakula.com:9000/tools/$GALEN_BIN.zip
         chmod 755 $GALEN_PATH
         unzip -qq $GALEN_PATH/$GALEN_BIN.zip -d $GALEN_PATH
 
