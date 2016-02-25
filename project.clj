@@ -5,7 +5,7 @@
 (defn envhash [keys]
   (into {} (map #(let [key %] [key (System/getenv key)]) keys)))
 
-(defproject northern-hemisphere "0.1.0"
+(defproject northern-hemisphere version
   :description "Northern Hemisphere - web app"
   :url "http://www.ihakula.com"
   :license {:name "Eclipse Public License"
