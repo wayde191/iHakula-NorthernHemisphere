@@ -1,6 +1,6 @@
 (def version (if-let [version (System/getenv "GO_PIPELINE_COUNTER")]
                (str version "." (System/getenv "GO_STAGE_COUNTER"))
-               "0.1.0-SNAPSHOT"))
+               "0.1.0"))
 
 (defn envhash [keys]
   (into {} (map #(let [key %] [key (System/getenv key)]) keys)))
@@ -51,7 +51,7 @@
         :preremove {:scriptFile "src/rpm/pre-uninstall"}
         :mappings [{:directory "/usr/lib/northern-hemisphere"
                     :sources {:source
-                              [{:location ~(str "target/uberjar+uberjar+uberjar/northern-hemisphere-" version "-standalone.jar")
+                              [{:location ~(str "target/uberjar+uberjar/northern-hemisphere-" version "-standalone.jar")
                                 :destination "northern-hemisphere-standalone.jar"}]}}
                    {:directory "/usr/bin"
                     :filemode "755"
@@ -81,7 +81,7 @@
             "js-compile" ["shell" "grunt" "compile"]
             "resources" ["do" ["sass"] ["js-compile"]]
             "wrap-package" ["shell" "src/scripts/wrap-package" ~version]
-            "package" ["do" ["resources"] ["compile"] ["ring" "uberjar"] ["rpm"] ["wrap-package"]]
+            "package" ["do" ["resources"] ["compile"] ["ring" "uberjar"] ["rpm"]]
             "clean-test" ["test"]
             "clean-package" ["do" ["clean"] ["package"]]
             })
