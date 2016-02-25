@@ -1,0 +1,17 @@
+start on started network
+stop on runlevel [06]
+
+respawn
+
+env USER=northern-hemisphere
+env DAEMON_ARGS=""
+
+script
+  export DAEMON="/usr/bin/$UPSTART_JOB"
+
+  . /etc/default/$UPSTART_JOB
+  export AWS_ACCESS_KEY AWS_SECRET_KEY REPORTS_API
+  export THE_NUMBERS_ENABLE_FEATURES PIWIK_HOST SALES_FUNNEL_URL OKTA_URL APPLICATION_NAME ACCOUNTS_SERVICE_URL
+
+  exec su -s /bin/sh -c 'exec $DAEMON $DAEMON_ARGS' $USER 2>&1 | logger -is -t $UPSTART_JOB
+end script

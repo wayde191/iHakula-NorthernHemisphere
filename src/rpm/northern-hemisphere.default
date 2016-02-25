@@ -1,0 +1,3 @@
+REPORTS_API=url-for-reports-api
+AWS_ACCESS_KEY=access-key-for-s3
+AWS_SECRET_KEY=secret-key-for-s3

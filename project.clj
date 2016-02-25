@@ -31,7 +31,8 @@
             [lein-rpm "0.0.5"]
             [jonase/eastwood "0.1.4"]
             [lein-cloverage "1.0.2"]]
-  :ring {:handler northern-hemisphere.handler/app}
+  :ring {:handler northern-hemisphere.handler/app
+         :main northern-hemisphere.core}
   :aot [utils.manifest]
   :profiles {:dev {:dependencies [[ring-mock "0.1.5"]
                                   [clj-http-fake "1.0.1"]
@@ -39,7 +40,6 @@
                                   [clj-webdriver "0.6.1"]
                                   [com.github.detro.ghostdriver/phantomjsdriver "1.1.0"]
                                   [midje "1.5.1"]]}}
-  :main ^:skip-aot northern-hemisphere.core
   :target-path "target/%s"
 
   :rpm {:name "northern-hemisphere"
@@ -51,7 +51,7 @@
         :preremove {:scriptFile "src/rpm/pre-uninstall"}
         :mappings [{:directory "/usr/lib/northern-hemisphere"
                     :sources {:source
-                              [{:location ~(str "target/northern-hemisphere-" version "-standalone.jar")
+                              [{:location ~(str "target/uberjar+uberjar+uberjar/northern-hemisphere-" version "-standalone.jar")
                                 :destination "northern-hemisphere-standalone.jar"}]}}
                    {:directory "/usr/bin"
                     :filemode "755"
