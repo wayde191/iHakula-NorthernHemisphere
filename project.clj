@@ -51,7 +51,7 @@
         :preremove {:scriptFile "src/rpm/pre-uninstall"}
         :mappings [{:directory "/usr/lib/northern-hemisphere"
                     :sources {:source
-                              [{:location ~(str "target/uberjar+uberjar/northern-hemisphere-" version "-standalone.jar")
+                              [{:location ~(str "target/uberjar/northern-hemisphere-" version "-standalone.jar")
                                 :destination "northern-hemisphere-standalone.jar"}]}}
                    {:directory "/usr/bin"
                     :filemode "755"

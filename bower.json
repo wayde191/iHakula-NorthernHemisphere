@@ -33,9 +33,7 @@
     "angular-feature-toggler": "0.0.2",
     "fontawesome": "~4.2.0",
     "lodash": "~3.10.1",
-    "sinon-1.14.1": "http://sinonjs.org/releases/sinon-1.14.1.js",
-    "angular-piwik": "https://github.com/ThoughtWorksInc/angular-piwik.git#43dcc7ee82061184d2110e2074b2ded56206e40e",
-    "intro.js": "~1.1.1"
+    "sinon-1.14.1": "http://sinonjs.org/releases/sinon-1.14.1.js"
   },
   "resolutions": {
     "angular": "1.3.3"
