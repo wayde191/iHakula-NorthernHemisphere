@@ -10,8 +10,8 @@
   :url "http://www.ihakula.com"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.7.0"]
-                 [compojure "1.1.6"]
+  :dependencies [[org.clojure/clojure "1.5.1"]
+                 [compojure "1.1.5"]
                  [clj-http "2.1.0"]
                  [clj-http-s3 "0.3.0" :exclusions [clj-http]]
                  [clj-time "0.11.0"]
