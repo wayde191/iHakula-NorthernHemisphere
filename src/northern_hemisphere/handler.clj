@@ -97,3 +97,6 @@
 
 (def app
   (ring-app system/system))
+
+(def main
+  (ring-app system/system))
