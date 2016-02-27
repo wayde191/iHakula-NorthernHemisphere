@@ -1,0 +1,13 @@
+[Unit]
+Description=Northern Hemisphere Service
+After=network.target
+
+[Service]
+Type=simple
+User=gofignorthern-hemisphereure
+ExecStart=/usr/bin/northern-hemisphere -s
+Restart=on-abort
+
+
+[Install]
+WantedBy=multi-user.target

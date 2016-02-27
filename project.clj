@@ -26,13 +26,13 @@
                  [org.clojure/core.incubator "0.1.3"]
                  [pjstadig/humane-test-output "0.6.0"]
                  ]
-  :plugins [[lein-ring "0.9.7"]
+  :plugins [[lein-ring "0.9.1"]
             [lein-shell "0.4.0"]
             [lein-rpm "0.0.5"]
             [jonase/eastwood "0.1.4"]
             [lein-cloverage "1.0.2"]]
-  :ring {:handler northern-hemisphere.handler/app
-         :main northern-hemisphere.core}
+  :ring {:handler northern-hemisphere.handler/app}
+;         :main northern-hemisphere.core}
   :aot [utils.manifest]
   :profiles {:dev {:dependencies [[ring-mock "0.1.5"]
                                   [clj-http-fake "1.0.1"]
