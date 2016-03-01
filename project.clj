@@ -50,7 +50,7 @@
                                   [com.github.detro.ghostdriver/phantomjsdriver "1.1.0"]
                                   [midje "1.5.1"]]}}
 
-  :rpm {:name "northern-hemisphere"
+  :rpm {:name ~(str "northern-hemisphere-" environment)
         :summary "Northern Hemisphere Web Application"
         :copyright "iHakula Inc"
         :workarea "target/rpm"
@@ -68,7 +68,7 @@
                    {:directory "/etc/systemd/system"
                     :filemode "755"
                     :directoryIncluded false
-                    :sources {:source [{:location ~(str "src/script/northern-hemisphere-" environment ".service")}]}}
+                    :sources {:source [{:location ~(str "src/scripts/northern-hemisphere-" environment ".service")}]}}
                    ]}
 
   :clean-targets ^{:protect false} [:target-path :compile-path
