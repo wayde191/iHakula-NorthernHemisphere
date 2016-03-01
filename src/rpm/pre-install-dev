@@ -1,7 +1,7 @@
 # Add the "northern-hemisphereure" user
-USER=northern-hemisphereure
-USER_COMMENT="northern-hemisphere user"
-UNIQUE_USER_ID=949
+USER=northern-hemisphere-dev
+USER_COMMENT="northern-hemisphere-dev user"
+UNIQUE_USER_ID=951
 
 GROUP=$USER
 UNIQUE_GROUP_ID=$UNIQUE_USER_ID

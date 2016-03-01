@@ -4,10 +4,9 @@ After=network.target
 
 [Service]
 Type=simple
-User=gofignorthern-hemisphereure
-ExecStart=/usr/bin/northern-hemisphere -s
+User=northern-hemisphere-prod
+ExecStart=/usr/bin/northern-hemisphere-prod
 Restart=on-abort
-
 
 [Install]
 WantedBy=multi-user.target

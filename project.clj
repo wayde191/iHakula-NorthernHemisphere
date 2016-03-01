@@ -2,6 +2,14 @@
                (str version "." (System/getenv "GO_STAGE_COUNTER"))
                "0.1.0"))
 
+(def environment (if-let [environment (System/getenv "GO_PIPELINES_ENV")]
+                   (System/getenv "GO_PIPELINES_ENV")
+                   "dev"))
+
+(def port (if-let [port (System/getenv "GO_PIPELINES_PORT")]
+                   (System/getenv "GO_PIPELINES_PORT")
+                   "3000"))
+
 (defn envhash [keys]
   (into {} (map #(let [key %] [key (System/getenv key)]) keys)))
 
@@ -32,8 +40,8 @@
             [lein-rpm "0.0.5"]
             [jonase/eastwood "0.1.4"]
             [lein-cloverage "1.0.2"]]
-  :ring {:handler northern-hemisphere.handler/app}
-;         :main northern-hemisphere.core}
+  :ring {:handler northern-hemisphere.handler/app
+         :port port}
   :aot [utils.manifest]
   :profiles {:dev {:dependencies [[ring-mock "0.1.5"]
                                   [clj-http-fake "1.0.1"]
@@ -47,26 +55,21 @@
         :copyright "iHakula Inc"
         :workarea "target/rpm"
         :requires ["java-1.7.0-openjdk"]
-        :preinstall {:scriptFile "src/rpm/pre-install"}
-        :preremove {:scriptFile "src/rpm/pre-uninstall"}
+        :preinstall {:scriptFile ~(str "src/rpm/pre-install-" environment)}
+        :preremove {:scriptFile ~(str "src/rpm/pre-uninstall-" environment)}
         :mappings [{:directory "/usr/lib/northern-hemisphere"
                     :sources {:source
                               [{:location ~(str "target/northern-hemisphere-" version "-standalone.jar")
-                                :destination "northern-hemisphere-standalone.jar"}]}}
+                                :destination ~(str "northern-hemisphere-standalone-" environment ".jar")}]}}
                    {:directory "/usr/bin"
                     :filemode "755"
                     :directoryIncluded false
-                    :sources {:source [{:location "src/rpm/northern-hemisphere"}]}}
-                   {:directory "/etc/init"
-                    :filemode "644"
+                    :sources {:source [{:location ~(str "src/rpm/northern-hemisphere-" environment)}]}}
+                   {:directory "/etc/systemd/system"
+                    :filemode "755"
                     :directoryIncluded false
-                    :sources {:source [{:location "src/rpm/northern-hemisphere.upstart"
-                                        :destination "northern-hemisphere.conf"}]}}
-                   {:directory "/etc/default"
-                    :filemode "0400"
-                    :directoryIncluded false
-                    :sources {:source [{:location "src/rpm/northern-hemisphere.default"
-                                        :destination "northern-hemisphere"}]}}]}
+                    :sources {:source [{:location ~(str "src/script/northern-hemisphere-" environment ".service")}]}}
+                   ]}
 
   :clean-targets ^{:protect false} [:target-path :compile-path
                                     "resources/public/css"
@@ -84,4 +87,6 @@
             "package" ["do" ["resources"] ["compile"] ["ring" "uberjar"] ["rpm"]]
             "clean-test" ["test"]
             "clean-package" ["do" ["clean"] ["package"]]
+            "deploy-staging" ["shell" "src/scripts/deploy-staging" ~environment]
+            "deploy-production" ["shell" "src/scripts/deploy-production" ~environment]
             })

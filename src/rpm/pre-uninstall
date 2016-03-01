@@ -1,3 +1,0 @@
-if /sbin/status northern-hemisphere | /bin/grep --word-regexp --no-messages --silent process; then
-    /sbin/stop northern-hemisphere;
-fi
