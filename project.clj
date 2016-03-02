@@ -57,7 +57,7 @@
         :requires ["java-1.7.0-openjdk"]
         :preinstall {:scriptFile ~(str "src/rpm/pre-install-" environment)}
         :preremove {:scriptFile ~(str "src/rpm/pre-uninstall-" environment)}
-        :mappings [{:directory "/usr/lib/northern-hemisphere"
+        :mappings [{:directory ~(str "/usr/lib/northern-hemisphere" environment)
                     :sources {:source
                               [{:location ~(str "target/northern-hemisphere-" version "-standalone.jar")
                                 :destination ~(str "northern-hemisphere-standalone-" environment ".jar")}]}}
