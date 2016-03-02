@@ -1,1 +1,25 @@
 #!/bin/bash -eu
+
+if /usr/bin/systemctl status northern-hemisphere-dev | /bin/grep --word-regexp --no-messages --silent process; then
+    /usr/bin/systemctl stop northern-hemisphere-dev;
+fi
+
+VERSION=$1
+RPM_PATH=/var/lib/go-agent/pipelines/NorthernHemisphere/target/rpm/northern-hemisphere-dev/RPMS/noarch/northern-hemisphere-dev-$VERSION.noarch.rpm
+
+remove_old_rpm() {
+    sudo yum -y remove northern-hemisphere-dev.noarch
+}
+
+install_new_rpm() {
+    sudo yum -y install $RPM_PATH
+}
+
+run_service(){
+    /usr/bin/systemctl daemon-reload
+    /usr/bin/systemctl start northern-hemisphere-dev.noarch
+}
+
+remove_old_rpm
+install_new_rpm
+run_service

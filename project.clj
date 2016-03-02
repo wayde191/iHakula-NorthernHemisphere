@@ -83,6 +83,8 @@
             "package" ["do" ["resources"] ["compile"] ["ring" "uberjar"] ["rpm"]]
             "clean-test" ["test"]
             "clean-package" ["do" ["clean"] ["package"]]
-            "deploy-staging" ["shell" "src/scripts/deploy-staging" ~environment]
-            "deploy-production" ["shell" "src/scripts/deploy-production" ~environment]
+            "staging" ["shell" "src/scripts/deploy-staging" ~version]
+            "deploy-staging" ["do" ["clean-package"] ["staging"]]
+            "production" ["shell" "src/scripts/deploy-production" ~version]
+            "deploy-production" ["do" ["clean-package"] ["production"]]
             })
