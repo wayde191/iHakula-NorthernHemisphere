@@ -6,10 +6,6 @@
                    (System/getenv "GO_PIPELINES_ENV")
                    "dev"))
 
-(def port (if-let [port (System/getenv "GO_PIPELINES_PORT")]
-                   (System/getenv "GO_PIPELINES_PORT")
-                   "3000"))
-
 (defn envhash [keys]
   (into {} (map #(let [key %] [key (System/getenv key)]) keys)))
 
@@ -41,7 +37,7 @@
             [jonase/eastwood "0.1.4"]
             [lein-cloverage "1.0.2"]]
   :ring {:handler northern-hemisphere.handler/app
-         :port port}
+         :port ~(or (Integer/parseInt (System/getenv "GO_PIPELINES_PORT")) 3000)}
   :aot [utils.manifest]
   :profiles {:dev {:dependencies [[ring-mock "0.1.5"]
                                   [clj-http-fake "1.0.1"]

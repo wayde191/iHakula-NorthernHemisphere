@@ -13,6 +13,8 @@ hs_err_pid*
 
 .idea/
 .DS_Store
+.lein-repl-history
+.nrepl-port
 target/*
 .sass-cache/
 bower_components/
