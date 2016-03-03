@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-User=northern-hemisphere-prod
+User=root
 ExecStart=/usr/bin/northern-hemisphere-prod
 Restart=on-abort
 
