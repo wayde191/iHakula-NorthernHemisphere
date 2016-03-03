@@ -3,4 +3,4 @@
 # Ensure child processes exit on signal
 trap "kill -- -$BASHPID" EXIT
 
-java -jar /usr/lib/northern-hemisphere/northern-hemisphere-standalone-prod.jar "$@"
+java -jar /usr/lib/northern-hemisphere-prod/northern-hemisphere-standalone-prod.jar "$@"

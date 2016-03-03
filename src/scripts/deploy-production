@@ -5,7 +5,7 @@ if /usr/bin/systemctl status northern-hemisphere-prod | /bin/grep --word-regexp 
 fi
 
 VERSION=$1
-RPM_PATH=/var/lib/go-agent/pipelines/NorthernHemisphere/target/rpm/northern-hemisphere-prod/RPMS/noarch/northern-hemisphere-dev-$VERSION-1.noarch.rpm
+RPM_PATH=/var/lib/go-agent/pipelines/NorthernHemisphere/target/rpm/northern-hemisphere-prod/RPMS/noarch/northern-hemisphere-prod-$VERSION-1.noarch.rpm
 
 remove_old_rpm() {
     sudo yum -y remove northern-hemisphere-prod.noarch
