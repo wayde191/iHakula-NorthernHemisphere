@@ -26,16 +26,7 @@
     []))
 
 (defn piwik-host []
-  (env :piwik-host))
-
-(defn sales-funnel-url []
-  (env :sales-funnel-url))
-
-(defn accounts-service-url []
-  (env :accounts-service-url))
-
-(defn okta-url []
-  (env :okta-url))
+  (env :PIWIK_HOST))
 
 (defn application-name []
   (env :application-name))
@@ -68,7 +59,11 @@
 (enlive/deftemplate index-template "public/index.html" []
   append-resources)
 
+(enlive/deftemplate production-template "public/production/index.html" []
+  append-resources)
+
 (defroutes main-routes
+  (GET "/productions.html" [] (-> (response/response (apply str (production-template)))))
   (GET "/" [] (-> (response/response (apply str (index-template)))))
   (GET "/index.html" [] (response/redirect "/"))
   )
@@ -83,7 +78,19 @@
   (handler/site (route/resources "/css" {:root "public/css"}))
   (handler/site (route/resources "/fonts" {:root "public/fonts"}))
   (handler/site (route/resources "/javascript" {:root "public/javascript"}))
-  )
+  (handler/site (route/resources "/utilisation/javascript" {:root "public/utilisation/javascript"}))
+  (handler/site (route/resources "/revenue/javascript" {:root "public/revenue/javascript"}))
+  (handler/site (route/resources "/invoice/javascript" {:root "public/invoice/javascript"}))
+  (handler/site (route/resources "/headcount/javascript" {:root "public/headcount/javascript"}))
+  (handler/site (route/resources "/vendor" {:root "public/vendor"}))
+  (handler/site (route/resources "/images" {:root "public/images"}))
+  (handler/site (route/resources "/angular-htmls" {:root "public/angular-htmls"}))
+  (handler/site (route/resources "/utilisation/partials" {:root "public/utilisation/partials"}))
+  (handler/site (route/resources "/revenue/partials" {:root "public/revenue/partials"}))
+  (handler/site (route/resources "/invoice/partials" {:root "public/invoice/partials"}))
+  (handler/site (route/resources "/headcount/partials" {:root "public/headcount/partials"}))
+  (handler/site (route/resources "/production/javascript" {:root "public/production/javascript"}))
+  (handler/site (route/resources "/production/partials" {:root "public/production/partials"})))
 
 (defn ring-app [{current-user :current-user
                  forecast-shrinkage-percentage :forecast-shrinkage-percentage
