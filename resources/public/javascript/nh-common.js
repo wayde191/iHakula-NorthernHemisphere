@@ -11,7 +11,7 @@ var bootstrap = function(module) {
             window.loaded = {};
 
             angular.element(document).ready(function() {
-                angular.module(module)
+                angular.module(module);
                     //.constant('today', today)
                     //.constant('User', User)
                     //.constant('piwikHost', responses.config.data['piwik-host'])
