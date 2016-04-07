@@ -1,0 +1,606 @@
+.invoices-page{
+  @include rem(font-size, 13px);
+  @media (min-width: $bp-small){
+      @include rem(font-size, 14px);
+  }
+
+  .filters{
+    @media (min-width: $bp-small){
+      width:550px;
+    }
+  }
+
+  .invoice-summary {
+    margin-left:2px;
+    margin-bottom:5px;
+    @include rem("font-size",18px);
+    font-weight:300;
+    @media (min-width: $bp-small){
+      @include rem(font-size, 22px);
+      margin-bottom: 20px;
+      margin-top: 14px;
+      margin-left:13px;
+    }
+
+    .total-balance {
+      display: inline-block;
+    }
+  }
+
+  .filter-btn{
+     margin-bottom: 6px;
+     @media (min-width: $bp-small){
+      margin-bottom: 14px;
+      margin-left:10px;
+     }
+
+  }
+}
+
+.rwd-table {
+  margin: 0px;
+  min-width: 300px;
+  @extend %clearfix;
+  tr{
+		th{
+			display:none;
+		}
+		td {
+      		display:block;
+      		padding:0px 10px 0px 10px;
+
+		    &:last-child {
+		      padding-bottom: 2em;
+		    }
+
+            &:first-child:before {
+		      display:none;
+              width:0%;
+            }
+
+		    &:after {
+		      content: attr(data-th);
+		      margin-left:10px;
+		      display: inline-block;
+              color:#8B8B8B;
+		    }
+  		}
+  }
+}
+
+.invoice-filters{
+    width:100%;
+}
+
+.invoice-filter {
+    margin-top: 10px;
+    border-bottom: 1px solid lighten($sidePanel,10%);
+    padding-bottom: 8px;
+    span{
+        display: block;
+    }
+    label {
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+        padding-left: 25px;
+        margin-right: 15px;
+        @include rem(font-size, 12px);
+        line-height: 19px;
+        color: #fff;
+        font-weight:200;
+    }
+    input[type=radio] {
+        display: none;
+    }
+    label:before {
+        content: "";
+        display: inline-block;
+
+        width: 16px;
+        height: 16px;
+        margin-top: 0px;
+        margin-right: 10px;
+        position: absolute;
+        left: 0;
+        top:2px;
+        background-color: #7cced4;
+    }
+    label:before {
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+    }
+    input[type=radio]:checked + label:before {
+        content: "\2022";
+        color: black;
+        font-size: 37px;
+        text-align: center;
+        line-height: 15px;
+    }
+    input[type="radio"]:checked + label{
+      color:white;
+      span{
+        color:white;
+        font-weight: bold;
+      }
+    }
+}
+.invoice-filter-checkbox-group {
+  margin-top: 10px;
+  padding-bottom: 8px;
+  span{
+    display: block;
+  }
+  label {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 15px;
+    @include rem(font-size, 15px);
+    line-height: 19px;
+    font-weight:200;
+  }
+  input[type=checkbox]{
+    display: none;
+    &:checked + label:before {
+      content: "\2714";
+      color: #26BDCE;
+      text-align: center;
+      line-height: 16px;
+    }
+  }
+  label:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 18px;
+    margin-top: 0px;
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    border: 1px solid #8DF7FF;
+    font-family: arial;
+  }
+}
+.account-list{
+  margin-top:6px;
+  overflow:hidden;
+  list-style-type:none;
+}
+.account{
+    padding: 0px 6px;
+    @extend %clearfix;
+    border-bottom:1px solid #4d4d4d;
+    position:relative;
+    @media (min-width: $bp-small){
+      padding:16px 8px 10px;
+      margin: 0px 12px 10px;
+      border: 1px solid #ECECEC;
+    }
+    .balance-breakdown{
+      display:none;
+      @media (min-width: $bp-small) {
+        display:inline-block;
+        margin-right:18px;
+        vertical-align:top;
+        .total-balance{
+          font-weight:bold;
+          letter-spacing:1px;
+          @include rem(font-size, 23px);
+          @include rem(line-height, 24px);
+          width:155px;
+          display:inline-block;
+          letter-spacing:-0.1px;
+        }
+        ul {
+          list-style: none;
+          color: $active-button-color;
+          @include rem(font-size, 12px);
+          li {
+            display: block;
+            overflow: hidden;
+            clear: both;
+          }
+          label {
+            min-height: 10px;
+            float: left;
+            width: 32px;
+            text-align:right;
+          }
+          span {
+            width:80px;
+            text-align: left;
+            margin-left:20px;
+            float: left;
+          }
+        }
+      }
+    }
+    .account-details{
+      padding-bottom:5px;
+      @media (min-width: $bp-small){
+        display:inline-block;
+        width: calc(100% - 180px);
+      }
+
+      .total-balance{
+        @include rem('font-size',14px);
+        @include rem('line-height',14px);
+        font-weight:bold;
+        @media (min-width: $bp-small){
+          display:none;
+        }
+        }
+
+       .account-sub-details{
+         display:none;
+         @media (min-width: $bp-small){
+            color:#868686;
+            display:block;
+            margin-bottom:10px;
+            margin-top:-1px;
+            span{
+                @include rem(font-size, 16px);
+                margin-right:30px;
+            }
+         }
+         @media (min-width: $bp-medium){
+          span{
+            @include rem(font-size, 18px);
+          }
+         }
+        }
+
+        .aging-breakdown{
+          display:none;
+          @media (min-width: $bp-small){
+              display:block;
+              li{
+               display: inline-block;
+               vertical-align: top;
+                width:14%;
+               text-align:center;
+               @include rem('font-size',16px);
+
+               &:first-child{
+                width:40px;
+                text-align:left;
+               }
+
+               label{
+                   @include rem('font-size',11px);
+                   @include rem('line-height',13px);
+                   color:#999;
+                   width:84px;
+                   text-align:center;
+                   margin: 2px auto 0px;
+                   display:inline-block;
+                   vertical-align:top;
+
+               }
+               &:last-child{
+                  label{
+                    width:80px;
+                  }
+               }}
+              &.total{
+                li .total{
+                  font-weight: bold;
+                }
+              }
+
+              &.inLastWeek, &.withinTerms{
+                li .withinTerms{
+                  font-weight: bold;
+                }
+              }
+
+              &.within0To30Days{
+                li .within0To30Days{
+                  font-weight: bold;
+                }
+              }
+
+              &.within31To60Days{
+                li .within31To60Days{
+                  font-weight: bold;
+                }
+              }
+
+              &.within61To90Days{
+                li .within61To90Days{
+                  font-weight: bold;
+                }
+              }
+
+              &.over91Days{
+                li .over91Days{
+                  font-weight: bold;
+                }
+              }
+           }
+           @media (min-width: $bp-medium){
+              li{
+                @include rem('font-size',18px);
+              }
+          }
+        }
+    }
+    h3 {
+        overflow:hidden;
+        width:calc(100% - 30px);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight:500;
+        cursor:pointer;
+        margin: 0px;
+        padding: 4px 0px;
+        @include rem("font-size",18px);
+        @include rem("line-height",20px);
+        &:after{
+            position:absolute;
+            right:16px;
+            content:'';
+            float:right;
+            margin:11px 0px 0px 0px;
+            @include arrow('down', 10px);
+        }
+        @media (min-width: $bp-small){
+          @include rem(font-size,24px);
+          @include rem(line-height,24px);
+          padding-top:0px;
+          &:after{
+            display:none;
+          }
+        }
+    }
+
+
+    .detail {
+        display:none;
+        @media (min-width: $bp-small){
+          display:block;
+          @include rem(font-size, 14px);
+          margin:5px 10px 0px 0px;
+          button {
+            cursor:pointer;
+            padding:6px 15px 6px 12px;
+            border:1px solid darken(#7cced4,5%);
+            border-radius:2px;
+            background:darken(#7cced4,5%);
+            position: relative;
+            &:before {
+              content: 'Show details';
+            }
+            &:after{
+              content:'';
+              display:inline-block;
+              @include arrow('bottom',5px);
+              right: -7px;
+              position: relative;
+              border-top: 7px solid #444;
+            }
+
+            outline: none;
+          }
+
+          &.more {
+            button {
+              border-bottom-left-radius:0px;
+              border-bottom-right-radius:0px;
+              &:before {
+                content: 'Hide details';
+              }
+            }
+          }
+        }
+    }
+
+    .invoice{
+        @include rem('font-size',13px);
+        .col-project-code {
+          ul {
+            list-style-type: none;
+            display: inline-block;
+            li {
+              padding:1.5px;
+            }
+          }
+        }
+
+        td{
+            &:first-child{
+                padding:7px 10px 7px 80px;
+                border-top:1px solid #d5d5d5;
+                font-weight:bold;
+                display:block;
+                @media (min-width: $bp-small){
+                  display:none;
+                }
+
+                &:before{
+                    content: attr(data-th);
+                    display: inline-block;
+                    left: -78px;
+                    position: relative;
+                    color: #4d4d4d;
+                    font-weight:normal;
+                }
+                &:after{
+                    float:right;
+                    content:'';
+                    display:inline-block;
+                    @include arrow('down', 7px);
+                    margin-top:8px;
+                    margin-right:2px;
+                }
+
+            }
+            &:not(:first-child){
+              display:none;
+              vertical-align:top;
+              @media (min-width: $bp-small){
+                display:table-cell;
+              }
+            }
+
+            &[data-th="Invoice number"],&[data-th="Balance"],&[data-th="Supervising Region"],&[data-th="Entry code"]{
+                font-weight:bold;
+                &:after{
+                    font-weight:normal;
+                }
+            }
+            &[data-th="Date sent"]{
+                margin-top:8px;
+            }
+            @media (min-width: $bp-small){
+              &[data-th="Invoice number"],&[data-th="Balance"],&[data-th="Supervising Region"],&[data-th="Entry code"]{
+                  font-weight:normal;
+              }
+            }
+          }
+          &.all-invoice{
+            td:first-child{
+            border-bottom:1px solid #d5d5d5;
+            margin-bottom:10px;
+            &:after{
+              @include arrow('top',7px);
+              }
+                };
+            td{
+              &:not(:first-child){
+                display:block;
+                @media (min-width: $bp-small){
+                  display:table-cell;
+                }
+              }
+
+            }
+        }
+    }
+
+
+    &.show-all-invoices{
+
+        h3{
+            &:after{
+             @include arrow('top', 10px);
+            }
+        }
+
+        .account-sub-details{
+            display:block;
+            span{
+                display:block;
+            }
+            @media (min-width: $bp-small){
+              span{
+                display:inline-block;
+              }
+            }
+        }
+        @media (min-width: $bp-small){
+          background:none;
+          .detail{
+              border-bottom:1px solid #7CCED4;
+              button{
+                &:after{
+                  @include arrow('top',5px);
+                  border-bottom: 7px solid #444;
+                }
+              }
+            }
+          .invoices{
+                background:none;
+                max-width:825px;
+                .col-ec{
+                  width:66px;
+                  color:#868686;
+                  position:relative;
+                  .entry-type-tooltip{
+                     position:absolute;
+                     top:30px;
+                     left:0px;
+                     padding:2px 10px;
+                     background:lighten($sidePanel,15%);
+                     color:#FFF;
+                     z-index:999;
+                     min-width:40px;
+                     min-height:20px;
+                     border-radius:2px;
+                     white-space:nowrap;
+                     display:none;
+
+                     &:before{
+                         content:"";
+                         @include arrow('top',10px);
+                         border-bottom: 7px solid lighten($sidePanel,15%);
+                         position:absolute;
+                         left:8px;
+                         top:-5px;
+                     }
+                  }
+                  &:hover{
+                        .entry-type-tooltip{
+                            display:inline-block;
+                        }
+                  }
+                }
+                .col-bal{
+                  width:100px;
+                }
+                .col-overdue{
+                  width:54px;
+                }
+                .col-invoice-number{
+                    width:200px;
+                }
+            }
+        }
+    }
+
+}
+@media (min-width: $bp-small){
+
+    H2{
+        @include rem(font-size, 28px);
+    }
+
+    .rwd-table {
+        margin-bottom:5px;
+      tr{
+            &:hover{
+                td{
+                    background:#f1f1f1;
+                }
+            }
+
+          th{
+              display:table-cell;
+              text-align:left;
+              font-weight:normal;
+              padding:14px 10px 10px;
+              color:#868686;
+              vertical-align:top;
+              @include rem(font-size, 12px);
+              @include rem(line-height, 13px);
+              &:first-child{
+                  display:none;
+              }
+          }
+          td{
+              display:table-cell;
+              padding:4px 10px 10px 10px;
+            &:last-child {
+                padding-bottom: 0px;
+            }
+            &:after {
+                display:none;
+            }
+          }
+      }
+    }
+
+}

@@ -1,0 +1,627 @@
+@-webkit-keyframes mymove {
+    0%   {background-position: 2px 4px ;}
+    100% {background-position: 2px 14px;}
+}
+@-webkit-keyframes flash {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+
+@media (max-width: $bp-small){
+    .utilisation-btn{
+        display: flex !important;
+        margin-left: auto !important;
+        position: initial !important;
+    }
+
+    .legend-items{
+        width: 75%;
+        display: block;
+    }
+}
+
+.utilisation-chart{
+    .downloading{
+        .export-button{
+            -webkit-animation: flash 4s infinite;
+            animation: flash 2s infinite;
+            pointer-events: none;
+            &:after{
+            content: "ing...";
+            }
+        }
+    }
+    .export-button{
+        display:none;
+        @media (min-width: $bp-small){
+        display:inline-block;
+        position:absolute;
+        bottom:-16px;
+        right:0%;
+        padding:5px 15px 5px 35px;
+        @include rem(font-size, 14px);
+        border:none;
+        opacity:0.6;
+        cursor:not-allowed;
+        background:url(../images/export.png) no-repeat 4px -34px #f1f1f1;
+        &.active{
+            opacity:1;
+            cursor:pointer;
+            background:url(../images/export.png) no-repeat 4px 2px #f1f1f1;
+            &:hover{
+                outline:1px solid #cecece;
+            }
+        }
+        }
+
+        @media (min-width: $bp-large){
+            bottom:0px;
+        }
+    }
+
+}
+
+.utilisation-panel-info {
+  margin-left: 1em !important;
+}
+
+.chart-container{
+    &.no-filter-panel{
+	margin-left:10px;
+    }
+    .tab-container{
+        .legend{
+            margin-top:0px;
+            margin-bottom:10px;
+            position:relative;
+            .plan-text{
+                background:#D7ECEE;
+                padding: 0px 5px;
+            }
+
+            li{
+                &:before{
+                    height:10px;
+                    width:10px;
+                    left:0px;
+                    top:4px;
+                }
+                &.utilisation:before{
+                    background:$billable;
+                }
+                &.non-billable:before{
+                    background:$nonBillable;
+                }
+                &.leave:before{
+                    background:$leave;
+                }
+                &.other:before{
+                    background:$other;
+                }
+                &.beach:before{
+                    background:$beach;
+                }
+                &.public-holiday:before{
+                    background:$publicHoliday;
+                }
+                &.missing-timesheets:before{
+                    background:$missingTimesheets;
+                }
+                &.utilisation-plan{
+                    padding-left:31px;
+                    @media (min-width:$bp-small){
+                        padding-left:24px;
+                    }
+                    &:before{
+                        background:$utlisation-plan;
+                        height:2px;
+                        top:9px;
+                        width: 18px;
+                        left: 0px;
+                        @media (min-width: $bp-small){
+                            left:0px;
+                        }
+                    }
+                    &:after{
+                        content: '';
+                        border-radius: 6px;
+                        border: 8px;
+                        color: $headcount;
+                        top: 6px;
+                        position: absolute;
+                        left: 5px;
+                        width: 8px;
+                        height: 8px;
+                        background: $utlisation-plan;
+                        @media (min-width: $bp-small){
+                            left:5px;
+                        }
+                    }
+                }
+                &.headcount{
+                    padding-left:31px;
+                    @media (min-width:$bp-small){
+                        padding-left:24px;
+                    }
+                    &:before{
+                        background:$headcount;
+                        height:2px;
+                        top:9px;
+                        width: 18px;
+                        left: 0px;
+                        @media (min-width: $bp-small){
+                            left:0px;
+                        }
+                    }
+                    &:after{
+                        content: '';
+                        border-radius: 6px;
+                        border: 8px;
+                        color: $headcount;
+                        top: 6px;
+                        position: absolute;
+                        left: 5px;
+                        width: 8px;
+                        height: 8px;
+                        background: $headcount;
+                        @media (min-width: $bp-small){
+                            left:5px;
+                        }
+                    }
+                }
+            }
+
+            &.legendExpand{
+                position:relative;
+                li{
+                    margin-top:6px;
+                    width:142px;
+                }
+            }
+        }
+    }
+    .utilisation-weekly-chart{
+        overflow:hidden;
+        position:relative;
+        svg > text {
+            font-size:14px;
+            letter-spacing:0.8px;
+        }
+        .client-billable{
+            rect{
+                fill:$billable;
+            }
+        }
+        .client-non-billable{
+            rect{
+                fill:$nonBillable;
+            }
+        }
+        .leave{
+            rect{
+                fill:$leave;
+            }
+        }
+        .other{
+            rect{
+                fill:$other;
+            }
+        }
+        .beach{
+            rect{
+                fill:$beach;
+            }
+        }
+        .public-holiday{
+            rect{
+                fill:$publicHoliday;
+            }
+        }
+        .missing-timesheet{
+            rect{
+                fill:$missingTimesheets;
+            }
+        }
+        .hundred-percent-line-monthly,
+        .hundred-percent-line-weekly{
+            path{
+                stroke: #5F5F5F;
+                stroke-dasharray:3,3;
+            }
+        }
+        .utilisation-plan-monthly{
+            path{
+                fill: none;
+                stroke: $utlisation-plan;
+            }
+            circle{
+                fill: $utlisation-plan;
+            }
+        }
+        .headcount-monthly,
+        .headcount-weekly{
+            path{
+                fill: none;
+                stroke: $headcount;
+            }
+            circle{
+                fill: $headcount;
+            }
+        }
+    }
+}
+
+.utilisation-chart{
+    .axis text{
+        @include rem(font-size, 10px);
+    }
+    .treemap-container  .filters {
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    .filter-btn {
+	position: absolute;
+	top: 129px;
+	left: 5px;
+	z-index: 5;
+	@media (max-width: $bp-medium){
+	    top: 154px;
+	    left: 4px;
+	}
+	@media (max-width: $bp-small){
+	    top: 136px;
+	    left: 17px;
+	}
+    }
+}
+
+.timesheet-table-container {
+  width: 100%;
+  position: absolute;
+  .overlay {
+    min-height: 600px;
+  }
+}
+
+.employee-list{
+    padding-top:10px;
+    table{
+        margin-left:12px;
+        max-width: 1024px;
+        margin-bottom: 20px;
+        tbody {
+          td.col-el-sub-project.repeat {
+            visibility: hidden;
+          }
+          tr:not(:first-child) {
+            td.col-el-pid {
+              visibility: hidden;
+            }
+          }
+          tr:last-child {
+            td {
+              padding-bottom: 30px;
+              border-bottom:none;
+            }
+          }
+        }
+        tr:hover {
+            td{
+                background: #f5f5f5;
+            }
+        }
+    	td,th{
+    	    padding:8px 0px 8px;
+    	    @include rem(font-size, 13px);
+            vertical-align:top;
+            border-bottom:1px solid #f1f1f1;
+            padding-right:3em;
+    	}
+    	th{
+            text-align:left;
+    	    padding:14px 0px;
+    	    font-weight:normal;
+    	    color:#818181;
+            @include rem(font-size, 12px);
+    	}
+        .col-el-pid{
+            width:185px;
+        }
+        .col-el-name{
+            width:250px;
+        }
+        .col-el-sub-project{
+            width:300px;
+        }
+        .col-el-eid{
+            width:100px;
+        }
+        .col-el-grade{
+            width:185px;
+        }
+        .col-el-office{
+            width:130px;
+        }
+        .col-el-hours{
+            width:60px;
+            text-align:center;
+            @media (min-width: $bp-medium){
+                width:100px;
+            }
+        }
+    }
+}
+@media (min-width: $bp-small){
+    .utilisation-chart{
+      .chart-container{
+        width:calc(100% - 280px);
+        .head {
+          margin-left: 8px;
+          }
+      }
+
+        .charts{
+            position:relative;
+        }
+        .filters{
+            width:550px;
+            margin-left: 11px;
+        }
+        .padding{
+          padding-top:10px;
+        }
+        .chart-container .chart{
+            padding-bottom:0px;
+            margin-top:10px;
+        }
+    }
+    .utilisation-weekly-chart .legend{
+      	margin-top:0px;
+        margin-left:8px;
+    }
+}
+@media (min-width: $bp-medium){
+    .utilisation-chart{
+    	.axis text{
+    	    @include rem(font-size, 8px);
+    	}
+    }
+    .utilisation-weekly-chart{
+      	margin-right:0px;
+    }
+}
+.display-treemap{
+    display: none;
+}
+
+.utilisation-by-selection{
+  @extend %disableTextSelection;
+  svg{
+    margin-top:15px;
+    float: left;
+    overflow:visible;
+    text{
+      @include rem(font-size, 8px);
+    }
+    .ps-headcount{
+      path{
+        fill:none;
+        stroke: $headcount;
+      }
+      circle{
+        fill: $headcount;
+      }
+    }
+    @media (max-width: $bp-medium){
+	margin-top: 16px;
+    }
+  }
+  .selection-list {
+
+      .legend-items {
+          display:inline-table;
+      }
+
+      .extra-legend-items {
+          margin-top:0.6em;
+      }
+
+      margin-bottom: 1.5em !important;
+      .selection-filter {
+          display:none;
+      }
+      .selection-list-label {
+          cursor: pointer;
+          color:white;
+          font-size: 0.5em;
+          font-weight: 700;
+          padding: 0.7em;
+          white-space: nowrap;
+          display: inline-block;
+          margin-top: 0.7em;
+          @media (max-width: $bp-small){
+              line-height: 3.2em;
+          }
+      }
+      :not(:checked) + label {
+        background-color: #888888 !important;
+      }
+      .selection-list-heading{
+        font-size:0.5em;
+        color: #555555;
+        margin-right:1em;
+      }
+  }
+
+  .expand-roles-label{
+      cursor: pointer;
+      float: left;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #444;
+      font-family: 'Open Sans', sans-serif;
+      margin-top: 3em;
+      max-width: 395px;
+      width:18em;
+      margin-left: 45px;
+      display: block;
+      text-align: center;
+      border-radius: 3pt;
+      background: #7cced4;
+      border: 1px solid #7cced4;
+      @media (max-width: $bp-small){
+          margin-left:0;
+          width:97%;
+      }
+  }
+
+  .expand-roles-checkbox {
+      display: none;
+  }
+
+  .directorgrade {
+    fill:$director;
+    background-color:$director;
+  }
+
+  .principalconsultantgrade {
+    fill:$principal;
+    background-color:$principal;
+  }
+
+  .leadconsultantgrade {
+    fill:$lead;
+    background-color:$lead;
+  }
+
+  .seniorconsultantgrade {
+    fill: $senior;
+    background-color: $senior;
+  }
+
+  .consultantgrade {
+    fill:$consultant;
+    background-color:$consultant;
+  }
+
+  .consultant-graduategrade {
+    fill:$graduate;
+    background-color:$graduate;
+  }
+
+  .interngrade {
+    fill:$intern;
+    background-color:$intern;
+  }
+
+  .administratorrole{
+    fill:$administrator;
+    background-color:$administrator;
+  }
+
+  .businessanalystrole{
+    fill:$businessanalyst;
+    background-color:$businessanalyst;
+  }
+
+  .businessdevelopmentmanagerrole{
+    fill:$businessdevelopmentmanager;
+    background-color:$businessdevelopmentmanager;
+  }
+
+  .clientprincipalrole{
+    fill:$clientprincipal;
+    background-color:$clientprincipal;
+  }
+
+  .dbarole{
+    fill:$dba;
+    background-color:$dba;
+  }
+
+  .datascientistrole{
+    fill:$datascientist;
+    background-color:$datascientist;
+  }
+
+  .devopsrole{
+    fill:$devops;
+    background-color:$devops;
+  }
+
+  .developerrole {
+    fill:$developer;
+    background-color:$developer;
+  }
+
+  .technicaladministratorrole {
+    fill:$technicaladministrator;
+    background-color:$technicaladministrator;
+  }
+
+  .coordinatorrole {
+    fill:$coordinator;
+    background-color:$coordinator;
+  }
+
+  .directorrole {
+    fill:$directorrole;
+    background-color:$directorrole;
+  }
+
+  .experiencedesignerrole {
+    fill:$experiencedesigner;
+    background-color:$experiencedesigner;
+  }
+
+  .headrole {
+    fill:$head;
+    background-color:$head;
+  }
+
+  .iterationmanagerrole {
+    fill:$iterationmanager;
+    background-color:$iterationmanager;
+  }
+
+  .managerrole {
+    fill:$manager;
+    background-color:$manager;
+  }
+
+  .productsupportanalystrole {
+    fill:$productsupportanalyst;
+    background-color:$productsupportanalyst;
+  }
+
+  .projectmanagerrole {
+    fill:$manager;
+    background-color:$manager;
+  }
+
+  .qualityassurancerole {
+    fill:$productsupportanalyst;
+    background-color:$productsupportanalyst;
+  }
+
+  .solutionarchitectrole {
+    fill:$solutionarchitect;
+    background-color:$solutionarchitect;
+  }
+
+  .specialistrole {
+    fill:$projectmanager;
+    background-color:$projectmanager;
+  }
+
+  .uideveloperrole{
+    fill:$qualityassurance;
+    background-color:$qualityassurance;
+  }
+}

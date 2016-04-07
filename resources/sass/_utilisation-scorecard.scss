@@ -1,0 +1,134 @@
+.tile.utilisation{
+  .front{
+    width:100%;
+    min-height:545px;
+    @media (min-width: $bp-small){
+      min-height:0px;
+      }
+  }
+  .current-utilisation{
+    overflow:hidden;
+    margin-top: 15px;
+    .utilisation-bar{
+      background-color:#d8ccbe;
+      width:20px;
+      height:70px;
+      float:left;
+      margin-right:10px;
+      position:relative;
+
+      div{
+        height:0px;
+        transition: height 0.5s ease;
+        position:absolute;
+        bottom:0px;
+        width:20px;
+        background:orange;
+      }
+    }
+    ul{
+      float:left;
+      li{
+        @include rem(line-height, 10px);
+        @include rem(font-size, 13px);
+        list-style-type:none;
+        strong{
+          @include rem(font-size, 24px);
+          @include rem(line-height, 47px);
+        }
+        &:nth-child(2){
+          line-height:28px;
+        }
+      }
+    }
+  }
+}
+
+.utilisation-summary{
+  margin-top: 12px;
+  padding-bottom: 3px;
+  position:relative;
+  width: calc(100% - 30px);
+  margin-left: 30px;
+      @include rem(line-height, 14px);
+  .utilisation-summary-row{
+    margin-bottom: 5px;
+    span{
+      display:inline-block;
+      @include rem(font-size, 12px);
+      @include rem(line-height, 12px);
+      &.utilisation-summary-monthtodate{
+        border-right: 1px solid #626262;
+        padding-right: 10px;
+        margin-right: 5px;
+      }
+      strong,.utilisation-summary-plan{
+        margin-left:3px;
+        display:inline-block;
+      }
+    }
+  }
+}
+
+.utilisation-breakdown{
+  tr{
+    &:first-child{
+      td{
+         padding-top:10px;
+         border-bottom:1px solid #cecece;
+      }
+    }
+    td{
+      @include rem(font-size, 12px);
+      padding-right:7px;
+      width: 15%;
+      text-align:center;
+      vertical-align:top;
+      &:first-child{
+        width: 33%;
+        text-align:left;
+      }
+
+      &:nth-child(2){
+        color:#000;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.toggleDisplay {
+  display:none;
+}
+
+.negative {
+    color: red;
+}
+
+.countries-utilisation{
+	tr{
+		td:first-child{
+			color:#ED599F;
+			font-weight:bold;
+		}
+	}
+}
+
+
+@media (min-width: $bp-small) {
+  .utilisation-summary{
+    tr{
+      td{
+        @include rem(font-size, 12px);
+      }
+    }
+  }
+
+  .utilisation-breakdown{
+    tr{
+      td{
+        @include rem(font-size, 13px);
+      }
+    }
+  }
+}

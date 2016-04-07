@@ -1,0 +1,105 @@
+.chart-container{
+  margin: 10px 10px 20px 10px;
+  display: inline-block;
+  width: calc(100% - 20px);
+  .legend{
+      margin-left: 10px;
+  }
+  .charts{
+    margin-top:2px;
+  }
+  h1{
+    text-align:left;
+    font-weight:400;
+  }
+   .chart {
+      margin-top: 20px;
+      overflow: auto;
+      overflow-y: hidden;
+      padding-bottom:12px;
+      @extend %disableTextSelection;
+  }
+   #connector svg {
+    height:20px;
+    width:100%;
+    line {
+      stroke:$connector-color;
+      stroke-width:4;
+    }
+    polygon{
+          fill: $connector-color;
+    }
+  }
+
+  .head{
+    padding:5px 0px;
+    margin-bottom: 5px;
+    @extend .cf;
+    h2{
+      @include rem(font-size, 28px);
+      @include rem(line-height, 32px);
+      font-weight:200;
+      margin:0px;
+      @media (min-width: $bp-small){
+        float: left;
+        &.tile{
+          font-weight: 400;
+        }
+      }
+      @media (min-width: $bp-medium-gt){
+        @include rem(font-size, 30px);
+      }
+     
+    }
+    @media (min-width: $bp-small){
+      margin-left: 10px;
+    }
+    @media (min-width: $bp-medium-gt){
+      margin-bottom: 10px;
+      margin-top:10px;
+    }
+
+  }
+
+  .button {
+      .circle {
+        stroke: #A8AFB3;
+        fill: #565B5E;
+      }
+      .triangle {
+        stroke: #565B5E;
+        fill: #fff;
+      }
+      &.hover, &.selected{
+        .circle {
+          stroke: #B80F4A;
+          fill: $selected-month-color;
+        }
+        .triangle {
+          stroke: $atl-highlight;
+          fill: $atl-highlight;
+        }
+      }
+  }
+}
+@media (min-width: $bp-small) {
+  .no-touch{
+    .chart{
+      g rect{
+        &:hover,&.selected{
+          fill-opacity:.4;
+        }
+      }
+    }
+  }
+  .chart-container{
+    .axis{
+      path{
+        stroke-width: 1px;
+      }
+      text {
+        @include rem(font-size, 13px);
+      }
+    } 
+  }
+}

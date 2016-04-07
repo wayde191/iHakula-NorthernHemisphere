@@ -1,0 +1,45 @@
+.export-button{
+      display:inline-block;
+      color:#000;
+      text-decoration:none;
+      display:none;
+      &:focus{
+        outline:1px solid #5897fb;
+        -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+        box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+      }
+      @media (min-width: $bp-small){
+        display:inline-block;
+        padding:5px 15px 5px 35px;
+        @include rem(font-size, 14px);
+        border:none;
+        opacity:0.6;
+        cursor:not-allowed;
+        background:url(../images/export.png) no-repeat 4px -34px #f1f1f1;
+        &.active{
+          opacity:1;
+          cursor:pointer;
+          background:url(../images/export.png) no-repeat 4px 2px #f1f1f1;
+          &:hover{
+            outline:1px solid #cecece;
+          }
+        }
+      }
+      &[disabled = 'disabled']{
+        pointer-events: none;
+        cursor: not-allowed;
+      }
+    }
+
+.downloading {
+    &.export-button{
+      -webkit-animation: flash 4s infinite;
+      animation: flash 2s infinite;
+      pointer-events: none;
+      &:after{
+        content: "ing...";
+        position:relative;
+        left:-3px;
+      }
+    }
+  }
