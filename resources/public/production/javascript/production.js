@@ -11,8 +11,10 @@ app.config(['$routeProvider', function($routeProvider) {
 
 angular.bootstrap().invoke(bootstrap('p1-scorecard'));
 
-app.controller('dashboardController', function() {
+app.controller('dashboardController', function($scope) {
+    $scope.productions = 'production/partials/xt-tea.html';
+});
 
-    console.log("hahahahah");
+app.controller('ProductionController', function($scope) {
 });
 

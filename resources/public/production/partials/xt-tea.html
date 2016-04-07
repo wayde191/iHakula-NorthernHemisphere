@@ -1,0 +1,47 @@
+<tiles>
+    <tile name="forecast">
+        <revenue-scorecard country="$parent.selectedCountry"
+                           flip="flip(name)"
+                           flip-back="flipBack(name)">
+        </revenue-scorecard>
+    </tile>
+    <tile name="utilisation">
+        <utilization-scorecard country="$parent.selectedCountry"
+                               flip="flip(name)"
+                               flip-back="flipBack(name)">
+        </utilization-scorecard>
+    </tile>
+    <tile name="headcount">
+        <headcount-scorecard></headcount-scorecard>
+    </tile>
+
+    <tile name="unpaid-invoices">
+        <unpaid-invoices-scorecard country="$parent.selectedCountry"
+                                   flip="flip(name)"
+                                   flip-back="flipBack(name)">
+        </unpaid-invoices-scorecard>
+    </tile>
+
+    <tile name="cash-balance">
+        <cash-balance-scorecard></cash-balance-scorecard>
+    </tile>
+
+    <li class="tile whats-new">
+        <div class="front more-info" style="width:100%">
+            <h2 class="title">Revenue enhancements</h2>
+            <p class="sub-info">
+                Unassigned ATL only view - Very similar to BTL Only view, this
+                allows you to look at unassigned ATL specific revenue
+                information for any location(s) or account(s).
+            </p>
+            <p class="sub-info">Take a look and let us know what you think at
+                <a href="https://my.thoughtworks.com/groups/operational-insights"
+                   style="text-decoration:none"
+                   target="_blank">
+                    Operational Insights</a></p>
+        </div>
+    </li>
+    <li class="tile tile-empty">
+    </li>
+</tiles>
+<spinner loading="!$parent.hidePageSpinner"></spinner>
