@@ -29,7 +29,27 @@ common.directive('gofigureHeader', function() {
     return {
         templateUrl: '/angular-htmls/header.html',
         link: function(scope,element,attrs) {
-            console.log("What the hell");
+            scope.showDashboardToggle = true;
+            scope.isGlobal = true;
+
+            scope.showCPReveuneDetail  = true;
+            scope.showCPInvoiceDetail = true;
+
         }
+    };
+});
+
+common.controller('AuthCtrl', function($scope, $rootScope) {
+    $scope.viewMenu = false;
+
+    $scope.showMenu = function(){
+        $scope.viewMenu = !$scope.viewMenu;
+    };
+    $(document).on('click', function(e) {
+        // use $emit so the event stays inside $rootScope
+        $rootScope.$emit('click', {target: e.target});
+    });
+    $scope.closeNavDropDown = function(){
+        $scope.viewMenu = false;
     };
 });

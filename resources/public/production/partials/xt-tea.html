@@ -1,29 +1,10 @@
 <tiles>
-    <tile name="forecast">
-        <revenue-scorecard country="$parent.selectedCountry"
-                           flip="flip(name)"
-                           flip-back="flipBack(name)">
-        </revenue-scorecard>
-    </tile>
+
     <tile name="utilisation">
-        <utilization-scorecard country="$parent.selectedCountry"
+        <tea-tile country="$parent.selectedCountry"
                                flip="flip(name)"
                                flip-back="flipBack(name)">
-        </utilization-scorecard>
-    </tile>
-    <tile name="headcount">
-        <headcount-scorecard></headcount-scorecard>
-    </tile>
-
-    <tile name="unpaid-invoices">
-        <unpaid-invoices-scorecard country="$parent.selectedCountry"
-                                   flip="flip(name)"
-                                   flip-back="flipBack(name)">
-        </unpaid-invoices-scorecard>
-    </tile>
-
-    <tile name="cash-balance">
-        <cash-balance-scorecard></cash-balance-scorecard>
+        </tea-tile>
     </tile>
 
     <li class="tile whats-new">

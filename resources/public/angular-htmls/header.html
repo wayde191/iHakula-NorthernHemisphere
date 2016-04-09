@@ -1,1 +1,20 @@
-<div>I am the header</div>
+<header ng-controller="AuthCtrl" ng-cloak>
+    <h4 class="go-figure"><a href="/">新塘春茶</a></h4>
+
+    <a href="" class="nav-menu-btn glyph-sprite nav-menu" title="menu" ng-click="showMenu()" click-elsewhere="closeNavDropDown()">
+        菜单
+    </a>
+    <div class="menu-list-container" ng-show="viewMenu" ng-if="isGlobal">
+        <ul>
+            <li><a ng-href="{{dashboardLink}}" class="glyph-sprite nav-home">首页</a></li>
+            <li><a href="/auth/logout" class="glyph-sprite nav-signout">登录</a></li>
+        </ul>
+    </div>
+
+    <!--<div ng-if="showDashboardToggle" class="dashboard-toggle">-->
+        <!--<p ng-class="{'current-view': !isGlobal}">Your business</p>-->
+        <!--<input ng-model="isGlobal" type="checkbox" name="toggle" id="toggle" ng-change="switchDashboard();">-->
+        <!--<label for="toggle"></label>-->
+        <!--<p ng-class="{'current-view': isGlobal}">All information</p>-->
+    <!--</div>-->
+</header>
