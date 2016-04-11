@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../../src/css/feature-toggler.css">
+  </head>
+  <body ng-app="example">
+    <h1>Feature Toggle example</h1>
+    <div ng-controller="exampleController">
+      <p ng-if="!isDevMode">Go to dev mode change url to {{currentUrl}}#dev</p>
+      <p ng-if="check1">Enable Check 1</p>
+      <p ng-if="check2">Enable Check 2</p>
+      <p ng-if="check3">Enable Check 3</p>
+    </div>
+    <feature-toggler></feature-toggler>
+    <script src="../../bower_components/angular/angular.js"></script>
+    <script src="../../src/js/feature-toggler.js"></script>
+    <script src="example.js"></script>
+  </body>
+</html>

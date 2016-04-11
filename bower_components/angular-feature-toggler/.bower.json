@@ -1,0 +1,36 @@
+{
+  "name": "angular-feature-toggler",
+  "version": "0.0.2",
+  "authors": [
+    "Udayakumar Rayala <uday.rayala@gmail.com>"
+  ],
+  "description": "Manages Feature Toggles in local storage",
+  "keywords": [
+    "angular",
+    "feature-toggles"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.3"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.3.8"
+  },
+  "homepage": "https://github.com/uday-rayala/angular-feature-toggler",
+  "_release": "0.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.2",
+    "commit": "5d6ddaef9a496565aa0f79054fe0a622e0b006fc"
+  },
+  "_source": "git://github.com/uday-rayala/angular-feature-toggler.git",
+  "_target": "0.0.2",
+  "_originalSource": "angular-feature-toggler"
+}
