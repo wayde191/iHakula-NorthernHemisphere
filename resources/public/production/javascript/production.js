@@ -16,6 +16,7 @@ app.controller('dashboardController', function($scope) {
 });
 
 app.controller('ProductionController', function($scope) {
+
 });
 
 app.directive('teaTile', function() {
@@ -30,7 +31,7 @@ app.directive('teaTile', function() {
         },
 
         link: function(scope, element, attrs) {
-
+            scope.coverImageUrl = "https://www.baidu.com/img/bd_logo1.png";
         }
     };
 });

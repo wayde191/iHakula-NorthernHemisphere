@@ -1,37 +1,64 @@
 <div class="tile-wrapper revenue">
     <div class="front" style="width:100%; height: 420px">
-        <h2 class="title">Forecast revenue
-            <small class="animated fadeIn">As at GMT</small></h2>
-        <p class="sub-info" ng-bind="date | date:'MMMM yyyy'"></p>
         <div class="revenue-table-container">
-            <table>
-                <thead>
-                <tr>
-                    <th>Account name</th>
-                    <th>Actual(Jan - {{actualMonth}})</th>
-                    <th>ATL+BTL(≥60%)</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="account in data.accounts | limitTo: 7">
-                </tr>
-                </tbody>
-            </table>
+            <div class="cover-container">
+                <img class="cover-image" src={{coverImageUrl}} alt="Cover art" aria-hidden="true" itemprop="image">
+            </div>
+
+            <div class="info-box-top">
+                <h1 class="document-title" itemprop="name">
+                    <div class="id-app-title" tabindex="0">新茶</div>
+                </h1>
+                <div style="clear:both"></div>
+
+                <div class="document-subtitles">
+                    <div class="summary">
+                        <div class="right-info">
+                            <div class="comments">
+                                <span class="instructions">累积评论</span>
+                                <span class="counter">80</span>
+                            </div>
+                        </div>
+
+                        <div class="left-info">
+                            <div>
+                                <span>综 合 价:</span>
+                                <strong class="price">￥150.00</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+
+                <div class="document-subtitles">
+                    <div class="left-info">
+                        相关配送信息
+                    </div>
+                    <div class="left-info">
+                        相关服务信息
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+
+                <div class="document-subtitles">
+                    <div class="left-info">
+                        数量
+                    </div>
+                    <div class="left-info">
+                        加入购物车
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+
+                <div class="document-subtitles">
+                    <div class="left-info">
+                        提示信息
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+
+            </div>
         </div>
-        <nav>
-            <a ng-if="showCPReveuneDetail" ng-href={{detailPageUrl}} class="graph"></a>
-            <a title="Flip"  href="" class="flipit" ng-click="flip()">.</a>
-        </nav>
     </div>
-    <div class="back" style="width:100%; height: 100%">
-        <h2 class="title">Forecast revenue
-            <small class="animated fadeIn">As at GMT</small></h2>
-        <div class="cp-small-revenue-chart"  cp-small-revenue-chart>
-            <p class="year-forecast">Your <span ng-bind="date | date:'yyyy'"></span> forecast</p>
-        </div>
-        <nav>
-            <a ng-if="showCPReveuneDetail" ng-href={{detailPageUrl}} class="graph"></a>
-            <a title="Flip Back" href="" class="flipback" ng-click="flipBack()"> . </a>
-        </nav>
-    </div>
+
 </div>

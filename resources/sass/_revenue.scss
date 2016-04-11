@@ -1,10 +1,72 @@
+.revenue-table-container {
+  color: #666;
+
+  .cover-container {
+    display: inline-block;
+    float: none;
+    margin: 25px 25px 0 25px;
+  }
+
+  .cover-container .cover-image {
+    width: 350px;
+    height: 350px;
+  }
+
+  .info-box-top {
+    box-sizing: border-box;
+    min-height: 200px;
+    padding-bottom: 59px;
+    vertical-align: top;
+    display: inline-block;
+    white-space: normal;
+    width: 465px;
+
+    .document-title {
+      color: #212121;
+      font-size: 30px;
+      margin: 25px 30px 10px 0;
+      font-weight: 300;
+      line-height: 35px;
+      white-space: normal;
+    }
+
+    .document-subtitles {
+      margin-bottom: 10px;
+
+      .right-info {
+        color: #616161;
+        float: right;
+      }
+
+      .left-info {
+        text-align: left;
+      }
+
+      .price {
+        display: inline-block;
+        vertical-align: middle;
+        color: #e4393c;
+        font-size: 20px;
+      }
+
+      .summary {
+        padding-top: 10px;
+        padding-bottom: 0;
+        padding-right: 81px;
+        height: 50px;
+        line-height: 30px;
+        background: #f7f7f7;
+      }
+    }
+  }
+}
 
 .chosen-container {
   width: 100% !important;
 }
 .chart-container{
 
-  
+
   .revenue-value{
     display:inline-block;
   }

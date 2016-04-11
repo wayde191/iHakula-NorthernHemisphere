@@ -42,7 +42,7 @@ ul.tiles {
     width: 95%;
     flex-direction: column;
     -webkit-flex-direction: column;
-    max-width:400px;
+    max-width:960px;
     min-height:330px;
     .tile-date-info{
           padding:7px 0px 5px;
@@ -53,6 +53,6 @@ ul.tiles {
   @media (min-width: $bp-small) {
     .tile {
       min-height:400px;
-      width: 400px;
+      width: 960px;
     }
   }
