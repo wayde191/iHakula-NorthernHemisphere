@@ -17,8 +17,6 @@ hs_err_pid*
 .nrepl-port
 target/*
 .sass-cache/
-bower_components/
-node_modules/
 npm-debug.log
 resources/public/vendor
 resources/public/css/main.css*

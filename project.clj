@@ -76,7 +76,7 @@
   :auto-clean false
 
   :aliases {"bower" ["shell" "bower" "install"]
-            "sass" ["do" ["bower"] ["shell" "sass" "--update" "resources/sass/:resources/public/css/"]]
+            "sass" ["do" ["shell" "sass" "--update" "resources/sass/:resources/public/css/"]]
             "js-compile" ["shell" "grunt" "compile"]
             "resources" ["do" ["sass"] ["js-compile"]]
             "wrap-package" ["shell" "src/scripts/wrap-package" ~version]
