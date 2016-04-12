@@ -70,7 +70,6 @@
   :clean-targets ^{:protect false} [:target-path :compile-path
                                     "resources/public/css"
                                     "resources/public/vendor"
-                                    "bower_components"
                                     ".cache"]
 
   :auto-clean false
