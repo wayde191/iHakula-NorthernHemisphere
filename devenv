@@ -72,10 +72,10 @@ install_galen
 
 export PATH=$LOCAL_GEMS_BIN:$LEIN_ROOT:$NODE_PATH:$GALEN_PATH:$PATH
 
-if [ -f ./devenv.local ]; then
-   . ./devenv.local
-
-   export REPORTS_API
-fi
+#if [ -f ./devenv.local ]; then
+#   . ./devenv.local
+#
+#   export REPORTS_API
+#fi
 
 export XDG_CACHE_HOME=./.cache
