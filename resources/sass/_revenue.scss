@@ -1,5 +1,6 @@
 .revenue-table-container {
   color: #666;
+  font-size: 80%;
 
   .cover-container {
     display: inline-block;
@@ -40,6 +41,11 @@
 
       .left-info {
         text-align: left;
+
+        .price-summary {
+          padding-left: 20px;
+          font-size: 110%;
+        }
       }
 
       .price {
@@ -49,13 +55,25 @@
         font-size: 20px;
       }
 
+      .logo {
+        color: #e4393c;
+      }
+
       .summary {
         padding-top: 10px;
         padding-bottom: 0;
-        padding-right: 81px;
+        padding-right: 30px;
         height: 50px;
         line-height: 30px;
         background: #f7f7f7;
+      }
+
+      .comments {
+        border-left: solid 1px #e6e6e6;
+        text-align: center;
+        padding: 0 10px;
+        margin-top: 7px;
+        line-height: 15px;
       }
     }
   }
