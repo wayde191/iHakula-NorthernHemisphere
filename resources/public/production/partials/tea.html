@@ -47,13 +47,13 @@
                     <div id="choose-buttons">
                         <div class="choose-amount fl">
                             <div class="wrap-input">
-                                <a class="btn-reduce" href="javascript:;" onclick="setAmount.reduce('#buy-num')">-</a>
-                                <a class="btn-add" href="javascript:;" onclick="setAmount.add('#buy-num')">+</a>
-                                <input class="text" id="buy-num" value="1" onkeyup="setAmount.modify('#buy-num');">
+                                <a class="btn-reduce" href="javascript:;" ng-click="reduce()">-</a>
+                                <a class="btn-add" href="javascript:;" ng-click="increase()">+</a>
+                                <input class="text" id="buy-num" ng-model="counter">
                             </div>
                         </div>
                         <div class="btn" id="choose-btn-append">
-                            <a class="btn-append " id="InitCartUrl" href="www.ihakula.com">加入购物车
+                            <a class="btn-append" id="InitCartUrl" ng-click="shopping()">加入购物车
                                 <b></b>
                             </a>
                         </div>

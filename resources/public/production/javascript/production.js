@@ -31,7 +31,20 @@ app.directive('teaTile', function() {
         },
 
         link: function(scope, element, attrs) {
-            scope.coverImageUrl = "https://www.baidu.com/img/bd_logo1.png";
+            scope.coverImageUrl = "/images/test_tea_icon.jpg";
+            scope.counter = 1;
+            scope.reduce = function(){
+                scope.counter--;
+            };
+            scope.increase = function(){
+                scope.counter++;
+            };
+            scope.shopping = function(){
+                console.log(scope.counter);
+            };
+            scope.$watch('counter', function(counter){
+                console.log(counter);
+            });
         }
     };
 });
