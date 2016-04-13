@@ -44,11 +44,19 @@
                 <div style="clear:both"></div>
 
                 <div class="document-subtitles">
-                    <div class="left-info">
-                        数量
-                    </div>
-                    <div class="left-info">
-                        加入购物车
+                    <div id="choose-buttons">
+                        <div class="choose-amount fl">
+                            <div class="wrap-input">
+                                <a class="btn-reduce" href="javascript:;" onclick="setAmount.reduce('#buy-num')">-</a>
+                                <a class="btn-add" href="javascript:;" onclick="setAmount.add('#buy-num')">+</a>
+                                <input class="text" id="buy-num" value="1" onkeyup="setAmount.modify('#buy-num');">
+                            </div>
+                        </div>
+                        <div class="btn" id="choose-btn-append">
+                            <a class="btn-append " id="InitCartUrl" href="www.ihakula.com">加入购物车
+                                <b></b>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div style="clear:both"></div>
