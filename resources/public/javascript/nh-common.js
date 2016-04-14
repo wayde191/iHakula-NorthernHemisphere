@@ -1,25 +1,22 @@
 var bootstrap = function(module) {
     return function($http, $q) {
-        //$q.all({
-        //    date: $http.get('/api/date.json'),
-        //    config: $http.get('/api/config.json'),
-        //    user: $http.get('/api/user.json', { cache: true})
-        //}).then(function(responses) {
-        //    var today = dateUtils.toUTCDate(new Date(sessionStorage.dateOverride ? sessionStorage.dateOverride : responses.date.data.date));
-        //    var User = responses.user.data;
-        //    User.userID = User["user-id"].split('@')[0];
-            window.loaded = {};
 
-            angular.element(document).ready(function() {
-                angular.module(module);
-                    //.constant('today', today)
-                    //.constant('User', User)
-                    //.constant('piwikHost', responses.config.data['piwik-host'])
-                    //.constant('enabledFeatures', responses.config.data['toggled-features'])
-                    //.constant('salesFunnelUrl', responses.config.data['sales-funnel-url'] + 'opportunity-details/');
-                angular.bootstrap(document, [module]);
+        window.localStorage.teaAmount = window.localStorage.teaAmount || 0;
+        window.loaded = {};
+
+        angular.element(document).ready(function() {
+            $.fn.extend({
+                animateCss: function (animationName) {
+                    var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+                    $(this).addClass('animated ' + animationName).one(animationEnd, function() {
+                        $(this).removeClass('animated ' + animationName);
+                    });
+                }
             });
-        //});
+
+            angular.module(module).constant('today', new Date());
+            angular.bootstrap(document, [module]);
+        });
     };
 };
 
@@ -28,13 +25,22 @@ var common = angular.module('gofigure-common', []);
 common.directive('gofigureHeader', function() {
     return {
         templateUrl: '/angular-htmls/header.html',
-        link: function(scope,element,attrs) {
-            scope.showDashboardToggle = true;
-            scope.isGlobal = true;
+        link: function(scope, element, attrs) {
 
-            scope.showCPReveuneDetail  = true;
-            scope.showCPInvoiceDetail = true;
-
+            scope.amount = 0;
+            scope.showAmount = scope.amount > 0 ? true : false;
+            scope.$watch('amount', function (newValue) {
+                scope.showAmount = newValue > 0;
+            });
+            scope.$watch(function () {
+                return window.localStorage.teaAmount;
+            }, function (newVal, oldVal) {
+                if (oldVal !== newVal && newVal !== undefined) {
+                    scope.amount = newVal;
+                    $('#shopping-amount').animateCss('tada');
+                    $('#shopping-cart').animateCss('tada');
+                }
+            });
         }
     };
 });

@@ -40,6 +40,7 @@ app.directive('teaTile', function() {
                 scope.counter++;
             };
             scope.shopping = function(){
+                window.localStorage.teaAmount = scope.counter;
                 console.log(scope.counter);
             };
             scope.$watch('counter', function(counter){

@@ -76,6 +76,7 @@
 (defroutes public-routes
   (GET "/favicon.ico" [] (response/resource-response "/favicon.ico" {:root "public/images"}))
   (handler/site (route/resources "/css" {:root "public/css"}))
+  (handler/site (route/resources "/third-part" {:root "public/third-part"}))
   (handler/site (route/resources "/fonts" {:root "public/fonts"}))
   (handler/site (route/resources "/javascript" {:root "public/javascript"}))
   (handler/site (route/resources "/utilisation/javascript" {:root "public/utilisation/javascript"}))

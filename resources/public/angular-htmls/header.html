@@ -4,7 +4,7 @@
     <a href="" class="nav-menu-btn glyph-sprite nav-menu" title="menu" ng-click="showMenu()" click-elsewhere="closeNavDropDown()">
         菜单
     </a>
-    <div class="menu-list-container" ng-show="viewMenu" ng-if="isGlobal">
+    <div class="menu-list-container" ng-show="viewMenu">
         <ul>
             <li><a ng-href="{{dashboardLink}}" class="glyph-sprite nav-home">首页</a></li>
             <li><a href="/auth/logout" class="glyph-sprite nav-signout">登录</a></li>
@@ -12,8 +12,8 @@
     </div>
 
     <div class="shopping-cart">
-        <img class="ci-left" src="/images/shopping-cart.png" alt="Shopping Cart" aria-hidden="true" itemprop="image">
-        <i class="ci-count" id="shopping-amount">1</i>
+        <img class="ci-left" id="shopping-cart" src="/images/shopping-cart.png" alt="Shopping Cart" aria-hidden="true" itemprop="image">
+        <i class="ci-count" id="shopping-amount" ng-if="showAmount">{{amount}}</i>
     </div>
 
 </header>
