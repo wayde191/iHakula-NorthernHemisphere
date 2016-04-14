@@ -158,6 +158,38 @@ header{
       margin-top:2px;
     }
   }
+
+  .shopping-cart {
+
+    float: right;
+    width: 75px;
+    height: 34px;
+    margin-top: 6px;
+    text-align: center;
+    line-height: 34px;
+    position: relative;
+    cursor: default;
+    zoom: 1;
+
+    .ci-left {
+      width: 30px;
+    }
+
+    .ci-count {
+      position: absolute;
+      top: 0px;
+      left: 40px;
+      display: inline-block;
+      padding: 1px 2px;
+      font-size: 12px;
+      line-height: 12px;
+      color: #fff;
+      background-color: #c81623;
+      border-radius: 7px 7px 7px 0;
+      min-width: 12px;
+      text-align: center;
+    }
+  }
 }
 
 .dashboard-toggle{
