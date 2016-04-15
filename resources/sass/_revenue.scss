@@ -11,6 +11,11 @@
   .cover-container .cover-image {
     width: 350px;
     height: 350px;
+
+    @media (min-width: $bp-small) and (max-width: $bp-medium-lt) {
+        width: 200px;
+        height: 200px;
+    }
   }
 
   .info-box-top {
