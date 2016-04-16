@@ -106,6 +106,10 @@ header{
     padding-left:18px;
     padding-right:18px;
   }
+  @media (max-width: $bp-small) {
+    position: fixed;
+    top: 0;
+  }
   .beta-icon {
     float: left;
     height: 45px;

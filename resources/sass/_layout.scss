@@ -5,11 +5,14 @@
   @media (min-width: $bp-large){
     height:100%;
   }
-
+  @media (max-width: $bp-small) {
+    padding-top: 60px;
+  }
 }
 
 ul.tiles {
     @include nostyle();
+    background-color: #f2f2f2;
     width: 100% ;
     margin:20px auto;
     -ms-box-orient: horizontal;
