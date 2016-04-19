@@ -4,6 +4,12 @@
     color: #666;
     background: #fff;
 
+    *, *:before, *:after {
+        -moz-box-sizing: content-box;
+        -webkit-box-sizing:  content-box;
+        box-sizing: content-box;
+    }
+
     .fixed-bottom {
         position: fixed;
         bottom: 0px;
