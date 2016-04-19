@@ -1,0 +1,33 @@
+<tiles>
+
+    <tile name="utilisation">
+        <tea-tile country="$parent.selectedCountry"
+                               flip="flip(name)"
+                               flip-back="flipBack(name)">
+        </tea-tile>
+    </tile>
+
+    <li class="tile whats-new">
+        <div class="front more-info" style="width:100%">
+            <h2 class="title">说明：</h2>
+            <p class="sub-info">
+                <strong>正品承诺：</strong>
+                本店所售商品均是新塘春正品，接受验货，品质保证。在本店所购买商品均享受售后服务。
+            </p>
+            <p class="sub-info">
+                <strong>关于色差：</strong>
+                所有商品均为实物拍摄，但由于灯光等原因导致实物与照片有一些色差。该问题不属于质量问题，最终颜色以商品实物为准。
+            </p>
+            <p class="sub-info">
+                <strong>技术支持：</strong>
+                互联网技术由iHakula工作室大力支持
+                <a href="http://www.ihakula.com"
+                   style="text-decoration:none"
+                   target="_blank">
+                    www.ihakula.com</a></p>
+        </div>
+    </li>
+    <li class="tile tile-empty">
+    </li>
+</tiles>
+<spinner loading="!$parent.hidePageSpinner"></spinner>
