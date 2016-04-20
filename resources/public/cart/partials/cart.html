@@ -1,11 +1,11 @@
 <div class="tea-cart">
 
-<div class="w w1 header clearfix">
-    <div id="logo">
-        <a href="http://www.jd.com/" class="link1"><img src="./我的购物车 - 京东商城_files/logo-201305.png" alt="京东商城"></a>
-        <a href="http://cart.jd.com/cart#none" class="link2"><b></b>购物车</a>
-    </div>
-</div>
+<!--<div class="w w1 header clearfix">-->
+    <!--<div id="logo">-->
+        <!--<a href="http://www.jd.com/" class="link1"><img src="./我的购物车 - 京东商城_files/logo-201305.png" alt="京东商城"></a>-->
+        <!--<a href="http://cart.jd.com/cart#none" class="link2"><b></b>购物车</a>-->
+    <!--</div>-->
+<!--</div>-->
 
 <!-- main -->
 <div id="container" class="cart">
@@ -16,7 +16,7 @@
                 <li class="switch-cart-item curr">
                     <a href="http://cart.jd.com/cart#none">
                         <em>全部商品</em>
-                        <span class="number">3</span>
+                        <span class="number">{{amount}}</span>
                     </a>
                 </li>
 
@@ -37,8 +37,7 @@
                     <div class="cart-thead">
                         <div class="column t-checkbox">
                             <div class="cart-checkbox">
-                                <input type="checkbox" name="toggle-checkboxes" class="jdcheckbox"
-                                       clstag="clickcart|keycount|xincart|cart_allCheck">
+                                <input type="checkbox" ng-model="checkboxModel.allChecked" ng-change="changed()" name="toggle-checkboxes" class="jdcheckbox">
                                 <label for="">勾选全部商品</label>
                             </div>
                             全选

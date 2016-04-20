@@ -15,7 +15,14 @@ app.controller('dashboardController', function($scope) {
     $scope.cart = 'cart/partials/cart.html';
 });
 
-app.controller('CartController', function($scope) {
-
-});
+app.controller('CartController', ['$scope', function($scope) {
+    $scope.amount = 10;
+    $scope.checkboxModel = {
+        allChecked : true,
+        value2 : 'YES'
+    };
+    $scope.changed = function(){
+        console.log($scope.checkboxModel);
+    };
+}]);
 
