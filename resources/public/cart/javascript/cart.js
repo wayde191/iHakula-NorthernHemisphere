@@ -24,5 +24,6 @@ app.controller('CartController', ['$scope', function($scope) {
     $scope.changed = function(){
         console.log($scope.checkboxModel);
     };
+    $scope.items = [{"id":"03"}, {"id":"04"},{"id":"05"}];
 }]);
 
