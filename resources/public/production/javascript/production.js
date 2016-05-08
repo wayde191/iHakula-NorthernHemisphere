@@ -25,13 +25,19 @@ app.directive('teaTile', function() {
         replace: true,
         templateUrl: 'production/partials/tea.html',
         scope: {
-            country: '=',
+            productId: '=',
             flip: '&',
             flipBack: '&'
         },
 
         link: function(scope, element, attrs) {
-            scope.coverImageUrl = "/images/test_tea_icon.jpg";
+            console.log(attrs.productId);
+            var prod = window.xtTeaProductions[attrs.productId - 1];
+
+            scope.coverImageUrl = prod.image;
+            scope.name = prod.name;
+            scope.price = prod.price;
+
             scope.counter = 1;
             scope.reduce = function(){
                 scope.counter--;
