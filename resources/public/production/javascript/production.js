@@ -31,9 +31,9 @@ app.directive('teaTile', function() {
         },
 
         link: function(scope, element, attrs) {
-            console.log(attrs.productId);
             var prod = window.xtTeaProductions[attrs.productId - 1];
 
+            scope.id = prod.id;
             scope.coverImageUrl = prod.image;
             scope.name = prod.name;
             scope.price = prod.price;
@@ -45,9 +45,21 @@ app.directive('teaTile', function() {
             scope.increase = function(){
                 scope.counter++;
             };
+
+            function updateTeaAmount(){
+                var amount = 0;
+                for (var i = 1; i < 7; i++){
+                    var no = parseInt(window.localStorage[i]);
+                    if(no) {
+                        amount += no;
+                    }
+                }
+
+                window.localStorage.teaAmount = amount;
+            }
             scope.shopping = function(){
-                window.localStorage.teaAmount = scope.counter;
-                console.log(scope.counter);
+                window.localStorage[scope.id] = scope.counter;
+                updateTeaAmount();
             };
             scope.$watch('counter', function(counter){
                 console.log(counter);
@@ -62,7 +74,7 @@ app.directive('tiles',
             restrict: 'E',
             transclude: true,
             replace: true,
-            templateUrl: 'production/partials/tiles.html',
+            templateUrl: 'production/partials/tiles.html'
         };
     });
 

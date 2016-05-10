@@ -105,6 +105,8 @@ header{
   @media (min-width: $bp-small){
     padding-left:18px;
     padding-right:18px;
+    position: fixed;
+    top: 0;
   }
   @media (max-width: $bp-small) {
     position: fixed;

@@ -44,7 +44,7 @@ common.directive('gofigureHeader', function() {
             scope.$watch(function () {
                 return window.localStorage.teaAmount;
             }, function (newVal, oldVal) {
-                if (oldVal !== newVal && newVal !== undefined) {
+                if (newVal !== undefined) {
                     scope.amount = newVal;
                     $('#shopping-amount').animateCss('tada');
                     $('#shopping-cart').animateCss('tada');

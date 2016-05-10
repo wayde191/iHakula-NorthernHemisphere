@@ -2,8 +2,8 @@
 .body-wrapper{
   position:relative;
   min-height:calc(100% - 56px);
-  @media (min-width: $bp-large){
-    height:100%;
+  @media (min-width: $bp-small){
+    padding-top: 60px;
   }
   @media (max-width: $bp-small) {
     padding-top: 60px;
