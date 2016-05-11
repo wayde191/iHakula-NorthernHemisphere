@@ -74,7 +74,40 @@ app.directive('tiles',
             restrict: 'E',
             transclude: true,
             replace: true,
-            templateUrl: 'production/partials/tiles.html'
+            templateUrl: 'production/partials/tiles.html',
+
+            link: function(scope, element, attrs) {
+                scope.name = "xt-tea";
+                scope.show = true;
+                scope.products = window.xtTeaProductions;
+
+                scope.counter = 1;
+                scope.reduce = function(){
+                    scope.counter--;
+                };
+                scope.increase = function(){
+                    scope.counter++;
+                };
+
+                function updateTeaAmount(){
+                    var amount = 0;
+                    for (var i = 1; i < 7; i++){
+                        var no = parseInt(window.localStorage[i]);
+                        if(no) {
+                            amount += no;
+                        }
+                    }
+
+                    window.localStorage.teaAmount = amount;
+                }
+                scope.shopping = function(productId){
+                    window.localStorage[productId] = scope.counter;
+                    updateTeaAmount();
+                };
+                scope.$watch('counter', function(counter){
+                    console.log(counter);
+                });
+            }
         };
     });
 
