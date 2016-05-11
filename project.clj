@@ -30,12 +30,15 @@
                  [org.clojure/data.csv "0.1.2"]
                  [org.clojure/core.incubator "0.1.3"]
                  [pjstadig/humane-test-output "0.6.0"]
+                 [org.clojure/java.jdbc "0.0.6"]
+                 [mysql/mysql-connector-java "5.1.6"]
                  ]
   :plugins [[lein-ring "0.9.1"]
             [lein-shell "0.4.0"]
             [lein-rpm "0.0.5"]
             [jonase/eastwood "0.1.4"]
             [lein-cloverage "1.0.2"]]
+;  :main northern-hemisphere.core
   :ring {:handler northern-hemisphere.handler/app
          :port ~(or (Integer/parseInt (System/getenv "GO_PIPELINES_PORT")) 3000)}
   :aot [utils.manifest]

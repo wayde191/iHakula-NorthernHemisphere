@@ -68,7 +68,7 @@
 (defroutes main-routes
   (GET "/productions.html" [] (-> (response/response (apply str (production-template)))))
   (GET "/cart.html" [] (-> (response/response (apply str (cart-template)))))
-  (GET "/" [] (-> (response/response (apply str (index-template)))))
+  (GET "/" [] (response/redirect "/productions.html"))
   (GET "/index.html" [] (response/redirect "/"))
   )
 
