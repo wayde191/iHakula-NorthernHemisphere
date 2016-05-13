@@ -38,7 +38,7 @@
             [lein-rpm "0.0.5"]
             [jonase/eastwood "0.1.4"]
             [lein-cloverage "1.0.2"]]
-;  :main northern-hemisphere.core
+  :main northern-hemisphere.core
   :ring {:handler northern-hemisphere.handler/app
          :port ~(or (Integer/parseInt (System/getenv "GO_PIPELINES_PORT")) 3000)}
   :aot [utils.manifest]
