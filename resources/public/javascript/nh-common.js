@@ -22,11 +22,13 @@ var bootstrap = function(module) {
 
 var common = angular.module('nh-common', []);
 
-common.directive('gofigureHeader', function() {
+common.directive('nhHeader', function() {
     return {
         templateUrl: '/angular-htmls/header.html',
         link: function(scope, element, attrs) {
 
+            scope.myOrderLink = '/order.html';
+            scope.loginLink = 'http://localhost/sso/login.html?redirect=http://localhost:3000/productions.html'
             scope.amount = 0;
             scope.showAmount = scope.amount > 0 ? true : false;
             scope.$watch('amount', function (newValue) {

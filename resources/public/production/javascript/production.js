@@ -21,6 +21,7 @@ app.controller('ProductionController', function($scope, Product) {
         function(data) {
             $scope.dataLoaded = true;
             $scope.products = data;
+            window.localStorage['productions'] = JSON.stringify(data);
         }
     );
 });
