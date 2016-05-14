@@ -1,5 +1,4 @@
 <tiles>
-
     <li class="tile {{name}}"
         ng-class="{flip:flipped[name]}"
         ng-show="show"
@@ -11,7 +10,7 @@
             <div class="front" style="width:100%;">
                 <div class="revenue-table-container">
                     <div class="cover-container">
-                        <img class="cover-image" ng-src={{product.image}} alt="Cover art" aria-hidden="true" itemprop="image">
+                        <img class="cover-image" ng-src="/images/{{product.image_url}}" alt="Cover" itemprop="image">
                     </div>
 
                     <div class="info-box-top">
@@ -32,7 +31,7 @@
                                 <div class="left-info">
                                     <div class="price-summary">
                                         <span>综 合 价:</span>
-                                        <strong class="price">￥{{product.price}}</strong>
+                                        <strong class="price">￥{{product.sale_price}}元</strong>
                                         <span>（会员特惠）</span>
                                     </div>
                                 </div>
@@ -113,5 +112,6 @@
     </li>
     <li class="tile tile-empty">
     </li>
+
+    <spinner loading="!$parent.dataLoaded"></spinner>
 </tiles>
-<spinner loading="!$parent.hidePageSpinner"></spinner>

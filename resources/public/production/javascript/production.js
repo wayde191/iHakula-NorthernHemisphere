@@ -1,4 +1,4 @@
-var app = angular.module('p1-scorecard', ['ngRoute', 'ngResource', 'gofigure-common']);
+var app = angular.module('product', ['ngRoute', 'ngResource', 'nh-common']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
@@ -9,15 +9,65 @@ app.config(['$routeProvider', function($routeProvider) {
         });
 }]);
 
-angular.bootstrap().invoke(bootstrap('p1-scorecard'));
+angular.bootstrap().invoke(bootstrap('product'));
 
 app.controller('dashboardController', function($scope) {
     $scope.productions = 'production/partials/xt-tea.html';
 });
 
-app.controller('ProductionController', function($scope) {
-
+app.controller('ProductionController', function($scope, Product) {
+    $scope.dataLoaded = false;
+    Product.getProduct().$promise.then(
+        function(data) {
+            $scope.dataLoaded = true;
+            $scope.products = data;
+        }
+    );
 });
+
+app.directive('tiles',
+    function() {
+        return {
+            restrict: 'E',
+            transclude: true,
+            replace: true,
+            templateUrl: 'production/partials/tiles.html',
+
+            link: function(scope, element, attrs) {
+                scope.name = "xt-tea";
+                scope.show = true;
+
+                //console.log(scope.products[0]);
+
+                scope.counter = 1;
+                scope.reduce = function(){
+                    scope.counter--;
+                };
+                scope.increase = function(){
+                    scope.counter++;
+                };
+
+                function updateTeaAmount(){
+                    var amount = 0;
+                    for (var i = 1; i < 7; i++){
+                        var no = parseInt(window.localStorage[i]);
+                        if(no) {
+                            amount += no;
+                        }
+                    }
+
+                    window.localStorage.teaAmount = amount;
+                }
+                scope.shopping = function(productId){
+                    window.localStorage[productId] = scope.counter;
+                    updateTeaAmount();
+                };
+                scope.$watch('counter', function(counter){
+                    console.log(counter);
+                });
+            }
+        };
+    });
 
 app.directive('teaTile', function() {
     return {
@@ -67,49 +117,6 @@ app.directive('teaTile', function() {
         }
     };
 });
-
-app.directive('tiles',
-    function() {
-        return {
-            restrict: 'E',
-            transclude: true,
-            replace: true,
-            templateUrl: 'production/partials/tiles.html',
-
-            link: function(scope, element, attrs) {
-                scope.name = "xt-tea";
-                scope.show = true;
-                scope.products = window.xtTeaProductions;
-
-                scope.counter = 1;
-                scope.reduce = function(){
-                    scope.counter--;
-                };
-                scope.increase = function(){
-                    scope.counter++;
-                };
-
-                function updateTeaAmount(){
-                    var amount = 0;
-                    for (var i = 1; i < 7; i++){
-                        var no = parseInt(window.localStorage[i]);
-                        if(no) {
-                            amount += no;
-                        }
-                    }
-
-                    window.localStorage.teaAmount = amount;
-                }
-                scope.shopping = function(productId){
-                    window.localStorage[productId] = scope.counter;
-                    updateTeaAmount();
-                };
-                scope.$watch('counter', function(counter){
-                    console.log(counter);
-                });
-            }
-        };
-    });
 
 app.directive('tile',
     function() {
