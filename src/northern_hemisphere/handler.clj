@@ -76,7 +76,7 @@
 (defn app-routes [reports-get current-user forecast-shrinkage-percentage]
   (routes
     (handler/site main-routes)
-    (context "/api" [] (api/routes current-user))
+    (context "/api" [] (api/routes reports-get current-user))
 ))
 
 (defroutes public-routes

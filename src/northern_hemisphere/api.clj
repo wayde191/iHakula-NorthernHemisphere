@@ -1,5 +1,6 @@
 (ns northern-hemisphere.api
   (:require [northern-hemisphere.mysql :as mysql]
+            [northern-hemisphere.user :as user]
             [northern-hemisphere.datetime :as datetime]
             [utils.map :refer [filter-keys flatten-keys]]
             [clj-time.core :refer [year month date-time plus minus months interval within?]]
@@ -16,14 +17,20 @@
   (:import [java.util TimeZone]
            [utils manifest]))
 
-(defn routes [current-user]
+(defn routes [reports-get current-user]
   (cheshire.generate/add-encoder org.joda.time.base.BaseDateTime cheshire.generate/encode-str)
 
-  (handler/api
-    (compojure/routes
-      (wrap-json-response
-        (defroutes json-routes
-          (GET "/date.json" req (response {:date (datetime/midnight)}))
-          (GET "/products.json" req (response (mysql/list-users 'hello')))
-          ))))
+  (letfn [(get-user-info [userId token] (reports-get (reports/pipeline user)))
+          ]
+
+    (handler/api
+      (compojure/routes
+        (wrap-json-response
+          (defroutes json-routes
+            (GET "/date.json" req (response {:date (datetime/midnight)}))
+            (GET "/products.json" req (response (mysql/list-users 'hello')))
+            (GET "/:userId/:token/user.json" [userId token]
+              (response (get-user-info userId token)))
+            ))))
+    )
   )

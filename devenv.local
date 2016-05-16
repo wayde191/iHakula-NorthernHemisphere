@@ -3,3 +3,4 @@ export GO_STAGE_COUNTER=2
 export GO_PIPELINES_ENV=dev
 export GO_PIPELINES_PORT=3000
 export PIWIK_HOST=www.ihakula.com
+export REPORTS_API=http://www.ihakula.com:9000/order

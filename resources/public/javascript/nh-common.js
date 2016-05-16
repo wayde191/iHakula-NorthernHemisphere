@@ -1,21 +1,27 @@
 var bootstrap = function(module) {
     return function($http, $q) {
+        $q.all({
+            date: $http.get('/api/date.json')
+        }).then(function(responses) {
+            var today = dateUtils.toUTCDate(new Date(sessionStorage.dateOverride ? sessionStorage.dateOverride : responses.date.data.date));
 
-        window.localStorage.teaAmount = window.localStorage.teaAmount || 0;
-        window.loaded = {};
+            window.localStorage.teaAmount = window.localStorage.teaAmount || 0;
+            window.loaded = {};
 
-        angular.element(document).ready(function() {
-            $.fn.extend({
-                animateCss: function (animationName) {
-                    var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-                    $(this).addClass('animated ' + animationName).one(animationEnd, function() {
-                        $(this).removeClass('animated ' + animationName);
-                    });
-                }
+            angular.element(document).ready(function() {
+                $.fn.extend({
+                    animateCss: function (animationName) {
+                        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+                        $(this).addClass('animated ' + animationName).one(animationEnd, function() {
+                            $(this).removeClass('animated ' + animationName);
+                        });
+                    }
+                });
+
+                angular.module(module)
+                    .constant('today', today)
+                angular.bootstrap(document, [module]);
             });
-
-            angular.module(module).constant('today', new Date());
-            angular.bootstrap(document, [module]);
         });
     };
 };
@@ -68,6 +74,61 @@ common.directive('spinner', function() {
                 }
             });
         }
+    };
+});
+
+common.service('sessionStorageService',function(){
+    var getToken = function(){
+        return sessionStorage.token ? sessionStorage.token : '';
+    };
+
+    var getUserId = function(){
+        return sessionStorage.userId ? sessionStorage.userId : '';
+    };
+
+    var setToken = function(token){
+        sessionStorage.token = token;
+    };
+
+    var setUserId = function(userId){
+        sessionStorage.userId = userId;
+    };
+
+    return {
+        getToken : getToken,
+        getUserId : getUserId,
+        setToken: setToken,
+        setUserId: setUserId
+    };
+});
+
+common.service('userService',function(sessionStorageService){
+    var isUserLoggedIn = function(){
+        var userId = sessionStorageService.getUserId();
+        var token = sessionStorageService.getToken();
+
+        if(userId == '' || token == ''){
+            return false;
+        } else {
+            return true;
+        }
+    };
+
+    var getUserInfo = function(){
+        if(!isUserLoggedIn()){
+            return null;
+        }
+
+        var userId = sessionStorageService.getUserId();
+        var token = sessionStorageService.getToken();
+        $http.get('/api/' + userId + '/' + token + '/user.json', {}).then(function(response) {
+            return response.data;
+        });
+    };
+
+    return {
+        getUserInfo : getUserInfo,
+        isUserLoggedIn: isUserLoggedIn
     };
 });
 
