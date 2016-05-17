@@ -2,6 +2,7 @@
   (:require [northern-hemisphere.mysql :as mysql]
             [northern-hemisphere.user :as user]
             [northern-hemisphere.datetime :as datetime]
+            [northern-hemisphere.user :as user]
             [utils.map :refer [filter-keys flatten-keys]]
             [clj-time.core :refer [year month date-time plus minus months interval within?]]
             [compojure.core :refer [defroutes GET context] :as compojure]
@@ -20,17 +21,16 @@
 (defn routes [reports-get current-user]
   (cheshire.generate/add-encoder org.joda.time.base.BaseDateTime cheshire.generate/encode-str)
 
-  (letfn [(get-user-info [userId token] (reports-get (reports/pipeline user)))
+  (letfn [(get-user-info [userId token] "fake")
           ]
-
     (handler/api
       (compojure/routes
         (wrap-json-response
           (defroutes json-routes
             (GET "/date.json" req (response {:date (datetime/midnight)}))
             (GET "/products.json" req (response (mysql/list-users 'hello')))
-            (GET "/:userId/:token/user.json" [userId token]
-              (response (get-user-info userId token)))
+            (GET "/:username/:token/user.json" [username token]
+              (response (user/login username token)))
             ))))
     )
   )

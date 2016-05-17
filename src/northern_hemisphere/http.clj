@@ -13,3 +13,10 @@
                             #'middleware/base-url)
     (:body (client/request (merge request
                              {:json-post-parsers [middleware/json-dates->dates]})))))
+
+(defn request-get [url params]
+  (client/get url {:query-params params}))
+
+(defn request-post [url params]
+  (:body
+  (client/post url {:form-params params})))
