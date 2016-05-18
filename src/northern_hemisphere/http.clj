@@ -15,8 +15,9 @@
                              {:json-post-parsers [middleware/json-dates->dates]})))))
 
 (defn request-get [url params]
-  (client/get url {:query-params params}))
+  (:body
+    (client/get url {:query-params params})))
 
 (defn request-post [url params]
   (:body
-  (client/post url {:form-params params})))
+    (client/post url {:form-params params})))

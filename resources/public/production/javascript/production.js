@@ -20,10 +20,20 @@ app.controller('dashboardController', function($scope) {
     $scope.productions = 'production/partials/xt-tea.html';
 });
 
-app.controller('dashboardCallbackController', function($scope, $routeParams) {
+app.controller('dashboardCallbackController', function($scope, $routeParams, sessionStorageService, nhUser) {
     $scope.productions = 'production/partials/xt-tea.html';
 
-    console.log($routeParams);
+    sessionStorageService.setToken($routeParams.token);
+    sessionStorageService.setUserId($routeParams.uid);
+    sessionStorageService.setUsername($routeParams.username);
+
+    nhUser.getUserInfo({
+        username: $routeParams.username,
+        token: $routeParams.token
+    }).$promise.then(function (data) {
+            console.log(data);
+        });
+
 });
 
 app.controller('ProductionController', function($scope, Product) {

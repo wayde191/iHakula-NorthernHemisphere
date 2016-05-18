@@ -137,27 +137,27 @@ header{
       }
   }
   .glyph-sprite{
-    background: url(../images/nav-sprite.png) no-repeat  center 0px;
+    //background: url(../images/nav-sprite.png) no-repeat  center 0px;
   }
   .nav-menu{
-    background: url(../images/menu-btn.svg) no-repeat  center 1px;
-    &:after{
-      content:'';
-      background: url(../images/nav-sprite.png) no-repeat  center 0px;
-      display:inline;
-      height:1px;
-      width:1px;
-    }
+    //background: url(../images/menu-btn.svg) no-repeat  center 1px;
+    //&:after{
+    //  content:'';
+    //  background: url(../images/nav-sprite.png) no-repeat  center 0px;
+    //  display:inline;
+    //  height:1px;
+    //  width:1px;
+    //}
   }
   .nav-menu-btn{
     float: right;
     width: 60px;
     font-size: 13px;
     display: inline-block;
-    text-decoration: none;
+    //text-decoration: none;
     padding: 10px 0px;
     text-align: center;
-    color: #000;
+    color: #fff4e8;
     @media (min-width: $bp-small){
       float: left;
       margin-left: 30px;

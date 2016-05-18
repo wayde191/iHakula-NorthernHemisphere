@@ -19,7 +19,7 @@ var bootstrap = function(module) {
                 });
 
                 angular.module(module)
-                    .constant('today', today)
+                    .constant('today', today);
                 angular.bootstrap(document, [module]);
             });
         });
@@ -34,7 +34,7 @@ common.directive('nhHeader', function() {
         link: function(scope, element, attrs) {
 
             scope.myOrderLink = '/order.html';
-            scope.loginLink = 'http://localhost/sso/login.html?redirect=http://localhost:3000/productions.html'
+            scope.loginLink = 'http://localhost/sso/login.html?redirect=http://localhost:3000/productions.html';
             scope.amount = 0;
             scope.showAmount = scope.amount > 0 ? true : false;
             scope.$watch('amount', function (newValue) {
@@ -54,7 +54,6 @@ common.directive('nhHeader', function() {
 });
 
 common.directive('spinner', function() {
-
     //var onbrandSpinner = '<span class="overlay"></span> <img class="glyph-spinner" src="/images/spinner.png">';
     var defaultSpinner = '<span class="overlay"></span><span class="spinner"></span>';
     var spinner = defaultSpinner;
@@ -86,6 +85,10 @@ common.service('sessionStorageService',function(){
         return sessionStorage.userId ? sessionStorage.userId : '';
     };
 
+    var getUsername = function(){
+        return sessionStorage.username ? sessionStorage.username : '';
+    };
+
     var setToken = function(token){
         sessionStorage.token = token;
     };
@@ -94,11 +97,17 @@ common.service('sessionStorageService',function(){
         sessionStorage.userId = userId;
     };
 
+    var setUsername = function(username){
+        sessionStorage.username = username;
+    };
+
     return {
         getToken : getToken,
         getUserId : getUserId,
         setToken: setToken,
-        setUserId: setUserId
+        setUserId: setUserId,
+        getUsername: getUsername,
+        setUsername: setUsername
     };
 });
 
@@ -107,7 +116,7 @@ common.service('userService',function(sessionStorageService){
         var userId = sessionStorageService.getUserId();
         var token = sessionStorageService.getToken();
 
-        if(userId == '' || token == ''){
+        if(userId === '' || token === ''){
             return false;
         } else {
             return true;
@@ -132,12 +141,29 @@ common.service('userService',function(sessionStorageService){
     };
 });
 
-common.controller('AuthCtrl', function($scope, $rootScope) {
+common.factory('nhUser', ['$resource', function($resource) {
+    return $resource('/api/:username/:token/user.json', {}, {
+        getUserInfo: {
+            method: 'GET',
+            isArray: false,
+            cache: true,
+            params: {
+            }
+        }
+    });
+}]);
+
+common.controller('AuthCtrl', function($scope, $rootScope, $window, userService) {
     $scope.viewMenu = false;
 
     $scope.showMenu = function(){
-        $scope.viewMenu = !$scope.viewMenu;
+        if(userService.isUserLoggedIn()){
+
+        } else {
+            $window.location.href = 'http://localhost/sso/login.html?redirect=http://localhost:3000/productions.html';
+        }
     };
+
     $(document).on('click', function(e) {
         // use $emit so the event stays inside $rootScope
         $rootScope.$emit('click', {target: e.target});
