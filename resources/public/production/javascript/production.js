@@ -6,13 +6,24 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'production/partials/index.html',
             controller: 'dashboardController',
             reloadOnSearch: true
-        });
+        }).
+        when('/callback/:token/:username/:uid', {
+            templateUrl: 'production/partials/index.html',
+            controller: 'dashboardCallbackController',
+            reloadOnSearch: true
+        }).otherwise({redirectTo:'/'});
 }]);
 
 angular.bootstrap().invoke(bootstrap('product'));
 
 app.controller('dashboardController', function($scope) {
     $scope.productions = 'production/partials/xt-tea.html';
+});
+
+app.controller('dashboardCallbackController', function($scope, $routeParams) {
+    $scope.productions = 'production/partials/xt-tea.html';
+
+    console.log($routeParams);
 });
 
 app.controller('ProductionController', function($scope, Product) {
