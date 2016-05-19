@@ -57,35 +57,6 @@ app.directive('tiles',
             link: function(scope, element, attrs) {
                 scope.name = "xt-tea";
                 scope.show = true;
-
-                //console.log(scope.products[0]);
-
-                scope.counter = 1;
-                scope.reduce = function(){
-                    scope.counter--;
-                };
-                scope.increase = function(){
-                    scope.counter++;
-                };
-
-                function updateTeaAmount(){
-                    var amount = 0;
-                    for (var i = 1; i < 7; i++){
-                        var no = parseInt(window.localStorage[i]);
-                        if(no) {
-                            amount += no;
-                        }
-                    }
-
-                    window.localStorage.teaAmount = amount;
-                }
-                scope.shopping = function(productId){
-                    window.localStorage[productId] = scope.counter;
-                    updateTeaAmount();
-                };
-                scope.$watch('counter', function(counter){
-                    console.log(counter);
-                });
             }
         };
     });
@@ -102,14 +73,14 @@ app.directive('teaTile', function() {
         },
 
         link: function(scope, element, attrs) {
-            var prod = window.xtTeaProductions[attrs.productId - 1];
+            var prod = scope.$parent.products[scope.productId - 1];
 
             scope.id = prod.id;
-            scope.coverImageUrl = prod.image;
+            scope.coverImageUrl = '/images/' + prod.image_url;
             scope.name = prod.name;
-            scope.price = prod.price;
+            scope.price = prod.sale_price;
 
-            scope.counter = 1;
+            scope.counter = window.localStorage[scope.productId] || 1;
             scope.reduce = function(){
                 scope.counter--;
             };
