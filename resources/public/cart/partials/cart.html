@@ -1,12 +1,5 @@
 <div class="tea-cart">
 
-<!--<div class="w w1 header clearfix">-->
-    <!--<div id="logo">-->
-        <!--<a href="http://www.jd.com/" class="link1"><img src="./我的购物车 - 京东商城_files/logo-201305.png" alt="京东商城"></a>-->
-        <!--<a href="http://cart.jd.com/cart#none" class="link2"><b></b>购物车</a>-->
-    <!--</div>-->
-<!--</div>-->
-
 <!-- main -->
 <div id="container" class="cart">
     <div class="w">
@@ -19,13 +12,11 @@
                         <span class="number">{{amount}}</span>
                     </a>
                 </li>
-
             </ul>
             <div class="clr"></div>
             <div class="w-line">
                 <div class="floater" style="width: 78px; left: 0px;"></div>
             </div>
-
         </div>
     </div>
 
@@ -48,36 +39,18 @@
                         <div class="column t-sum">小计(元)</div>
                         <div class="column t-action">操作</div>
                     </div>
+
                     <div id="cart-list">
                         <div class="cart-item-list" id="{{item.id}}" ng-repeat="item in items">
-                            <div class="cart-tbody" id="vender_10346">
-                                <div class="shop">
-                                    <div class="cart-checkbox">
-                                        <input type="checkbox" checked="checked" name="checkShop" class="jdcheckbox"
-                                               clstag="clickcart|keycount|xincart|cart_checkOn_shop">
-                                        <label for="">勾选店铺内全部商品</label>
-                                    </div>
-
-                                    <span class="shop-txt">
-												<a class="shop-name" href="http://efuton.jd.com/" target="_blank"
-                                                   id="venderId_10346"
-                                                   clstag="clickcart|keycount|xincart|cart_shopName">艺福堂茗茶官方旗舰店</a>
-									</span>
-                                </div>
+                            <div class="cart-tbody">
                                 <div class="item-list">
-                                    <!--单品-->
                                     <!-- 单品-->
-                                    <div class="item-single  item-item item-selected  " id="product_1000199972">
+                                    <div class="item-single  item-item item-selected">
                                         <div class="item-form">
                                             <div class="cell p-checkbox">
                                                 <div class="cart-checkbox">
                                                     <!--单品-->
-                                                    <input p-type="1000199972_1" type="checkbox" name="checkItem"
-                                                           value="1000199972_1" checked="checked" data-bind="cbid"
-                                                           class="jdcheckbox"
-                                                           clstag="clickcart|keycount|xincart|cart_checkOn_sku">
-                                                    <label for="" class="checked">勾选商品</label>
-                                                    <span class="line-circle"></span>
+                                                    <input type="checkbox" checked="checked" data-bind="cbid">
                                                 </div>
                                             </div>
                                             <div class="cell p-goods">
@@ -85,17 +58,13 @@
                                                     <div class="p-img">
                                                         <a href="http://item.jd.com/1000199972.html"
                                                            target="_blank">
-                                                            <img
-                                                                alt="艺福堂茶叶 2016新茶 明前西湖龙井绿茶 165口碑茶250g/罐【支持货到付款】"
-                                                                clstag="clickcart|keycount|xincart|cart_sku_pic"
-                                                                src="./我的购物车 - 京东商城_files/56c42ed1Ncf2f54ee.jpg"></a>
+                                                            <img src="./我的购物车 - 京东商城_files/56c42ed1Ncf2f54ee.jpg"></a>
                                                     </div>
                                                     <div class="item-msg">
                                                         <div class="p-name">
-                                                            <a clstag="clickcart|keycount|xincart|cart_sku_name"
-                                                               href="http://item.jd.com/1000199972.html"
-                                                               target="_blank">艺福堂茶叶 2016新茶 明前西湖龙井绿茶
-                                                                165口碑茶250g/罐【支持货到付款】</a>
+                                                            <a href="http://item.jd.com/1000199972.html" target="_blank">
+                                                                艺福堂茶叶 2016新茶 明前西湖龙井绿茶 165口碑茶250g/罐【支持货到付款】
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -108,27 +77,18 @@
                                             <div class="cell p-quantity">
                                                 <!--单品-->
                                                 <div class="quantity-form">
-                                                    <a href="javascript:void(0);"
-                                                       clstag="clickcart|keycount|xincart|cart_num_down"
-                                                       class="decrement disabled"
-                                                       id="decrement_10346_1000199972_1_1">-</a>
-                                                    <input autocomplete="off" type="text" class="itxt" value="1"
-                                                           id="changeQuantity_10346_1000199972_1_1_0">
-                                                    <a href="javascript:void(0);"
-                                                       clstag="clickcart|keycount|xincart|cart_num_up" class="increment"
-                                                       id="increment_10346_1000199972_1_1_0">+</a>
+                                                    <a href="javascript:void(0);" class="decrement disabled">-</a>
+                                                    <input autocomplete="off" type="text" class="itxt" value="1">
+                                                    <a href="javascript:void(0);" class="increment">+</a>
                                                 </div>
-                                                <div class="ac ftx-03 quantity-txt" _stock="stock_1000199972">有货</div>
+                                                <div class="ac ftx-03 quantity-txt">有货</div>
                                             </div>
                                             <div class="cell p-sum">
                                                 <strong>165.00</strong>
                                             </div>
                                             <div class="cell p-ops">
                                                 <!--单品-->
-                                                <a id="remove_10346_1000199972_1"
-                                                   clstag="clickcart|keycount|xincart|cart_sku_del"
-                                                   data-name="艺福堂茶叶 2016新茶 明前西湖龙井绿茶 165..." data-more="removed_165.00_1"
-                                                   class="cart-remove" href="javascript:void(0);">删除</a>
+                                                <a class="cart-remove" href="javascript:void(0);">删除</a>
                                             </div>
                                         </div>
                                         <div class="item-extra"></div>
@@ -149,52 +109,12 @@
                             <div class="selected-item-list hide" style="display: none;">
                             </div>
                             <div class="options-box">
-                                <div class="select-all">
-                                    <div class="cart-checkbox">
-                                        <input type="checkbox" id="toggle-checkboxes_down" name="toggle-checkboxes"
-                                               class="jdcheckbox" clstag="clickcart|keycount|xincart|cart_allCheckDown">
-                                        <label for="">勾选全部商品</label>
-                                    </div>
-                                    全选
-                                </div>
                                 <div class="clr"></div>
                                 <div class="toolbar-right">
                                     <div class="normal">
                                         <div class="comm-right">
                                             <div class="btn-area">
-                                                <a href="javascript:void(0);" onclick="return false;"
-                                                   clstag="clickcart|keycount|xincart|cart_gotoOrder" class="submit-btn"
-                                                   data-bind="1">
-                                                    去结算<b></b></a>
-                                            </div>
-                                            <div class="price-sum">
-                                                <div>
-                                                    <span class="txt">总价（不含运费）：</span>
-                                                    <span class="price sumPrice"><em
-                                                            data-bind="2103.00">¥2103.00</em></span>
-                                                    <br>
-                                                    <span class="txt">已节省：</span>
-                                                    <span class="price totalRePrice">- ¥0.00</span>
-                                                </div>
-                                            </div>
-                                            <div class="amount-sum">
-                                                已选择<em>3</em>件商品<b class="up"
-                                                                   clstag="clickcart|keycount|xincart|cart_thumbnailOpen"></b>
-                                            </div>
-                                            <div class="clr"></div>
-                                        </div>
-                                    </div>
-                                    <div class="combine" style="display: none;">
-                                        <div class="comm-right">
-                                            <div class="btn-area">
-                                                <a href="javascript:void(0);" onclick="return false;"
-                                                   clstag="clickcart|keycount|xincart|cart_gotoOrderOut"
-                                                   class="jdInt-submit-btn">
-                                                    去全球购结算<b></b></a>
-                                                <a href="javascript:void(0);" onclick="return false;"
-                                                   clstag="clickcart|keycount|xincart|cart_gotoOrder"
-                                                   class="common-submit-btn">
-                                                    去京东结算<b></b></a>
+                                                <a class="submit-btn" data-bind="1">去结算<b></b></a>
                                             </div>
                                             <div class="price-sum">
                                                 <div>
@@ -211,7 +131,6 @@
                                             </div>
                                             <div class="clr"></div>
                                         </div>
-                                        <div class="clr"></div>
                                     </div>
                                 </div>
 
