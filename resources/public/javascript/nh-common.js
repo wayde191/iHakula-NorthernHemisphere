@@ -6,6 +6,7 @@ var bootstrap = function(module) {
             var today = dateUtils.toUTCDate(new Date(sessionStorage.dateOverride ? sessionStorage.dateOverride : responses.date.data.date));
 
             window.localStorage.teaAmount = window.localStorage.teaAmount || 0;
+            window.userInfo = {};
             window.loaded = {};
 
             angular.element(document).ready(function() {
@@ -37,6 +38,7 @@ common.directive('nhHeader', function() {
             scope.loginLink = 'http://localhost/sso/login.html?redirect=http://localhost:3000/productions.html';
             scope.amount = 0;
             scope.showAmount = scope.amount > 0 ? true : false;
+            scope.userInfo = "请登录";
             scope.$watch('amount', function (newValue) {
                 scope.showAmount = newValue > 0;
             });
@@ -47,6 +49,14 @@ common.directive('nhHeader', function() {
                     scope.amount = newVal;
                     $('#shopping-amount').animateCss('tada');
                     $('#shopping-cart').animateCss('tada');
+                }
+            });
+
+            scope.$watch(function () {
+                return window.localStorage.phone;
+            }, function (newVal, oldVal) {
+                if (newVal !== undefined) {
+                    scope.userInfo = newVal;
                 }
             });
         }
@@ -153,12 +163,17 @@ common.factory('nhUser', ['$resource', function($resource) {
     });
 }]);
 
-common.controller('AuthCtrl', function($scope, $rootScope, $window, userService) {
+common.controller('AuthCtrl', function($scope, $rootScope, $window, userService, nhUser) {
     $scope.viewMenu = false;
 
     $scope.showMenu = function(){
         if(userService.isUserLoggedIn()){
-
+            nhUser.getUserInfo({username: userService.getUsername(), token: userService.getToken()}).$promise
+                .then(function (data) {
+                    window.userInfo = data.user;
+                    window.localStorage.phone = '';
+                    window.localStorage.phone = window.userInfo.phone;
+                });
         } else {
             $window.location.href = 'http://localhost/sso/login.html?redirect=http://localhost:3000/productions.html';
         }

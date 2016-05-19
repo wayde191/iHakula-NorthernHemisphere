@@ -27,11 +27,10 @@ app.controller('dashboardCallbackController', function($scope, $routeParams, ses
     sessionStorageService.setUserId($routeParams.uid);
     sessionStorageService.setUsername($routeParams.username);
 
-    nhUser.getUserInfo({
-        username: $routeParams.username,
-        token: $routeParams.token
-    }).$promise.then(function (data) {
-            console.log(data);
+    nhUser.getUserInfo({username: $routeParams.username, token: $routeParams.token}).$promise
+        .then(function (data) {
+            window.userInfo = data.user;
+            window.localStorage.phone = window.userInfo.phone;
         });
 
 });
