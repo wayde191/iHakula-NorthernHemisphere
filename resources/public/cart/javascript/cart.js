@@ -1,4 +1,4 @@
-var app = angular.module('p1-scorecard', ['ngRoute', 'ngResource', 'gofigure-common']);
+var app = angular.module('cart', ['ngRoute', 'ngResource', 'nh-common']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
@@ -9,7 +9,7 @@ app.config(['$routeProvider', function($routeProvider) {
         });
 }]);
 
-angular.bootstrap().invoke(bootstrap('p1-scorecard'));
+angular.bootstrap().invoke(bootstrap('cart'));
 
 app.controller('dashboardController', function($scope) {
     $scope.cart = 'cart/partials/cart.html';
