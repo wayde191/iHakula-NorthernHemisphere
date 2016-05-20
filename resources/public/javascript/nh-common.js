@@ -163,6 +163,17 @@ common.factory('nhUser', ['$resource', function($resource) {
     });
 }]);
 
+common.factory('nhProduct', ['$resource', function($resource) {
+    return $resource('/api/products.json', {}, {
+        getProduct: {
+            method: 'GET',
+            params: {},
+            isArray: true
+        }
+    });
+}
+]);
+
 common.controller('AuthCtrl', function($scope, $rootScope, $window, userService, nhUser) {
     $scope.viewMenu = false;
 

@@ -5,14 +5,34 @@ app.config(['$routeProvider', function($routeProvider) {
         when('/', {
             templateUrl: 'cart/partials/index.html',
             controller: 'dashboardController',
-            reloadOnSearch: true
+            reloadOnSearch: true,
+            resolve: {
+                allProducts: function (nhProduct) {
+                    return nhProduct.getProduct().$promise;
+                }
+            }
         });
 }]);
 
 angular.bootstrap().invoke(bootstrap('cart'));
 
-app.controller('dashboardController', function($scope) {
+app.controller('dashboardController', function($scope, allProducts) {
     $scope.cart = 'cart/partials/cart.html';
+    $scope.products = allProducts;
+
+    function getItemInCart(){
+        var amount = 0;
+        for (var i = 0; i < $scope.products.length; i++){
+            var productId = $scope.products[i].id;
+            var amount = parseInt(window.localStorage[productId]);
+            if(amount) {
+                $scope.products[i].amount = amount;
+            }
+        }
+    }
+    getItemInCart();
+
+    console.log($scope.products);
 });
 
 app.controller('CartController', ['$scope', function($scope) {
@@ -24,6 +44,6 @@ app.controller('CartController', ['$scope', function($scope) {
     $scope.changed = function(){
         console.log($scope.checkboxModel);
     };
-    $scope.items = [{"id":"03"}, {"id":"04"},{"id":"05"}];
+    $scope.items = [{"id":"03"}, {"id":"04"}];
 }]);
 
