@@ -27,12 +27,12 @@
                     <div class="cart-thead">
                         <div class="column t-checkbox">
                             <div class="cart-checkbox">
-                                <input type="checkbox" ng-model="checkboxModel.allChecked" ng-change="changed()" name="toggle-checkboxes" class="jdcheckbox">
+                                <input style="display: none" type="checkbox" ng-model="checkboxModel.allChecked" ng-change="changed()" name="toggle-checkboxes" class="jdcheckbox">
                                 <label for="">勾选全部商品</label>
                             </div>
-                            全选
+                            清单
                         </div>
-                        <div class="column t-goods">商品</div>
+                        <div class="column t-goods t-checkbox">商品</div>
                         <div class="column t-props"></div>
                         <div class="column t-price">单价(元)</div>
                         <div class="column t-quantity">数量</div>
@@ -50,7 +50,7 @@
                                             <div class="cell p-checkbox">
                                                 <div class="cart-checkbox">
                                                     <!--单品-->
-                                                    <input type="checkbox" checked="checked" data-bind="cbid">
+                                                    <input style="display: none" type="checkbox" checked="checked" data-bind="cbid">
                                                 </div>
                                             </div>
                                             <div class="cell p-goods">

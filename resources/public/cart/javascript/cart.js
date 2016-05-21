@@ -19,6 +19,7 @@ angular.bootstrap().invoke(bootstrap('cart'));
 app.controller('dashboardController', function($scope, allProducts) {
     $scope.cart = 'cart/partials/cart.html';
     $scope.products = allProducts;
+    $scope.items = [];
 
     function getItemInCart(){
         var amount = 0;
@@ -27,12 +28,13 @@ app.controller('dashboardController', function($scope, allProducts) {
             var amount = parseInt(window.localStorage[productId]);
             if(amount) {
                 $scope.products[i].amount = amount;
+                $scope.items.push($scope.products[i]);
             }
         }
     }
     getItemInCart();
 
-    console.log($scope.products);
+    console.log($scope.items);
 });
 
 app.controller('CartController', ['$scope', function($scope) {
@@ -44,6 +46,5 @@ app.controller('CartController', ['$scope', function($scope) {
     $scope.changed = function(){
         console.log($scope.checkboxModel);
     };
-    $scope.items = [{"id":"03"}, {"id":"04"}];
 }]);
 
