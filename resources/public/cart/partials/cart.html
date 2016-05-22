@@ -25,18 +25,11 @@
             <div id="jd-cart">
                 <div class="cart-main cart-main-new">
                     <div class="cart-thead">
-                        <div class="column t-checkbox">
-                            <div class="cart-checkbox">
-                                <input style="display: none" type="checkbox" ng-model="checkboxModel.allChecked" ng-change="changed()" name="toggle-checkboxes" class="jdcheckbox">
-                                <label for="">勾选全部商品</label>
-                            </div>
-                            清单
-                        </div>
-                        <div class="column t-goods t-checkbox">商品</div>
-                        <div class="column t-props"></div>
-                        <div class="column t-price">单价(元)</div>
+                        <div class="column t-placeholder"></div>
+                        <div class="column t-goods">商品</div>
+                        <div class="column t-price">单价</div>
                         <div class="column t-quantity">数量</div>
-                        <div class="column t-sum">小计(元)</div>
+                        <div class="column t-sum">小计</div>
                         <div class="column t-action">操作</div>
                     </div>
 
@@ -45,44 +38,23 @@
                             <div class="cart-tbody">
                                 <div class="item-list">
                                     <!-- 单品-->
-                                    <div class="item-single  item-item item-selected">
+                                    <div class="item-single  item-item">
                                         <div class="item-form">
-                                            <div class="cell p-checkbox">
-                                                <div class="cart-checkbox">
-                                                    <!--单品-->
-                                                    <input style="display: none" type="checkbox" checked="checked" data-bind="cbid">
-                                                </div>
-                                            </div>
+                                            <div class="cell p-placeholder"></div>
                                             <div class="cell p-goods">
                                                 <div class="goods-item">
                                                     <div class="p-img">
-                                                        <a href="http://item.jd.com/1000199972.html"
-                                                           target="_blank">
-                                                            <img src="./我的购物车 - 京东商城_files/56c42ed1Ncf2f54ee.jpg"></a>
+                                                        <img src="./我的购物车 - 京东商城_files/56c42ed1Ncf2f54ee.jpg">
                                                     </div>
                                                     <div class="item-msg">
                                                         <div class="p-name">
-                                                            <a href="http://item.jd.com/1000199972.html" target="_blank">
-                                                                艺福堂茶叶 2016新茶 明前西湖龙井绿茶 165口碑茶250g/罐【支持货到付款】
-                                                            </a>
+                                                            艺福堂茶叶 2016新茶 明前西湖龙井绿茶 165口碑茶250g/罐【支持货到付款】
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="cell p-props p-props-new">
-                                            </div>
-                                            <div class="cell p-price">
-                                                <strong>165.00</strong>
-                                            </div>
-                                            <div class="cell p-quantity">
-                                                <!--单品-->
-                                                <div class="quantity-form">
-                                                    <a href="javascript:void(0);" class="decrement disabled">-</a>
-                                                    <input autocomplete="off" type="text" class="itxt" value="1">
-                                                    <a href="javascript:void(0);" class="increment">+</a>
-                                                </div>
-                                                <div class="ac ftx-03 quantity-txt">有货</div>
-                                            </div>
+                                            <div class="cell p-price">165.00</div>
+                                            <div class="cell p-quantity">1</div>
                                             <div class="cell p-sum">
                                                 <strong>165.00</strong>
                                             </div>

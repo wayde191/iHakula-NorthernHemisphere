@@ -36,7 +36,7 @@ common.directive('nhHeader', function() {
 
             scope.myOrderLink = '/order.html';
             scope.loginLink = 'http://localhost/sso/login.html?redirect=http://localhost:3000/productions.html';
-            scope.cartLink = '/carts.html'
+            scope.cartLink = '/carts.html';
             scope.amount = 0;
             scope.showAmount = scope.amount > 0 ? true : false;
             scope.userInfo = "请登录";
