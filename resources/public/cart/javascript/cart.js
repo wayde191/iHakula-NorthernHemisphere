@@ -19,7 +19,12 @@ angular.bootstrap().invoke(bootstrap('cart'));
 app.controller('dashboardController', function($scope, allProducts) {
     $scope.cart = 'cart/partials/cart.html';
     $scope.products = allProducts;
-    $scope.items = [];
+
+    function restore() {
+        $scope.amount = 0;
+        $scope.sumPrice = 0;
+        $scope.items = [];
+    }
 
     function getItemInCart(){
         var amount = 0;
@@ -27,18 +32,30 @@ app.controller('dashboardController', function($scope, allProducts) {
             var productId = $scope.products[i].id;
             var amount = parseInt(window.localStorage[productId]);
             if(amount) {
+                $scope.amount += amount;
                 $scope.products[i].amount = amount;
+                $scope.products[i].sum = amount * $scope.products[i].sale_price;
+                $scope.sumPrice += $scope.products[i].sum;
                 $scope.items.push($scope.products[i]);
             }
         }
+        $scope.discount = $scope.sumPrice * 0.05;
+        $scope.sumPrice *= 0.95;
     }
+
+    restore();
     getItemInCart();
 
-    console.log($scope.items);
+    $scope.remove = function(productionId, index){
+        window.localStorage.removeItem(productionId);
+        var item = $scope.items[index];
+        window.localStorage.teaAmount = $scope.amount - item.amount;
+        restore();
+        getItemInCart();
+    };
 });
 
 app.controller('CartController', ['$scope', function($scope) {
-    $scope.amount = 10;
     $scope.checkboxModel = {
         allChecked : true,
         value2 : 'YES'

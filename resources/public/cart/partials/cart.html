@@ -44,23 +44,23 @@
                                             <div class="cell p-goods">
                                                 <div class="goods-item">
                                                     <div class="p-img">
-                                                        <img src="./我的购物车 - 京东商城_files/56c42ed1Ncf2f54ee.jpg">
+                                                        <img style="width: 80px; height: 80px;" ng-src="/images/{{item.image_url}}">
                                                     </div>
                                                     <div class="item-msg">
                                                         <div class="p-name">
-                                                            艺福堂茶叶 2016新茶 明前西湖龙井绿茶 165口碑茶250g/罐【支持货到付款】
+                                                            {{item.name}}
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="cell p-price">165.00</div>
-                                            <div class="cell p-quantity">1</div>
+                                            <div class="cell p-price">{{item.sale_price | currency: "¥"}}</div>
+                                            <div class="cell p-quantity">{{item.amount}}</div>
                                             <div class="cell p-sum">
-                                                <strong>165.00</strong>
+                                                <strong>{{item.sum | currency: "¥"}}</strong>
                                             </div>
                                             <div class="cell p-ops">
                                                 <!--单品-->
-                                                <a class="cart-remove" href="javascript:void(0);">删除</a>
+                                                <a class="cart-remove" ng-click="remove(item.id, $index)" href="javascript:void(0);">删除</a>
                                             </div>
                                         </div>
                                         <div class="item-extra"></div>
@@ -90,14 +90,14 @@
                                                 <div>
                                                     <span class="txt">总价（不含运费）：</span>
                                                     <span class="price sumPrice"><em
-                                                            data-bind="2103.00">¥2103.00</em></span>
+                                                            data-bind="2103.00">{{sumPrice | currency: "¥"}}</em></span>
                                                     <br>
                                                     <span class="txt">已节省：</span>
-                                                    <span class="price totalRePrice">- ¥0.00</span>
+                                                    <span class="price totalRePrice">- {{discount | currency: "¥"}}</span>
                                                 </div>
                                             </div>
                                             <div class="amount-sum">
-                                                <em>3</em>件商品.
+                                                <em>{{amount}}</em>件商品.
                                             </div>
                                             <div class="clr"></div>
                                         </div>
