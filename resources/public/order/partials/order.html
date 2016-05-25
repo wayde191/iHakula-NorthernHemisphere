@@ -1,0 +1,186 @@
+<div class="tea-order">
+    <div class="w w1 header clearfix">
+        <div class="stepflex" id="#sflex03">
+            <dl class="first done">
+                <dt class="s-num">1</dt>
+                <dd class="s-text">1.我的购物车<s></s><b></b></dd>
+            </dl>
+            <dl class="normal doing">
+                <dt class="s-num">2</dt>
+                <dd class="s-text">2.填写核对订单信息<s></s><b></b></dd>
+            </dl>
+            <dl class="normal last">
+                <dt class="s-num">3</dt>
+                <dd class="s-text">3.成功提交订单<s></s><b></b></dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- main -->
+    <div id="container">
+        <div id="content" class="w">
+            <!-- <div class="m"> -->
+            <div class="checkout-tit">
+                <span class="tit-txt">填写并核对订单信息</span>
+            </div>
+            <!--<div class="mc">-->
+            <div class="checkout-steps">
+                <!--  /widget/consignee-step/consignee-step.tpl -->
+                <div class="step-tit">
+                    <h3>收货人信息</h3>
+
+                    <div class="extra-r">
+                        <a href="http://trade.jd.com/shopping/order/getOrderInfo.action?rid=1464092565935#none"
+                           class="ftx-05" onclick="use_NewConsignee()"
+                           clstag="pageclick|keycount|trade_201602181|3">新增收货地址</a>
+                        <input type="hidden" id="del_consignee_type" value="0">
+                    </div>
+                </div>
+                <div class="step-cont">
+                    <div id="consignee-addr" class="consignee-content">
+                        <div class="consignee-scrollbar">
+                            <div class="ui-scrollbar-main">
+                                <div class="consignee-scroll">
+                                    <div class="consignee-cont" id="consignee1" style="height: 42px;">
+                                        <ul id="consignee-list">
+                                            <li class="ui-switchable-panel ui-switchable-panel-selected"
+                                                style="display: list-item;" id="consignee_index_138026330"
+                                                selected="selected">
+                                                <div class="consignee-item item-selected" consigneeid="138026330"
+                                                     id="consignee_index_div_138026330" consigneetype="0"
+                                                     clstag="pageclick|keycount|trade_201602181|1">
+                                                    <span limit="8" title="孙伟">孙伟</span><b></b>
+                                                </div>
+                                                <div class="addr-detail">
+                                                    <span class="addr-name" limit="6" title="孙伟">孙伟</span>
+                                                <span class="addr-info" limit="45"
+                                                      title="湖北 武汉市 江夏区 金口街道江夏区高新六路中冶创业苑6-3-101">湖北 武汉市 江夏区 金口街道江夏区高新六路中冶创业苑6-3-101</span>
+                                                    <span class="addr-tel">186****0534</span>
+                                                    <span class="addr-default">默认地址</span>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--/ /widget/consignee-step/consignee-step.tpl -->
+                <div class="hr"></div>
+                <div class="step-tit"><h3>送货清单</h3></div>
+                <div class="step-cont" id="skuPayAndShipment-cont">
+                    <div class="shopping-lists" id="shopping-lists">
+                        <div class="shopping-list ABTest">
+                            <div class="goods-list">
+                                <div class="goods-tit">
+                                    <h4 class="vendor_name_h" id="124547">商家：匹克恒奥专卖店</h4>
+                                </div>
+
+                                <!--单品开始-->
+                                <div class="goods-items">
+                                    <div class="goods-item goods-item-extra" goods-id="1667452967">
+
+                                        <div class="p-img">
+                                            <a target="_blank" href="http://item.jd.com/1667452967.html"><img
+                                                    src="./订单结算页 -京东商城_files/572ffb68N4a1bccfd.jpg" alt=""></a>
+                                        </div>
+                                        <div class="goods-msg">
+                                            <div class="goods-msg-gel">
+                                                <div class="p-name">
+                                                    <a href="http://item.jd.com/1667452967.html" target="_blank">
+                                                        匹克篮球鞋男夏季 帕克三代简版中帮透气防滑战靴 时尚水泥地耐磨减震经典运动鞋 黑色 42(手机259)
+                                                    </a>
+                                                </div>
+                                                <div class="p-price">
+                                                    <!--增加预售金额显示 begin   预售分阶段支付类型（1：一阶梯全款支付；2：一阶梯定金支付(全款或定金可选)；3：三阶梯(仅定金)；4：三阶梯(全款或定金可选)；5：一阶梯仅定金支付） -->
+
+                                                    <strong class="jd-price">￥359.00</strong>
+                                                    <!--增加预售金额显示 end-->
+				              <span class="p-num">
+																      				                x1
+    				              												              </span>
+                                                    <span id="pre-state" class="p-state" skuid="1667452967">有货</span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <i class="p-icon p-icon-w"></i><span class="ftx-04">7天无理由退货</span>
+                                        </div>
+
+                                        <div class="clr"></div>
+                                        <div class="gift-item ftx-03" gift-id="10358105201">
+                                            <p>【赠品】&nbsp;篮球鞋跑步鞋运动鞋 确认收货返京豆 单拍无效 红色 42 ×1</p>
+                                        </div>
+                                        <!-- 京券和东券显示 -->
+
+                                        <!-- 延保显示 -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--goods-list 结束-->
+                            <div class="dis-modes">
+                                <div class="mode-item mode-tab">
+                                    <h4>配送方式</h4>
+
+                                    <div class="mode-tab-nav">
+                                        <ul>
+                                            <li class="mode-tab-item curr tips-hover">
+            			<span class="m-txt">快递运输<i class="qmark-icon qmark-tip" data-tips="由商家选择合作快递为您配送"></i>
+                  </span>
+                                                <b></b>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                        <!--shopping-list 结束-->
+
+                        <br><br>
+
+                        <div class="clr"></div>
+                    </div>
+                    <!--shopping-lists 结束-->
+                </div>
+            </div>
+
+            <div class="trade-foot">
+                <div class="trade-foot-detail-com">
+                    <div class="fc-price-info">
+                        <span class="price-tit">应付总额：</span>
+                        <span class="price-num" id="sumPayPriceId">￥359.00</span>
+                    </div>
+
+                    <div class="fc-consignee-info">
+                        <span class="mr20" id="sendAddr">寄送至： 湖北 武汉市 江夏区 金口街道  江夏区高新六路中冶创业苑6-3-101</span>
+                        <span id="sendMobile">收货人：孙伟 186****0534</span>
+                    </div>
+                </div>
+
+                <div id="checkout-floatbar" class="group">
+                    <div class="ui-ceilinglamp checkout-buttons">
+                        <div class="sticky-wrap">
+                            <div class="inner">
+                                <button type="submit" class="checkout-submit" id="order-submit"
+                                        onclick="javascript:submit_Order();"
+                                        clstag="pageclick|keycount|trade_201602181|25">
+                                    提交订单<b></b>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- /main -->
+        </div>
+        </div>
+
+</div>
