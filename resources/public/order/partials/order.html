@@ -23,17 +23,11 @@
             <div class="checkout-tit">
                 <span class="tit-txt">填写并核对订单信息</span>
             </div>
-            <!--<div class="mc">-->
             <div class="checkout-steps">
-                <!--  /widget/consignee-step/consignee-step.tpl -->
                 <div class="step-tit">
                     <h3>收货人信息</h3>
-
                     <div class="extra-r">
-                        <a href="http://trade.jd.com/shopping/order/getOrderInfo.action?rid=1464092565935#none"
-                           class="ftx-05" onclick="use_NewConsignee()"
-                           clstag="pageclick|keycount|trade_201602181|3">新增收货地址</a>
-                        <input type="hidden" id="del_consignee_type" value="0">
+                        <a class="ftx-05" onclick="use_NewConsignee()">新增收货地址</a>
                     </div>
                 </div>
                 <div class="step-cont">
@@ -68,7 +62,6 @@
                     </div>
 
                 </div>
-                <!--/ /widget/consignee-step/consignee-step.tpl -->
                 <div class="hr"></div>
                 <div class="step-tit"><h3>送货清单</h3></div>
                 <div class="step-cont" id="skuPayAndShipment-cont">
@@ -81,8 +74,7 @@
 
                                 <!--单品开始-->
                                 <div class="goods-items">
-                                    <div class="goods-item goods-item-extra" goods-id="1667452967">
-
+                                    <div class="goods-item goods-item-extra">
                                         <div class="p-img">
                                             <a target="_blank" href="http://item.jd.com/1667452967.html"><img
                                                     src="./订单结算页 -京东商城_files/572ffb68N4a1bccfd.jpg" alt=""></a>
@@ -90,20 +82,12 @@
                                         <div class="goods-msg">
                                             <div class="goods-msg-gel">
                                                 <div class="p-name">
-                                                    <a href="http://item.jd.com/1667452967.html" target="_blank">
                                                         匹克篮球鞋男夏季 帕克三代简版中帮透气防滑战靴 时尚水泥地耐磨减震经典运动鞋 黑色 42(手机259)
-                                                    </a>
                                                 </div>
                                                 <div class="p-price">
-                                                    <!--增加预售金额显示 begin   预售分阶段支付类型（1：一阶梯全款支付；2：一阶梯定金支付(全款或定金可选)；3：三阶梯(仅定金)；4：三阶梯(全款或定金可选)；5：一阶梯仅定金支付） -->
-
                                                     <strong class="jd-price">￥359.00</strong>
-                                                    <!--增加预售金额显示 end-->
-				              <span class="p-num">
-																      				                x1
-    				              												              </span>
+                                                    <span class="p-num">x1</span>
                                                     <span id="pre-state" class="p-state" skuid="1667452967">有货</span>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -112,12 +96,9 @@
                                         </div>
 
                                         <div class="clr"></div>
-                                        <div class="gift-item ftx-03" gift-id="10358105201">
-                                            <p>【赠品】&nbsp;篮球鞋跑步鞋运动鞋 确认收货返京豆 单拍无效 红色 42 ×1</p>
-                                        </div>
-                                        <!-- 京券和东券显示 -->
-
-                                        <!-- 延保显示 -->
+                                        <!--<div class="gift-item ftx-03" gift-id="10358105201">-->
+                                            <!--<p>【赠品】&nbsp;篮球鞋跑步鞋运动鞋 确认收货返京豆 单拍无效 红色 42 ×1</p>-->
+                                        <!--</div>-->
                                     </div>
                                 </div>
                             </div>
@@ -129,8 +110,9 @@
                                     <div class="mode-tab-nav">
                                         <ul>
                                             <li class="mode-tab-item curr tips-hover">
-            			<span class="m-txt">快递运输<i class="qmark-icon qmark-tip" data-tips="由商家选择合作快递为您配送"></i>
-                  </span>
+                                                <spa class="m-txt">快递运输
+                                                    <i class="qmark-icon qmark-tip" data-tips="由商家选择合作快递为您配送"></i>
+                                                </spa>
                                                 <b></b>
                                             </li>
                                         </ul>
@@ -145,7 +127,6 @@
 
                         <div class="clr"></div>
                     </div>
-                    <!--shopping-lists 结束-->
                 </div>
             </div>
 
