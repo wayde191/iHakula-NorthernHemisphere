@@ -30,7 +30,7 @@ app.controller('dashboardController', function($scope, allProducts) {
         var amount = 0;
         for (var i = 0; i < $scope.products.length; i++){
             var productId = $scope.products[i].id;
-            var amount = parseInt(window.localStorage[productId]);
+            amount = parseInt(window.localStorage[productId]);
             if(amount) {
                 $scope.amount += amount;
                 $scope.products[i].amount = amount;
