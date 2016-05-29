@@ -53,6 +53,10 @@ app.controller('dashboardController', function($scope, allProducts) {
         restore();
         getItemInCart();
     };
+
+    $scope.order = function(){
+        window.location.href = '/order.html';
+    };
 });
 
 app.controller('CartController', ['$scope', function($scope) {
