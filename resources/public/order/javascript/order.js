@@ -45,23 +45,43 @@ app.controller('dashboardController', function($scope, allProducts) {
 
     restore();
     getItemInCart();
-    //
-    //$scope.remove = function(productionId, index){
-    //    window.localStorage.removeItem(productionId);
-    //    var item = $scope.items[index];
-    //    window.localStorage.teaAmount = $scope.amount - item.amount;
-    //    restore();
-    //    getItemInCart();
-    //};
 });
 
 app.controller('OrderController', ['$scope', function($scope) {
-    //$scope.checkboxModel = {
-    //    allChecked : true,
-    //    value2 : 'YES'
-    //};
-    //$scope.changed = function(){
-    //    console.log($scope.checkboxModel);
-    //};
+    $scope.showDialog = false;
+    $scope.toggleContactDialog = function(){
+        $scope.showDialog = !$scope.showDialog;
+    };
 }]);
+
+app.directive('userContact', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'order/partials/contact.html',
+        scope: {
+            productId: '=',
+            flip: '&',
+            flipBack: '&'
+        },
+
+        link: function(scope, element, attrs) {
+            scope.onCloseBtnClicked = function(){
+                scope.$parent.toggleContactDialog();
+            };
+
+            var windowWidth = $(window).width();
+            var windowHeight = $(window).height();
+            scope.dialog = {
+                width: '690px',
+                top: '40px',
+                left: (windowWidth - 690) / 2 + 'px'
+            };
+            scope.dialogMask = {
+                width: windowWidth + 'px',
+                height: windowHeight + 100 + 'px'
+            };
+        }
+    };
+});
 
