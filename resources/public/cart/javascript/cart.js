@@ -16,7 +16,7 @@ app.config(['$routeProvider', function($routeProvider) {
 
 angular.bootstrap().invoke(bootstrap('cart'));
 
-app.controller('dashboardController', function($scope, allProducts) {
+app.controller('dashboardController', function($scope, allProducts, userService) {
     $scope.cart = 'cart/partials/cart.html';
     $scope.products = allProducts;
 
@@ -55,7 +55,11 @@ app.controller('dashboardController', function($scope, allProducts) {
     };
 
     $scope.order = function(){
-        window.location.href = '/order.html';
+        if (userService.isUserLoggedIn()){
+            window.location.href = '/order.html';
+        } else {
+
+        }
     };
 });
 

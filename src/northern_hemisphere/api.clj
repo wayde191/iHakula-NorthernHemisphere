@@ -31,6 +31,8 @@
             (GET "/products.json" req (response (mysql/list-users 'hello')))
             (GET "/:username/:token/user.json" [username token]
               (response (user/login username token)))
+            (GET "/:username/:token/isUserLoggedIn.json" [username token]
+              (response (user/isUserLoggedIn username token)))
             ))))
     )
   )

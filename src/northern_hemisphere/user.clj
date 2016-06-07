@@ -8,3 +8,10 @@
     (merge
       {:sCode reports/sso-security-code}
       {:ihakulaID username :token token})))
+
+(defn isUserLoggedIn [username token]
+  (http/request-post
+    (:uri (reports/sso-isUserLoggedin))
+    (merge
+      {:sCode reports/sso-security-code}
+      {:user-id username :token token})))

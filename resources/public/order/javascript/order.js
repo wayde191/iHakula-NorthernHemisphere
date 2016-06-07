@@ -81,6 +81,8 @@ app.directive('userContact', function() {
                 width: windowWidth + 'px',
                 height: windowHeight + 100 + 'px'
             };
+
+
         }
     };
 });

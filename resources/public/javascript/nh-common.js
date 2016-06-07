@@ -6,7 +6,8 @@ var bootstrap = function(module) {
             var today = dateUtils.toUTCDate(new Date(sessionStorage.dateOverride ? sessionStorage.dateOverride : responses.date.data.date));
 
             window.localStorage.teaAmount = window.localStorage.teaAmount || 0;
-            window.userInfo = {};
+            window.nh = {};
+            window.nh.userInfo = {};
             window.loaded = {};
 
             angular.element(document).ready(function() {
@@ -29,7 +30,7 @@ var bootstrap = function(module) {
 
 var common = angular.module('nh-common', []);
 
-common.directive('nhHeader', function() {
+common.directive('nhHeader', function(nhUser, sessionStorageService, userService) {
     return {
         templateUrl: '/angular-htmls/header.html',
         link: function(scope, element, attrs) {
@@ -39,7 +40,6 @@ common.directive('nhHeader', function() {
             scope.cartLink = '/carts.html';
             scope.amount = 0;
             scope.showAmount = scope.amount > 0 ? true : false;
-            scope.userInfo = "请登录";
 
             scope.showCart = function(){
                 window.location.href = '/cart.html';
@@ -58,11 +58,22 @@ common.directive('nhHeader', function() {
                 }
             });
 
+            scope.userInfo = "请登录";
+            nhUser.isUserLoggedIn({username: sessionStorageService.getUserId(), token: sessionStorageService.getToken()})
+                .$promise.then(function (response) {
+                    if(response.status === 1){
+                        userService.getUserInfo();
+                    } else {
+                        sessionStorageService.restoreUser();
+                    }
+                });
+
             scope.$watch(function () {
-                return window.localStorage.phone;
+                return sessionStorage.isUserLoggedIn;
             }, function (newVal, oldVal) {
-                if (newVal !== undefined) {
-                    scope.userInfo = newVal;
+                if (newVal !== undefined && newVal === "true") {
+
+                    scope.userInfo = sessionStorageService.getUsername();
                 }
             });
         }
@@ -94,15 +105,15 @@ common.directive('spinner', function() {
 
 common.service('sessionStorageService',function(){
     var getToken = function(){
-        return sessionStorage.token ? sessionStorage.token : '';
+        return sessionStorage.token ? sessionStorage.token : 'fake-token';
     };
 
     var getUserId = function(){
-        return sessionStorage.userId ? sessionStorage.userId : '';
+        return sessionStorage.userId ? sessionStorage.userId : '999999';
     };
 
     var getUsername = function(){
-        return sessionStorage.username ? sessionStorage.username : '';
+        return sessionStorage.username ? sessionStorage.username : 'fake-username';
     };
 
     var setToken = function(token){
@@ -117,54 +128,51 @@ common.service('sessionStorageService',function(){
         sessionStorage.username = username;
     };
 
+    var isUserLoggedIn = function(){
+      return sessionStorage.isUserLoggedIn ? sessionStorage.isUserLoggedIn : false;
+    };
+
+    var setUserLoggedIn = function(){
+        sessionStorage.isUserLoggedIn = true;
+    };
+
+    var restoreUser = function(){
+        sessionStorage.isUserLoggedIn = false;
+        sessionStorage.userId = '999999';
+        sessionStorage.token = 'fake-token';
+        sessionStorage.username = 'fake-username';
+    };
+
     return {
         getToken : getToken,
         getUserId : getUserId,
         setToken: setToken,
         setUserId: setUserId,
         getUsername: getUsername,
-        setUsername: setUsername
-    };
-});
-
-common.service('userService',function(sessionStorageService){
-    var isUserLoggedIn = function(){
-        var userId = sessionStorageService.getUserId();
-        var token = sessionStorageService.getToken();
-
-        if(userId === '' || token === ''){
-            return false;
-        } else {
-            return true;
-        }
-    };
-
-    var getUserInfo = function(){
-        if(!isUserLoggedIn()){
-            return null;
-        }
-
-        var userId = sessionStorageService.getUserId();
-        var token = sessionStorageService.getToken();
-        $http.get('/api/' + userId + '/' + token + '/user.json', {}).then(function(response) {
-            return response.data;
-        });
-    };
-
-    return {
-        getUserInfo : getUserInfo,
-        isUserLoggedIn: isUserLoggedIn
+        setUsername: setUsername,
+        isUserLoggedIn: isUserLoggedIn,
+        setUserLoggedIn: setUserLoggedIn,
+        restoreUser: restoreUser
     };
 });
 
 common.factory('nhUser', ['$resource', function($resource) {
-    return $resource('/api/:username/:token/user.json', {}, {
+    return $resource('/api/:username/:token/:type', {}, {
         getUserInfo: {
             method: 'GET',
-            isArray: false,
-            cache: true,
             params: {
-            }
+                type: 'user.json'
+            },
+            isArray: false,
+            cache: true
+        },
+        isUserLoggedIn: {
+            method: 'GET',
+            params: {
+                type: 'isUserLoggedIn.json'
+            },
+            isArray: false,
+            cache: true
         }
     });
 }]);
@@ -179,6 +187,33 @@ common.factory('nhProduct', ['$resource', function($resource) {
     });
 }
 ]);
+
+common.service('userService',function(sessionStorageService, nhUser){
+    var isUserLoggedIn = function(){
+        return sessionStorageService.isUserLoggedIn();
+    };
+
+    var getUserInfo = function(){
+        var username = sessionStorageService.getUsername();
+        var token = sessionStorageService.getToken();
+        nhUser.getUserInfo({username: username, token: token}).$promise
+            .then(function (data) {
+                window.nh.userInfo = data.user;
+                sessionStorageService.setUserLoggedIn();
+                sessionStorageService.setUserId(nh.userInfo.id);
+                sessionStorageService.setUsername(nh.userInfo.phone);
+            });
+    };
+
+    var getCallBackLink = function(){
+
+    };
+
+    return {
+        getUserInfo : getUserInfo,
+        isUserLoggedIn: isUserLoggedIn
+    };
+});
 
 common.controller('AuthCtrl', function($scope, $rootScope, $window, userService, nhUser) {
     $scope.viewMenu = false;

@@ -17,5 +17,8 @@
 (defn sso-login []
   {:uri (join [(get-host) "sso/api/index.php/ihuser/login"])})
 
+(defn sso-isUserLoggedin []
+  {:uri (join [(get-host) "sso/api/index.php/ihuser/isLoggedIn"])})
+
 (defn reports-http []
   (println "fake"))
