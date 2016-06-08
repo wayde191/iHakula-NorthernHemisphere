@@ -129,7 +129,7 @@ common.service('sessionStorageService',function(){
     };
 
     var isUserLoggedIn = function(){
-      return sessionStorage.isUserLoggedIn ? sessionStorage.isUserLoggedIn : false;
+      return sessionStorage.isUserLoggedIn === 'true' ? true : false;
     };
 
     var setUserLoggedIn = function(){
@@ -202,6 +202,7 @@ common.service('userService',function(sessionStorageService, nhUser){
                 sessionStorageService.setUserLoggedIn();
                 sessionStorageService.setUserId(nh.userInfo.id);
                 sessionStorageService.setUsername(nh.userInfo.phone);
+                sessionStorageService.setToken(nh.userInfo.token);
             });
     };
 
@@ -211,21 +212,17 @@ common.service('userService',function(sessionStorageService, nhUser){
 
     return {
         getUserInfo : getUserInfo,
-        isUserLoggedIn: isUserLoggedIn
+        isUserLoggedIn: isUserLoggedIn,
+        getCallBackLink: getCallBackLink
     };
 });
 
-common.controller('AuthCtrl', function($scope, $rootScope, $window, userService, nhUser) {
+common.controller('AuthCtrl', function($scope, $rootScope, $window, sessionStorageService, userService) {
     $scope.viewMenu = false;
 
     $scope.showMenu = function(){
         if(userService.isUserLoggedIn()){
-            nhUser.getUserInfo({username: userService.getUsername(), token: userService.getToken()}).$promise
-                .then(function (data) {
-                    window.userInfo = data.user;
-                    window.localStorage.phone = '';
-                    window.localStorage.phone = window.userInfo.phone;
-                });
+            userService.getUserInfo();
         } else {
             $window.location.href = 'http://localhost/sso/login.html?redirect=http://localhost:3000/productions.html';
         }
