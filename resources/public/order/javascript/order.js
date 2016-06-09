@@ -16,9 +16,13 @@ app.config(['$routeProvider', function($routeProvider) {
 
 angular.bootstrap().invoke(bootstrap('order'));
 
-app.controller('dashboardController', function($scope, allProducts) {
+app.controller('dashboardController', function($scope, allProducts, userService) {
     $scope.order = 'order/partials/order.html';
     $scope.products = allProducts;
+
+    if (!userService.isUserLoggedIn()){
+        window.location.href = '/';
+    }
 
     function restore() {
         $scope.amount = 0;
