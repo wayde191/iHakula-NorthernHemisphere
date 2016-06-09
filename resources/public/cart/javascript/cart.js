@@ -26,8 +26,9 @@ app.config(['$routeProvider', function($routeProvider) {
 
 angular.bootstrap().invoke(bootstrap('cart'));
 
-app.controller('dashboardCallbackController', function($scope, $routeParams, sessionStorageService, userService) {
+app.controller('dashboardCallbackController', function($scope, allProducts, $routeParams, sessionStorageService, userService) {
     $scope.cart = 'cart/partials/cart.html';
+    $scope.products = allProducts;
 
     sessionStorageService.setToken($routeParams.token);
     sessionStorageService.setUserId($routeParams.uid);
@@ -37,10 +38,12 @@ app.controller('dashboardCallbackController', function($scope, $routeParams, ses
 
 });
 
-app.controller('dashboardController', function($scope, allProducts, userService) {
+app.controller('dashboardController', function($scope, allProducts) {
     $scope.cart = 'cart/partials/cart.html';
     $scope.products = allProducts;
+});
 
+app.controller('CartController', ['$scope', 'userService', function($scope, userService) {
     function restore() {
         $scope.amount = 0;
         $scope.sumPrice = 0;
@@ -79,18 +82,8 @@ app.controller('dashboardController', function($scope, allProducts, userService)
         if (userService.isUserLoggedIn()){
             window.location.href = '/order.html';
         } else {
-
+            window.location.href = userService.getLoginCallBackLink();
         }
-    };
-});
-
-app.controller('CartController', ['$scope', function($scope) {
-    $scope.checkboxModel = {
-        allChecked : true,
-        value2 : 'YES'
-    };
-    $scope.changed = function(){
-        console.log($scope.checkboxModel);
     };
 }]);
 
