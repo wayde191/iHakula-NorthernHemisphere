@@ -9,6 +9,9 @@ app.config(['$routeProvider', function($routeProvider) {
             resolve: {
                 allProducts: function (nhProduct) {
                     return nhProduct.getProduct().$promise;
+                },
+                userContacts: function (Contact, sessionStorageService) {
+                    return Contact.getContact({id: sessionStorageService.getUserId()}).$promise;
                 }
             }
         });
@@ -16,9 +19,11 @@ app.config(['$routeProvider', function($routeProvider) {
 
 angular.bootstrap().invoke(bootstrap('order'));
 
-app.controller('dashboardController', function($scope, allProducts, userService) {
+app.controller('dashboardController', function($scope, allProducts, userContacts, userService) {
     $scope.order = 'order/partials/order.html';
     $scope.products = allProducts;
+
+    console.log(userContacts);
 
     if (!userService.isUserLoggedIn()){
         window.location.href = '/';

@@ -15,3 +15,10 @@
     (merge
       {:sCode reports/sso-security-code}
       {:user-id username :token token})))
+
+(defn getContact [user-id]
+  (http/request-get
+    (:uri (reports/get-user-contact))
+    (merge
+      {:sCode reports/sso-security-code}
+      {:user_id user-id})))

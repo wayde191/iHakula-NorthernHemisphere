@@ -33,6 +33,8 @@
               (response (user/login username token)))
             (GET "/:username/:token/isUserLoggedIn.json" [username token]
               (response (user/isUserLoggedIn username token)))
+            (GET "/:id/contact.json" [id]
+              (response (user/getContact id)))
             ))))
     )
   )
