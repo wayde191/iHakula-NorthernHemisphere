@@ -36,7 +36,6 @@ common.directive('nhHeader', function(nhUser, sessionStorageService, userService
         link: function(scope, element, attrs) {
 
             scope.myOrderLink = '/order.html';
-            scope.loginLink = 'http://localhost/sso/login.html?redirect=http://localhost:3000/productions.html';
             scope.cartLink = '/carts.html';
             scope.amount = 0;
             scope.showAmount = scope.amount > 0 ? true : false;
@@ -206,7 +205,7 @@ common.service('userService',function(sessionStorageService, nhUser, $window){
             });
     };
 
-    var getCallBackLink = function(){
+    var getLoginCallBackLink = function(){
         var loginUri = $window.location.protocol
             + '//' + $window.location.hostname
             + '/sso/login.html';
@@ -217,7 +216,7 @@ common.service('userService',function(sessionStorageService, nhUser, $window){
     return {
         getUserInfo : getUserInfo,
         isUserLoggedIn: isUserLoggedIn,
-        getCallBackLink: getCallBackLink
+        getLoginCallBackLink: getLoginCallBackLink
     };
 });
 
@@ -228,7 +227,7 @@ common.controller('AuthCtrl', function($scope, $rootScope, $window, sessionStora
         if(userService.isUserLoggedIn()){
             userService.getUserInfo();
         } else {
-            $window.location.href = userService.getCallBackLink();
+            $window.location.href = userService.getLoginCallBackLink();
         }
     };
 
