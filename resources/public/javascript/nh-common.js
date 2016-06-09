@@ -188,7 +188,7 @@ common.factory('nhProduct', ['$resource', function($resource) {
 }
 ]);
 
-common.service('userService',function(sessionStorageService, nhUser){
+common.service('userService',function(sessionStorageService, nhUser, $window){
     var isUserLoggedIn = function(){
         return sessionStorageService.isUserLoggedIn();
     };
@@ -207,7 +207,11 @@ common.service('userService',function(sessionStorageService, nhUser){
     };
 
     var getCallBackLink = function(){
-
+        var loginUri = $window.location.protocol
+            + '//' + $window.location.hostname
+            + '/sso/login.html';
+        var callbackUri = $window.location.origin + $window.location.pathname;
+        return loginUri + '?redirect=' + callbackUri;
     };
 
     return {
@@ -224,7 +228,7 @@ common.controller('AuthCtrl', function($scope, $rootScope, $window, sessionStora
         if(userService.isUserLoggedIn()){
             userService.getUserInfo();
         } else {
-            $window.location.href = 'http://localhost/sso/login.html?redirect=http://localhost:3000/productions.html';
+            $window.location.href = userService.getCallBackLink();
         }
     };
 

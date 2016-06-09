@@ -11,10 +11,31 @@ app.config(['$routeProvider', function($routeProvider) {
                     return nhProduct.getProduct().$promise;
                 }
             }
-        });
+        })
+        .when('/callback/:token/:username/:uid', {
+            templateUrl: 'cart/partials/index.html',
+            controller: 'dashboardCallbackController',
+            reloadOnSearch: true,
+            resolve: {
+                allProducts: function (nhProduct) {
+                    return nhProduct.getProduct().$promise;
+                }
+            }
+        }).otherwise({redirectTo: '/'});
 }]);
 
 angular.bootstrap().invoke(bootstrap('cart'));
+
+app.controller('dashboardCallbackController', function($scope, $routeParams, sessionStorageService, userService) {
+    $scope.cart = 'cart/partials/cart.html';
+
+    sessionStorageService.setToken($routeParams.token);
+    sessionStorageService.setUserId($routeParams.uid);
+    sessionStorageService.setUsername($routeParams.username);
+
+    userService.getUserInfo();
+
+});
 
 app.controller('dashboardController', function($scope, allProducts, userService) {
     $scope.cart = 'cart/partials/cart.html';
