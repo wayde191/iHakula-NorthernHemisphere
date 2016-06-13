@@ -22,8 +22,7 @@ angular.bootstrap().invoke(bootstrap('order'));
 app.controller('dashboardController', function($scope, allProducts, userContacts, userService) {
     $scope.order = 'order/partials/order.html';
     $scope.products = allProducts;
-
-    console.log(userContacts);
+    $scope.contacts = userContacts;
 
     if (!userService.isUserLoggedIn()){
         window.location.href = '/';
@@ -75,6 +74,7 @@ app.directive('userContact', function() {
         },
 
         link: function(scope, element, attrs) {
+            scope.consigneeParam = {name: "great"};
             scope.onCloseBtnClicked = function(){
                 scope.$parent.toggleContactDialog();
             };
