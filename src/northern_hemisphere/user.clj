@@ -24,7 +24,7 @@
 (defn isUserLoggedIn [username token]
   (infinite-loop
     #(do
-       (Thread/sleep 1000 * 60 * 60 * 24)
+       (Thread/sleep (reduce * (list 1000 60 60 24)))
        (log/info (swap! counter inc))))
 
   (http/request-post
