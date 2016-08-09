@@ -206,9 +206,7 @@ common.service('userService',function(sessionStorageService, nhUser, $window){
     };
 
     var getLoginCallBackLink = function(){
-        var loginUri = $window.location.protocol
-            + '//' + $window.location.hostname
-            + '/sso/login.html';
+        var loginUri = $window.location.protocol + '//' + $window.location.hostname + '/sso/login.html';
         var callbackUri = $window.location.origin + $window.location.pathname;
         return loginUri + '?redirect=' + callbackUri;
     };
