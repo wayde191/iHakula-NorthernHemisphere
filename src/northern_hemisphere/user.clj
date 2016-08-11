@@ -18,14 +18,17 @@
   nil)
 
 (defn forever []
-  (log/info "Starting the staffing service ... ")
-  )
-
-(defn isUserLoggedIn [username token]
   (infinite-loop
     #(do
        (Thread/sleep (reduce * (list 1000 60 60 24)))
        (log/info (swap! counter inc))))
+  )
+
+(defn isUserLoggedIn [username token]
+  (doto
+    (Thread. forever)
+    (.setDaemon true)
+    (.start))
 
   (http/request-post
     (:uri (reports/sso-isUserLoggedin))
