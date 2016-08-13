@@ -3,6 +3,7 @@
             [northern-hemisphere.fakes-handler :refer :all]
             [northern-hemisphere.reports :as reports]
             [northern-hemisphere.api :as api]
+            [northern-hemisphere.cron :as cron]
             [compojure.core :refer :all]
             [compojure.handler :as handler]
             [compojure.route :as route]
@@ -103,6 +104,7 @@
                  forecast-shrinkage-percentage :forecast-shrinkage-percentage
                  config :config}]
   (TimeZone/setDefault (TimeZone/getTimeZone "UTC"))
+  (cron/run-cron-task)
   (handler/site
     (routes
       public-routes
@@ -110,7 +112,4 @@
       (handler/site (route/not-found "Not Found")))))
 
 (def app
-  (ring-app system/system))
-
-(def main
   (ring-app system/system))
