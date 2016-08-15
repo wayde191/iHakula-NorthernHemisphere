@@ -1,7 +1,6 @@
 (ns northern-hemisphere.cron
-  (:require [clojure.tools.logging :as log]))
-
-(def counter (atom 1))
+  (:require [northern-hemisphere.joke :as joke]
+            [clojure.tools.logging :as log]))
 
 (defn infinite-loop [function]
   (function)
@@ -11,10 +10,11 @@
 (defn analyse-joke []
   (infinite-loop
     #(do
-       (Thread/sleep (reduce * (list 1000 24 60 60)))
-       (log/info (swap! counter inc)))))
+       (Thread/sleep (reduce * (list 1000 5)))
+       (joke/refresh-joke))))
 
 (defn run-cron-task []
+  (log/info "Running cron tasks...")
   (doto
     (Thread. analyse-joke)
     (.setDaemon true)

@@ -11,6 +11,8 @@
 
 (def sso-security-code "iHakulaSecurityCode2016")
 
+(def joke-url "http://joke.sina.cn/")
+
 (defn get-host []
   (if (= environment "dev") host-dev host-prod))
 
