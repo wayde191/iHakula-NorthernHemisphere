@@ -64,6 +64,9 @@
 (enlive/deftemplate production-template "public/production/index.html" []
   append-resources)
 
+(enlive/deftemplate joke-template "public/joke/index.html" []
+  append-resources)
+
 (enlive/deftemplate cart-template "public/cart/index.html" []
   append-resources)
 
@@ -72,9 +75,10 @@
 
 (defroutes main-routes
   (GET "/productions.html" [] (-> (response/response (apply str (production-template)))))
+  (GET "/joke.html" [] (-> (response/response (apply str (joke-template)))))
   (GET "/cart.html" [] (-> (response/response (apply str (cart-template)))))
   (GET "/order.html" [] (-> (response/response (apply str (order-template)))))
-  (GET "/" [] (response/redirect "/productions.html"))
+  (GET "/" [] (response/redirect "/joke.html"))
   (GET "/index.html" [] (response/redirect "/"))
   )
 
@@ -87,16 +91,21 @@
 (defroutes public-routes
   (GET "/favicon.ico" [] (response/resource-response "/favicon.ico" {:root "public/images"}))
   (handler/site (route/resources "/css" {:root "public/css"}))
+  (handler/site (route/resources "/vendors" {:root "public/vendors"}))
   (handler/site (route/resources "/third-part" {:root "public/third-part"}))
   (handler/site (route/resources "/fonts" {:root "public/fonts"}))
   (handler/site (route/resources "/javascript" {:root "public/javascript"}))
+  (handler/site (route/resources "/js" {:root "public/js"}))
   (handler/site (route/resources "/cart/javascript" {:root "public/cart/javascript"}))
   (handler/site (route/resources "/order/javascript" {:root "public/order/javascript"}))
   (handler/site (route/resources "/vendor" {:root "public/vendor"}))
   (handler/site (route/resources "/images" {:root "public/images"}))
+  (handler/site (route/resources "/img" {:root "public/img"}))
   (handler/site (route/resources "/angular-htmls" {:root "public/angular-htmls"}))
   (handler/site (route/resources "/cart/partials" {:root "public/cart/partials"}))
   (handler/site (route/resources "/order/partials" {:root "public/order/partials"}))
+  (handler/site (route/resources "/joke/javascript" {:root "public/joke/javascript"}))
+  (handler/site (route/resources "/joke/partials" {:root "public/joke/partials"}))
   (handler/site (route/resources "/production/javascript" {:root "public/production/javascript"}))
   (handler/site (route/resources "/production/partials" {:root "public/production/partials"})))
 
@@ -104,7 +113,7 @@
                  forecast-shrinkage-percentage :forecast-shrinkage-percentage
                  config :config}]
   (TimeZone/setDefault (TimeZone/getTimeZone "UTC"))
-  (cron/run-cron-task)
+;  (cron/run-cron-task)
   (handler/site
     (routes
       public-routes
