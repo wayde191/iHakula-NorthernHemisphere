@@ -237,3 +237,72 @@ common.controller('AuthCtrl', function($scope, $rootScope, $window, sessionStora
         $scope.viewMenu = false;
     };
 });
+
+common.controller('JokeAuthCtrl', function($scope, $rootScope, $window, sessionStorageService, userService) {
+    $scope.viewMenu = false;
+
+    $scope.showMenu = function(){
+        if(userService.isUserLoggedIn()){
+            userService.getUserInfo();
+        } else {
+            $window.location.href = userService.getLoginCallBackLink();
+        }
+    };
+
+    $(document).on('click', function(e) {
+        // use $emit so the event stays inside $rootScope
+        $rootScope.$emit('click', {target: e.target});
+    });
+    $scope.closeNavDropDown = function(){
+        $scope.viewMenu = false;
+    };
+});
+
+common.directive('jokeHeader', function(nhUser, sessionStorageService, userService) {
+    return {
+        templateUrl: '/angular-htmls/joke-header.html',
+        link: function(scope, element, attrs) {
+
+            scope.myOrderLink = '/order.html';
+            scope.cartLink = '/carts.html';
+            scope.amount = 0;
+            scope.showAmount = scope.amount > 0 ? true : false;
+
+            scope.showCart = function(){
+                window.location.href = '/cart.html';
+            };
+
+            scope.$watch('amount', function (newValue) {
+                scope.showAmount = newValue > 0;
+            });
+            scope.$watch(function () {
+                return window.localStorage.teaAmount;
+            }, function (newVal, oldVal) {
+                if (newVal !== undefined) {
+                    scope.amount = newVal;
+                    $('#shopping-amount').animateCss('tada');
+                    $('#shopping-cart').animateCss('tada');
+                }
+            });
+
+            scope.userInfo = "请登录";
+            nhUser.isUserLoggedIn({username: sessionStorageService.getUserId(), token: sessionStorageService.getToken()})
+                .$promise.then(function (response) {
+                if(response.status === 1){
+                    userService.getUserInfo();
+                } else {
+                    sessionStorageService.restoreUser();
+                }
+            });
+
+            scope.$watch(function () {
+                return sessionStorage.isUserLoggedIn;
+            }, function (newVal, oldVal) {
+                if (newVal !== undefined && newVal === "true") {
+
+                    scope.userInfo = sessionStorageService.getUsername();
+                }
+            });
+        }
+    };
+});
