@@ -29,8 +29,8 @@ app.controller('SidebarController', function($scope, Joke) {
 
 app.controller('ContentController', function($scope, Joke) {
     $scope.jokes = [{
-        "title": "a title",
-        "subTitle": "a desc",
+        "title": "这是一个大笑话",
+        "subTitle": "你懂的",
         "pics": [{
             "url": "http://n.sinaimg.cn/default/transform/20160905/bKR8-fxvqqsk4771771.jpg",
             "desc": "img1"
