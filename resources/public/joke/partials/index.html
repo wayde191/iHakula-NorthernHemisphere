@@ -1,2 +1,8 @@
-<div ng-include="productions" ng-controller="ProductionController">
+<div>
+    <section id="main">
+        <div ng-include="sidebar" ng-controller="SidebarController">
+        </div>
+        <div ng-include="content" ng-controller="ContentController">
+        </div>
+    </section>
 </div>

@@ -258,11 +258,24 @@ common.controller('JokeAuthCtrl', function($scope, $rootScope, $window, sessionS
     };
 });
 
+
+function setupSearch() {
+    $('body').on('click', '#top-search > a', function(e){
+        e.preventDefault();
+        $('#header').addClass('search-toggled');
+    });
+
+    $('body').on('click', '#top-search-close', function(e){
+        e.preventDefault();
+        $('#header').removeClass('search-toggled');
+    });
+}
+
 common.directive('jokeHeader', function(nhUser, sessionStorageService, userService) {
     return {
         templateUrl: '/angular-htmls/joke-header.html',
         link: function(scope, element, attrs) {
-
+            setupSearch();
         }
     };
 });
@@ -271,7 +284,6 @@ common.directive('ieWarning', function(nhUser, sessionStorageService, userServic
     return {
         templateUrl: '/angular-htmls/ie-warning.html',
         link: function(scope, element, attrs) {
-
         }
     };
 });

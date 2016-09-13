@@ -1,6 +1,6 @@
-var app = angular.module('product');
+var app = angular.module('joke');
 
-app.factory('Product', ['$resource', function($resource) {
+app.factory('Joke', ['$resource', function($resource) {
     return $resource('/api/products.json', {}, {
         getProduct: {
             method: 'GET',
