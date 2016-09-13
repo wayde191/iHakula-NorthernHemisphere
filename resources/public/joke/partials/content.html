@@ -1,9 +1,9 @@
 <section id="content">
   <div class="container">
 
-    <div class="card">
+    <div class="card" ng-repeat="joke in jokes">
       <div class="card-header">
-        <h2>Sales Statistics <small>Vestibulum purus quam scelerisque, mollis nonummy metus</small></h2>
+        <h2>{{joke.title}} <small>Vestibulum purus quam scelerisque, mollis nonummy metus</small></h2>
         <ul class="actions">
           <li>
             <a href="#">
@@ -37,27 +37,10 @@
 
       <div class="card-body card-padding">
         <div class="row">
-          <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-              <img src="http://n.sinaimg.cn/default/transform/20160905/bKR8-fxvqqsk4771771.jpg" alt="">
-              <div class="caption">
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-sm-6 col-md-4">
+          <div class="col-sm-6 col-md-4" ng-repeat="img in joke.pics">
             <div class="thumbnail">
-              <img src="http://n.sinaimg.cn/default/transform/20160905/IIRv-fxvqcts9514422.jpg" alt="">
-              <div class="caption">
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-              <img src="http://n.sinaimg.cn/default/transform/20160905/-1-f-fxvqcts9511933.jpg" alt="">
+              <img ng-src={{img.url}} alt="">
               <div class="caption">
                 <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
               </div>

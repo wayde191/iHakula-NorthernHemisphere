@@ -32,17 +32,17 @@ app.controller('ContentController', function($scope, Joke) {
         "title": "a title",
         "subTitle": "a desc",
         "pics": [{
-            "img": "http://n.sinaimg.cn/default/transform/20160905/bKR8-fxvqqsk4771771.jpg",
+            "url": "http://n.sinaimg.cn/default/transform/20160905/bKR8-fxvqqsk4771771.jpg",
             "desc": "img1"
         }, {
-            "img": "http://n.sinaimg.cn/default/transform/20160905/bKR8-fxvqqsk4771771.jpg",
+            "url": "http://n.sinaimg.cn/default/transform/20160905/5f_S-fxvqcts9514821.jpg",
             "desc": "img12"
         }]
     }, {
         "title": "b title",
         "subTitle": "b desc",
         "pics": [{
-            "img": "http://n.sinaimg.cn/default/transform/20160905/bKR8-fxvqqsk4771771.jpg",
+            "url": "http://n.sinaimg.cn/default/transform/20160905/bKR8-fxvqqsk4771771.jpg",
             "desc": "img1"
         }]
     }];
