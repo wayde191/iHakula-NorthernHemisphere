@@ -33,5 +33,8 @@
 (defn get-user-contact []
   {:uri (join [(get-api-host) "user/get-contact"])})
 
+(defn get-joke-url []
+  {:uri (join [(get-api-host) "joke/get-joke"])})
+
 (defn reports-http []
   (println "fake"))

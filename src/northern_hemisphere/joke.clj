@@ -18,9 +18,8 @@
 
   ;  (println (http/request-get reports/joke-url {:good "for you"})))
 
-(defn getContact [user-id]
+(defn get-joke [number]
   (http/request-get
-    (:uri (reports/get-user-contact))
+    (:uri (reports/get-joke-url))
     (merge
-      {:sCode reports/sso-security-code}
-      {:user_id user-id})))
+      {:page_num number})))

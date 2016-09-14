@@ -20,4 +20,5 @@
 
 (defn request-post [url params]
   (:body
-    (client/post url {:form-params params})))
+    (client/post url {:form-params params
+                      :form-param-encoding "UTF-8"})))

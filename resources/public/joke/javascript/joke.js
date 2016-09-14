@@ -28,24 +28,33 @@ app.controller('SidebarController', function($scope, Joke) {
 });
 
 app.controller('ContentController', function($scope, Joke) {
-    $scope.jokes = [{
-        "title": "这是一个大笑话",
-        "subTitle": "你懂的",
-        "pics": [{
-            "url": "http://n.sinaimg.cn/default/transform/20160905/bKR8-fxvqqsk4771771.jpg",
-            "desc": "img1"
-        }, {
-            "url": "http://n.sinaimg.cn/default/transform/20160905/5f_S-fxvqcts9514821.jpg",
-            "desc": "img12"
-        }]
-    }, {
-        "title": "b title",
-        "subTitle": "b desc",
-        "pics": [{
-            "url": "http://n.sinaimg.cn/default/transform/20160905/bKR8-fxvqqsk4771771.jpg",
-            "desc": "img1"
-        }]
-    }];
+    $scope.dataLoaded = false;
+    Joke.getJoke({number: 1}).$promise.then(
+        function(data) {
+            $scope.dataLoaded = true;
+            $scope.jokes = data;
+            console.log($scope.jokes);
+        }
+    );
+
+    //$scope.jokes = [{
+    //    "title": "这是一个大笑话",
+    //    "subTitle": "你懂的",
+    //    "pics": [{
+    //        "url": "http://n.sinaimg.cn/default/transform/20160905/bKR8-fxvqqsk4771771.jpg",
+    //        "desc": "img1"
+    //    }, {
+    //        "url": "http://n.sinaimg.cn/default/transform/20160905/5f_S-fxvqcts9514821.jpg",
+    //        "desc": "img12"
+    //    }]
+    //}, {
+    //    "title": "b title",
+    //    "subTitle": "b desc",
+    //    "pics": [{
+    //        "url": "http://n.sinaimg.cn/default/transform/20160905/bKR8-fxvqqsk4771771.jpg",
+    //        "desc": "img1"
+    //    }]
+    //}];
 
 
 });
