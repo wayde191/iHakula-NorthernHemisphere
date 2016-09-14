@@ -1,6 +1,6 @@
-export GO_PIPELINE_COUNTER=60
+export GO_PIPELINE_COUNTER=61
 export GO_STAGE_COUNTER=1
-export GO_PIPELINES_ENV=dev
+export GO_PIPELINES_ENV=prod
 export GO_PIPELINES_PORT=3000
 export PIWIK_HOST=www.ihakula.com
 export REPORTS_API=http://www.ihakula.com:9000/order
