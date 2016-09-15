@@ -29,13 +29,13 @@ app.controller('SidebarController', function($scope, Joke) {
 
 app.controller('ContentController', function($scope, Joke) {
     $scope.dataLoaded = false;
-    Joke.getJoke({number: 1}).$promise.then(
-        function(data) {
-            $scope.dataLoaded = true;
-            $scope.jokes = data;
-            console.log($scope.jokes);
-        }
-    );
+    //Joke.getJoke({number: 1}).$promise.then(
+    //    function(data) {
+    //        $scope.dataLoaded = true;
+    //        $scope.jokes = data;
+    //        console.log($scope.jokes);
+    //    }
+    //);
 
     //$scope.jokes = [{
     //    "title": "这是一个大笑话",
