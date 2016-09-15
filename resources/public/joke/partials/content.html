@@ -3,7 +3,14 @@
 
     <div class="card" ng-repeat="item in jokes">
       <div class="card-header">
-        <h2>{{item.joke.title}} <small>{{item.joke.intro}}</small></h2>
+
+        <div class="lvh-label">
+          <div class="lv-avatar pull-left">
+            <img ng-src={{item.joke.img}} alt="">
+          </div>
+        </div>
+
+        <h2>{{item.joke.title}} <small>{{item.joke.wap_title}}</small></h2>
         <ul class="actions">
           <li>
             <a href="#">
@@ -36,20 +43,23 @@
       </div>
 
       <div class="card-body card-padding">
-        <div class="row">
+        <p class="lead">{{item.joke.intro}}</p>
 
-          <div class="col-sm-6 col-md-4" ng-repeat="item in item.detail">
+        <div class="row">
+          <div class="col-sm-6 col-md-6" ng-repeat="item in item.detail">
             <div class="thumbnail">
               <img ng-src={{item.img}} alt="">
               <div class="caption">
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <p>{{item.intro}}</p>
               </div>
             </div>
           </div>
 
         </div>
       </div>
+    </div>
 
+    <div class="card">
       <div class="card-body">
         <div class="listview p-t-5">
           <a class="lv-item" href="#">
@@ -69,8 +79,6 @@
           </a>
         </div>
       </div>
-
     </div>
-
   </div>
 </section>
