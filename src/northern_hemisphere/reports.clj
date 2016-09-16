@@ -23,7 +23,7 @@
   {:uri (join [(get-host) "sso/api/index.php/ihuser/isLoggedIn"])})
 
 
-(def host-api-dev "http://localhost:9395/")
+(def host-api-dev "http://www.ihakula.com:9395/")
 
 (def host-api-prod "http://www.ihakula.com:9395/")
 

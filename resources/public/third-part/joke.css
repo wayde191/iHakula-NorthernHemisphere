@@ -1,0 +1,31 @@
+.preloader {
+    position: absolute;
+    left: 0;
+    top: -100px;
+    z-index: 0;
+    text-align: center;
+    line-height: 100px;
+    height: 100px;
+    width: 100%;
+    background: rgba(51, 51, 51, 0.9);
+    box-shadow: 0 0 5px rgba(51, 51, 51, 0.5);
+    color: #fff;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -ms-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms;
+}
+.preloader.visible {
+    top: 50px;
+    opacity: 1;
+}
+.pull-refresh-label {
+    opacity: 1;
+}
+.pull-refresh-label.invisible {
+    opacity: 0.1;
+}
+.swiper-slide {
+    height: 200px;
+}

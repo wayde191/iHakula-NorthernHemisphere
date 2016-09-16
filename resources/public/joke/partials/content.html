@@ -1,100 +1,74 @@
 <section id="content">
-  <div class="container">
 
-    <div class="card" ng-repeat="item in jokes">
-      <div class="card-header">
+    <div class="container">
+        <div class="card" ng-repeat="item in jokes">
+            <div class="card-header">
 
-        <div class="lvh-label">
-          <div class="lv-avatar pull-left">
-            <img ng-src={{item.joke.img}} alt="">
-          </div>
-        </div>
+                <div class="lvh-label">
+                    <div class="lv-avatar pull-left">
+                        <img ng-src={{item.joke.img}} alt="">
+                    </div>
+                </div>
 
-        <h2>{{item.joke.title}} <small>{{item.joke.wap_title}}</small></h2>
-        <ul class="actions">
-          <li>
-            <a href="#">
-              <i class="md md-cached"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="md md-file-download"></i>
-            </a>
-          </li>
-          <li class="dropdown">
-            <a href="#" data-toggle="dropdown">
-              <i class="md md-more-vert"></i>
-            </a>
+                <h2>{{item.joke.title}}
+                    <small>{{item.joke.wap_title}}</small>
+                </h2>
+                <ul class="actions">
+                    <li>
+                        <a href="#">
+                            <i class="md md-cached"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="md md-file-download"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown">
+                            <i class="md md-more-vert"></i>
+                        </a>
 
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li>
-                <a href="#">Change Date Range</a>
-              </li>
-              <li>
-                <a href="#">Change Graph Type</a>
-              </li>
-              <li>
-                <a href="#">Other Settings</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-
-      <div class="card-body card-padding">
-        <p class="lead">{{item.joke.intro}}</p>
-
-        <div class="row">
-          <div class="col-sm-6 col-md-6" ng-repeat="item in item.detail">
-            <div class="thumbnail">
-              <img ng-src={{item.img}} alt="">
-              <div class="caption">
-                <p>{{item.intro}}</p>
-              </div>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <a href="#">Change Date Range</a>
+                            </li>
+                            <li>
+                                <a href="#">Change Graph Type</a>
+                            </li>
+                            <li>
+                                <a href="#">Other Settings</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-          </div>
 
+            <div class="card-body card-padding">
+                <p class="lead">{{item.joke.intro}}</p>
+
+                <div class="row">
+                    <div class="col-sm-6 col-md-6" ng-repeat="item in item.detail">
+                        <div class="thumbnail">
+                            <img ng-src={{item.img}} alt="">
+                            <div class="caption">
+                                <p>{{item.intro}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-      </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="listview">
+                    <a class="lv-footer" ng-click="loadMore()">加载更多</a>
+                </div>
+            </div>
+        </div>
+
     </div>
-
-
-    <div class="text-center">
-      <ul class="pagination">
-        <li class="disabled"><a href="#" aria-label="Previous"><i class="md md-chevron-left"></i></a></li>
-        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#" aria-label="Next"><i class="md md-chevron-right"></i></a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <!-- JiaThis Button BEGIN -->
-  <div class="jiathis_style">
-    <span class="jiathis_txt">分享到：</span>
-    <a class="jiathis_button_tools_1"></a>
-    <a class="jiathis_button_tools_2"></a>
-    <a class="jiathis_button_tools_3"></a>
-    <a class="jiathis_button_tools_4"></a>
-    <a href="http://www.jiathis.com/share?uid=2113826" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-    <a class="jiathis_counter_style"></a>
-  </div>
-  <script type="text/javascript">
-    var jiathis_config = {data_track_clickback:'true'};
-  </script>
-  <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2113826" charset="utf-8"></script>
-  <!-- JiaThis Button END -->
-
-  <!-- JiaThis Button BEGIN -->
-  <script type="text/javascript">
-    var jiathis_config = {data_track_clickback:'true'};
-  </script>
-  <script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2113826" charset="utf-8"></script>
-  <!-- JiaThis Button END -->
 
 </section>
