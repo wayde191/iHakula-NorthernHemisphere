@@ -54,7 +54,8 @@ module.exports = function(grunt) {
                     'bower_components/angular-feature-toggler/src/js/feature-toggler.js',
                     'bower_components/angular-piwik/dist/angular-piwik.js',
 		            'bower_components/checklist-model/checklist-model.js',
-		            'bower_components/intro.js/intro.js'
+		            'bower_components/intro.js/intro.js',
+                    'bower_components/underscore/underscore.js'
                 ],
                 dest: 'resources/public/vendor/dependencies.js'
             }

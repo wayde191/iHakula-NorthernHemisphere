@@ -61,10 +61,10 @@
             </div>
         </div>
 
-        <div class="card">
+        <div class="card" ng-show="dataLoaded">
             <div class="card-body">
                 <div class="listview">
-                    <a class="lv-footer" ng-click="loadMore()">加载更多</a>
+                    <a class="lv-footer" ng-click="loadMore()">{{loadingMoreText}}</a>
                 </div>
             </div>
         </div>
