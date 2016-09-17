@@ -41,7 +41,6 @@ app.controller('ContentController', function($scope, Joke) {
 
     var pageNumber = 1;
     function getJokes(){
-        $scope.dataLoaded = false;
         Joke.getJoke({number: pageNumber}).$promise.then(
             function(data) {
                 $scope.dataLoaded = true;
@@ -64,6 +63,7 @@ app.controller('ContentController', function($scope, Joke) {
     };
 
     function restore(){
+        $scope.dataLoaded = false;
         pageNumber = 1;
         $scope.jokes = [];
     };
