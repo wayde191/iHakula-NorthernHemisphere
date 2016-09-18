@@ -287,3 +287,11 @@ common.directive('ieWarning', function(nhUser, sessionStorageService, userServic
         }
     };
 });
+
+common.directive('piwik', function(nhUser, sessionStorageService, userService) {
+    return {
+        templateUrl: '/angular-htmls/piwik.html',
+        link: function(scope, element, attrs) {
+        }
+    };
+});
