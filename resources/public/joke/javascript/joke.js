@@ -35,16 +35,61 @@ app.controller('dashboardController', function($scope) {
 app.controller('SidebarController', function($scope, Joke) {
 });
 
-app.controller('ContentController', function($scope, Joke) {
+app.service('storageService',function(){
+    var getUnreadPageNumber = function(){
+        var minReadId = parseInt(localStorage.jokeMinId);
+        var maxReadId = parseInt(localStorage.jokeMaxId);
+        var recordsNum = maxReadId - minReadId;
+        var jokesPerPage = 20;
+        return Math.ceil(recordsNum / jokesPerPage) + ((recordsNum % 20) > 0 ? 1 : 0);
+    };
+
+    var updateEdgeNumber = function(data){
+        var ids = _.map(data, function(item){
+            return item.joke.id;
+        });
+        var minId = _.min(ids);
+        var maxId = _.max(ids);
+
+        if (undefined === localStorage.jokeMinId){
+            localStorage.jokeMinId = 1000000;
+        }
+        if (undefined === localStorage.jokeMaxId){
+            localStorage.jokeMaxId = 0;
+        }
+        if (minId < parseInt(localStorage.jokeMinId)) {
+            localStorage.jokeMinId =  minId;
+        }
+        if (maxId > parseInt(localStorage.jokeMaxId)) {
+            localStorage.jokeMaxId =  maxId;
+        }
+    };
+
+    return {
+        getUnreadPageNumber : getUnreadPageNumber,
+        updateEdgeNumber: updateEdgeNumber
+    };
+});
+
+app.controller('ContentController', function($scope, Joke, storageService) {
     $scope.dataLoaded = false;
     $scope.jokes = [];
+    var firstTimeLoaded = false;
+    var loadingMore = false;
 
     var pageNumber = 1;
     function getJokes(){
+        if(firstTimeLoaded && !loadingMore){
+            pageNumber = storageService.getUnreadPageNumber();
+        }
         Joke.getJoke({number: pageNumber}).$promise.then(
             function(data) {
                 $scope.dataLoaded = true;
                 $scope.jokes = _.union($scope.jokes, data);
+                storageService.updateEdgeNumber(data);
+                if(!firstTimeLoaded){
+                    firstTimeLoaded = true;
+                }
                 requestDone();
             }
         );
@@ -53,12 +98,14 @@ app.controller('ContentController', function($scope, Joke) {
     $scope.loadingMoreText = "点击加载更多";
     $scope.loadMore = function(){
         pageNumber++;
+        loadingMore = true;
         $scope.loadingMoreText = "加载中...";
         getJokes();
     };
 
     function requestDone(){
         hideLoading();
+        loadingMore = false;
         $scope.loadingMoreText = "点击加载更多";
     };
 
