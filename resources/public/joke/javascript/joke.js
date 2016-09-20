@@ -173,3 +173,6 @@ app.controller('ContentController', function($scope, Joke, storageService) {
 app.controller('AboutMeController', function($scope, Joke) {
 });
 
+app.controller('PrivacyController', function($scope, Joke) {
+});
+
