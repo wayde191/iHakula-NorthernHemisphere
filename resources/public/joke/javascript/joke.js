@@ -6,14 +6,22 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'joke/partials/index.html',
             controller: 'dashboardController',
             reloadOnSearch: true
-        }).otherwise({redirectTo:'/'});
+        }).
+        when('/page/:name', {
+            templateUrl: 'joke/partials/index.html',
+            controller: 'dashboardController',
+            reloadOnSearch: true
+        })
+        .otherwise({redirectTo:'/'});
 }]);
 
 angular.bootstrap().invoke(bootstrap('joke'));
 
-app.controller('dashboardController', function($scope) {
+app.controller('dashboardController', function($scope, $routeParams) {
     $scope.sidebar = 'joke/partials/sidebar.html';
     $scope.content = 'joke/partials/content.html';
+    $scope.page = $routeParams.name;
+    $scope.pageUrl = 'joke/partials/' + $scope.page + '.html';
 
     $scope.backToTop = function(){
         $('body,html').animate({
@@ -160,5 +168,8 @@ app.controller('ContentController', function($scope, Joke, storageService) {
             getJokes();
         },1000);
     });
+});
+
+app.controller('AboutMeController', function($scope, Joke) {
 });
 

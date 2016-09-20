@@ -2,21 +2,31 @@
     <section id="main">
         <div ng-include="sidebar" ng-controller="SidebarController"></div>
 
-        <div class="preloader">刷新中...</div>
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="pull-refresh-label text-center" style="height: 50px; margin-top:-50px;">松开刷新</div>
-
-                    <div ng-include="content" ng-controller="ContentController"></div>
-                </div>
+        <div ng-switch on="page">
+            <div ng-switch-when="about">
+                <div ng-include="pageUrl" ng-controller="AboutMeController"></div>
             </div>
+            <div ng-switch-when="feedback">feedback</div>
+            <div ng-switch-default>
+                <div class="preloader">刷新中...</div>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="pull-refresh-label text-center" style="height: 50px; margin-top:-50px;">松开刷新</div>
+
+                            <div ng-include="content" ng-controller="ContentController"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="totop" style="position: fixed; bottom: 10px; right: 20px;">
+                    <button ng-click="backToTop()" style="display: none;" class="btn btn-default btn-icon waves-effect waves-button waves-float">
+                        <i class="md md-vertical-align-top"></i>
+                    </button>
+                </p>
+            </div>
+
         </div>
 
-        <p class="totop" style="position: fixed; bottom: 10px; right: 20px;">
-            <button ng-click="backToTop()" style="display: none;" class="btn btn-default btn-icon waves-effect waves-button waves-float">
-                <i class="md md-vertical-align-top"></i>
-            </button>
-        </p>
     </section>
 </div>
