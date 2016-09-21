@@ -9,7 +9,9 @@
             <div ng-switch-when="privacy">
                 <div ng-include="pageUrl" ng-controller="PrivacyController"></div>
             </div>
-            <div ng-switch-when="feedback">feedback</div>
+            <div ng-switch-when="feedback">
+                <div ng-include="pageUrl" ng-controller="FeedbackController"></div>
+            </div>
 
             <div ng-switch-default>
                 <div class="preloader">刷新中...</div>

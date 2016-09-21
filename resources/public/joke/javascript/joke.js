@@ -176,3 +176,6 @@ app.controller('AboutMeController', function($scope, Joke) {
 app.controller('PrivacyController', function($scope, Joke) {
 });
 
+app.controller('FeedbackController', function($scope, Joke) {
+});
+
