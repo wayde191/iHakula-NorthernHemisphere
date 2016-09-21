@@ -41,42 +41,38 @@ app.controller('dashboardController', function($scope, $routeParams) {
 });
 
 app.controller('SidebarController', function($scope, Joke) {
-});
+    $(document).ready(function() {
+        $elem = '#sidebar';
+        $elem2 = '#menu-trigger';
+        $($elem2).removeClass('open');
 
-app.service('storageService',function(){
-    var getUnreadPageNumber = function(){
-        var minReadId = parseInt(localStorage.jokeMinId);
-        var maxReadId = parseInt(localStorage.jokeMaxId);
-        var recordsNum = maxReadId - minReadId;
-        var jokesPerPage = 20;
-        return Math.ceil(recordsNum / jokesPerPage) + ((recordsNum % 20) > 0 ? 1 : 0);
-    };
+        $('#menu-trigger').unbind('click');
+        $('#menu-trigger').click(function(e){
+            e.preventDefault();
+            var x = $(this).data('trigger');
 
-    var updateEdgeNumber = function(data){
-        var ids = _.map(data, function(item){
-            return item.joke.id;
+            $(x).toggleClass('toggled');
+            $(this).toggleClass('open');
+            $('body').toggleClass('modal-open');
+
+            if (x == '#sidebar') {
+                $('#header').toggleClass('sidebar-toggled');
+            }
+
+            if ($('#header').hasClass('sidebar-toggled')) {
+                $(document).on('click', function (e) {
+                    if (($(e.target).closest($elem).length === 0) && ($(e.target).closest($elem2).length === 0)) {
+                        setTimeout(function(){
+                            $('body').removeClass('modal-open');
+                            $($elem).removeClass('toggled');
+                            $('#header').removeClass('sidebar-toggled');
+                            $($elem2).removeClass('open');
+                        });
+                    }
+                });
+            }
         });
-        var minId = _.min(ids);
-        var maxId = _.max(ids);
-
-        if (undefined === localStorage.jokeMinId){
-            localStorage.jokeMinId = 1000000;
-        }
-        if (undefined === localStorage.jokeMaxId){
-            localStorage.jokeMaxId = 0;
-        }
-        if (minId < parseInt(localStorage.jokeMinId)) {
-            localStorage.jokeMinId =  minId;
-        }
-        if (maxId > parseInt(localStorage.jokeMaxId)) {
-            localStorage.jokeMaxId =  maxId;
-        }
-    };
-
-    return {
-        getUnreadPageNumber : getUnreadPageNumber,
-        updateEdgeNumber: updateEdgeNumber
-    };
+});
 });
 
 app.controller('ContentController', function($scope, Joke, storageService) {
@@ -170,7 +166,8 @@ app.controller('ContentController', function($scope, Joke, storageService) {
     });
 });
 
-app.controller('AboutMeController', function($scope, Joke) {
+app.controller('AboutMeController', function($scope, Joke, messageService) {
+    messageService.showMessage('没错，这就是我');
 });
 
 app.controller('PrivacyController', function($scope, Joke) {
