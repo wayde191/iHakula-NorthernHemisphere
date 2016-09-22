@@ -17,7 +17,9 @@ app.config(['$routeProvider', function($routeProvider) {
 
 angular.bootstrap().invoke(bootstrap('joke'));
 
-app.controller('dashboardController', function($scope, $routeParams) {
+app.controller('dashboardController', function($scope, $routeParams, dropdownService) {
+    dropdownService.init();
+
     $scope.sidebar = 'joke/partials/sidebar.html';
     $scope.content = 'joke/partials/content.html';
     $scope.page = $routeParams.name;
@@ -168,6 +170,10 @@ app.controller('ContentController', function($scope, Joke, storageService) {
 
 app.controller('AboutMeController', function($scope, Joke, messageService) {
     messageService.showMessage('没错，这就是我');
+    $scope.totalMessageNumber = 1563;
+    $scope.send = function(){
+        console.log('sending...');
+    };
 });
 
 app.controller('PrivacyController', function($scope, Joke) {

@@ -21,14 +21,14 @@
                             <div class="dropdown-menu">
                                 <textarea placeholder="我想说..."></textarea>
 
-                                <button class="btn bgm-green btn-icon"><i class="md md-send"></i></button>
+                                <button ng-click="send()" class="btn bgm-green btn-icon"><i class="md md-send"></i></button>
                             </div>
                         </div>
                     </div>
 
 
                     <div class="pmo-stat">
-                        <h2 class="m-0 c-white">1562</h2>
+                        <h2 class="m-0 c-white">{{totalMessageNumber}}</h2>
                         收到总的留言数
                     </div>
                 </div>
@@ -54,7 +54,7 @@
 
             <div class="pm-body clearfix">
                 <ul class="tab-nav tn-justified">
-                    <li class="active waves-effect"><a href="#">关于</a></li>
+                    <li class="active waves-effect"><a>关于</a></li>
                 </ul>
 
                 <div class="pmb-block">
