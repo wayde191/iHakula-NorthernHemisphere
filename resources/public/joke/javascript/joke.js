@@ -22,7 +22,7 @@ app.controller('dashboardController', function ($scope, $routeParams, dropdownSe
 
     $scope.sidebar = 'joke/partials/sidebar.html';
     $scope.content = 'joke/partials/content.html';
-    $scope.page = $routeParams.name;
+    $scope.page = $routeParams.name || 'home';
     $scope.pageUrl = 'joke/partials/' + $scope.page + '.html';
 
     $scope.backToTop = function () {
@@ -43,7 +43,12 @@ app.controller('dashboardController', function ($scope, $routeParams, dropdownSe
 });
 
 app.controller('SidebarController', function ($scope, Joke) {
+
     $scope.$on('$includeContentLoaded', function (event) {
+        $('.main-menu li').removeClass('active');
+
+        $('[data-type=' + $scope.page + ']').addClass('active');
+
         $elem = '#sidebar';
         $elem2 = '#menu-trigger';
         $($elem2).removeClass('open');
