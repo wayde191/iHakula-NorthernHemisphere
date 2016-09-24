@@ -6,7 +6,7 @@
             [northern-hemisphere.joke :as joke]
             [utils.map :refer [filter-keys flatten-keys]]
             [clj-time.core :refer [year month date-time plus minus months interval within?]]
-            [compojure.core :refer [defroutes GET context] :as compojure]
+            [compojure.core :refer [defroutes GET POST context] :as compojure]
             [compojure.handler :as handler]
             [clojure.data.json :as json]
             [clj-http.client :as client]
@@ -37,6 +37,8 @@
               (response (user/getContact id)))
             (GET "/:number/joke.json" [number]
               (header (response (joke/get-joke number)) "Content-Type" "text/json; charset=utf-8"))
+            (POST "/message.json" req
+              (header (response {:value 'good'}) "Content-Type" "text/json; charset=utf-8"))
           ))))
     )
   )

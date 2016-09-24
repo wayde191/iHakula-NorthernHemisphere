@@ -17,7 +17,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 angular.bootstrap().invoke(bootstrap('joke'));
 
-app.controller('dashboardController', function ($scope, $routeParams, dropdownService) {
+app.controller('dashboardController', function ($scope, $routeParams, dropdownService, pageScrollService) {
     dropdownService.init();
 
     $scope.sidebar = 'joke/partials/sidebar.html';
@@ -31,15 +31,10 @@ app.controller('dashboardController', function ($scope, $routeParams, dropdownSe
         }, 600);
     };
 
-    $(function () {
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 50) {
-                $('.totop button').fadeIn();
-            } else {
-                $('.totop button').fadeOut();
-            }
-        });
+    $scope.$on('$includeContentLoaded', function (event) {
+        pageScrollService.setupScrollUp();
     });
+
 });
 
 app.controller('SidebarController', function ($scope, Joke) {
@@ -175,12 +170,22 @@ app.controller('ContentController', function ($scope, Joke, storageService) {
     });
 });
 
-app.controller('AboutMeController', function ($scope, Joke, messageService) {
+app.controller('AboutMeController', function ($scope, Message, messageService) {
     messageService.showMessage('没错，这就是我');
     $scope.totalMessageNumber = 1563;
     $scope.message = '';
     $scope.send = function () {
-        console.log($scope.message);
+        if ($scope.message === ''){
+            messageService.showMessage('发送消息不能为空，请确认再发');
+        } else {
+            $scope.totalMessageNumber++;
+            messageService.showMessage('消息已发送');
+            Message.send2Me({message: $scope.message}).$promise.then(
+                function (data) {
+                    console.log(data);
+                }
+            );
+        }
     };
 });
 

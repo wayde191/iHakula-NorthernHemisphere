@@ -9,8 +9,18 @@ app.factory('Joke', ['$resource', function ($resource) {
             isArray: true
         }
     });
-}
-]);
+}]);
+
+app.factory('Message', ['$resource', function ($resource) {
+    return $resource('/api/message.json', {}, {
+        send2Me: {
+            method: 'POST',
+            params: {},
+            headers: {'Content-Type': 'application/json; charset=utf-8'},
+            isArray: false
+        }
+    });
+}]);
 
 app.service('messageService', function () {
     function notify(message, type) {
@@ -128,5 +138,21 @@ app.service('dropdownService', function () {
 
     return {
         init: init
+    };
+});
+
+app.service('pageScrollService', function () {
+    function setupScrollUp() {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('.totop button').fadeIn();
+            } else {
+                $('.totop button').fadeOut();
+            }
+        });
+    };
+
+    return {
+        setupScrollUp: setupScrollUp
     };
 });
