@@ -12,6 +12,9 @@
             <div ng-switch-when="feedback">
                 <div ng-include="pageUrl" ng-controller="FeedbackController"></div>
             </div>
+            <div ng-switch-when="calculator">
+                <div ng-include="pageUrl" ng-controller="CalculatorController"></div>
+            </div>
 
             <div ng-switch-default>
                 <div class="preloader">刷新中...</div>

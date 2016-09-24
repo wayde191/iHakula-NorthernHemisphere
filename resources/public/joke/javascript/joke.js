@@ -195,3 +195,25 @@ app.controller('PrivacyController', function ($scope, Joke) {
 app.controller('FeedbackController', function ($scope, Joke) {
 });
 
+app.controller('CalculatorController', function ($scope, Joke) {
+    $scope.price = 800000;
+    $scope.rate = 0.00017;
+    $scope.oldRate = 0.00001;
+    $scope.startDate = "2016/05/31";
+    $scope.endDate = "2016/11/28";
+    $scope.days = 0;
+    $scope.pay = 0;
+    $scope.oldPay = 0;
+
+    $scope.go = function(){
+        var startDate = moment($scope.startDate, 'YYYY/MM/DD');
+        var endDate = moment($scope.endDate, 'YYYY/MM/DD');
+        $scope.days = endDate.diff(startDate, 'days');
+
+        $scope.pay = (parseFloat($scope.price) * parseFloat($scope.days) * parseFloat($scope.rate)).toFixed(3);
+        $scope.oldPay = (parseFloat($scope.price) * parseFloat($scope.days) * parseFloat($scope.oldRate)).toFixed(3);
+    };
+
+    $scope.go();
+});
+
