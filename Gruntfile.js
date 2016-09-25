@@ -36,26 +36,19 @@ module.exports = function(grunt) {
                 src: [
                     'bower_components/jquery/dist/jquery.js',
                     'bower_components/bootstrap/dist/js/bootstrap.js',
-                    'bower_components/d3/d3.js',
                     'bower_components/angular/angular.js',
                     'bower_components/angular-resource/angular-resource.js',
                     'bower_components/angular-route/angular-route.js',
                     'bower_components/angular-sanitize/angular-sanitize.js',
-                    'bower_components/lodash/lodash.min.js',
-                    'bower_components/numeral/numeral.js',
-                    'bower_components/chosen/chosen.jquery.js',
-                    'bower_components/nouislider/jquery.nouislider.js',
-                    'bower_components/nouislider/Link.js',
                     'bower_components/moment/moment.js',
                     'bower_components/angular-nouislider/src/nouislider.js',
-                    'bower_components/topojson/topojson.js',
-                    'bower_components/datamaps/dist/datamaps.all.js',
                     'bower_components/angular-chosen/chosen.js',
-                    'bower_components/angular-feature-toggler/src/js/feature-toggler.js',
-                    'bower_components/angular-piwik/dist/angular-piwik.js',
-		            'bower_components/checklist-model/checklist-model.js',
-		            'bower_components/intro.js/intro.js',
-                    'bower_components/underscore/underscore.js'
+                    'bower_components/underscore/underscore.js',
+                    'resources/public/vendors/bootstrap-growl/bootstrap-growl.min.js',
+                    'resources/public/vendors/sweet-alert/sweet-alert.min.js',
+                    'resources/public/vendors/pull-refresh/idangerous.swiper.min.js',
+                    'resources/public/javascript/date-utils.js',
+                    'resources/public/javascript/env.js'
                 ],
                 dest: 'resources/public/vendor/dependencies.js'
             }
