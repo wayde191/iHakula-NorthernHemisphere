@@ -1,51 +1,8 @@
-//reset
-@import "vendor/normalize";
+@import "vendor/_sweet-alert.scss";
+@import "vendor/_animate.scss";
+@import "vendor/socicon/_socicon.scss";
+@import "vendor/material-icons/_material-design-iconic-font.scss";
 
-//mixins
-@import "mixins";
-
-//theming
-@import "variables";
-
-//responsive mixins
-
-@import "responsive";
-
-//layout
-@import "layout";
-
-//typography
-// @import "vars-typeplate";
-// @import "typeplate";
-
-@import "fonts";
-@import "dashboard";
-@import "dropdown";
-@import "errors";
-@import "chart";
-@import "revenue";
-@import "aside";
-@import "flip";
-@import "tooltip";
-@import "vendor/chosen";
-@import "filter";
-@import "arrow";
-@import "treemap";
-@import "vendor/jquery.nouislider";
-@import "vendor/feature-toggler";
-@import "cashbalance";
-@import "cart";
-@import "order";
-@import "pull-refresh";
-@import "headcount";
-@import "invoices";
-@import "vendor/animate";
-@import "vendor/angular-toastr";
-@import "general";
-@import "globe";
-@import "checkbox";
-@import "export-button";
-@import "vendor/_introjs";
-@import "switchbar";
-
-@import "../../bower_components/fontawesome/scss/font-awesome";
+@import "app-1";
+@import "app-2";
+@import "joke";
