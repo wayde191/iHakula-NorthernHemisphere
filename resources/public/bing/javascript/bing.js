@@ -89,7 +89,15 @@ app.controller('ContentController', function ($rootScope, $scope, Bing, storageS
     );
 
     $scope.topClicked = function(index){
-        console.log(index);
+        showDetail();
+    };
+
+    function showDetail(){
+        $("#chat").toggleClass('toggled').removeClass('hidden');
+    };
+
+    $scope.hideDetail = function(){
+        $("#chat").toggleClass('toggled').addClass('hidden');
     };
 });
 
