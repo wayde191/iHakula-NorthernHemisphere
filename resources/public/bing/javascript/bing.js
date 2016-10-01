@@ -75,10 +75,11 @@ app.controller('SidebarController', function ($scope) {
     });
 });
 
-app.controller('ContentController', function ($rootScope, $scope, Bing, storageService) {
+app.controller('ContentController', function ($rootScope, $scope, $sce, Bing, storageService) {
     $rootScope.dataLoaded = false;
     $scope.dataLoaded = false;
     $scope.tops = [];
+    $scope.selectedPost = null;
 
     Bing.getPost({category: "tag", filter: "top"}).$promise.then(
         function (data) {
@@ -89,17 +90,25 @@ app.controller('ContentController', function ($rootScope, $scope, Bing, storageS
     );
 
     $scope.topClicked = function(index){
+        $scope.selectedPost = $scope.tops[index];
         showDetail();
     };
 
     function showDetail(){
         $("#chat").toggleClass('toggled').removeClass('hidden');
         $(".container").addClass('hidden');
+
+
     };
 
     $scope.hideDetail = function(){
         $("#chat").toggleClass('toggled').addClass('hidden');
         $(".container").removeClass('hidden');
+    };
+
+    $scope.renderHtml = function(html_code)
+    {
+        return $sce.trustAsHtml(html_code);
     };
 });
 
