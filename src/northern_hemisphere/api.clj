@@ -4,6 +4,7 @@
             [northern-hemisphere.datetime :as datetime]
             [northern-hemisphere.user :as user]
             [northern-hemisphere.joke :as joke]
+            [northern-hemisphere.wordpress :as wordpress]
             [utils.map :refer [filter-keys flatten-keys]]
             [clj-time.core :refer [year month date-time plus minus months interval within?]]
             [compojure.core :refer [defroutes GET POST context] :as compojure]
@@ -37,6 +38,8 @@
               (response (user/getContact id)))
             (GET "/:number/joke.json" [number]
               (header (response (joke/get-joke number)) "Content-Type" "text/json; charset=utf-8"))
+            (GET "/:category/:filter/post.json" [category filter]
+              (header (response (wordpress/get-post category filter)) "Content-Type" "text/json; charset=utf-8"))
             (POST "/message.json" req
               (header (response {:value 'good'}) "Content-Type" "text/json; charset=utf-8"))
           ))))

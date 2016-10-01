@@ -67,6 +67,9 @@
 (enlive/deftemplate joke-template "public/joke/index.html" []
   append-resources)
 
+(enlive/deftemplate bing-template "public/bing/index.html" []
+  append-resources)
+
 (enlive/deftemplate cart-template "public/cart/index.html" []
   append-resources)
 
@@ -76,6 +79,7 @@
 (defroutes main-routes
   (GET "/productions.html" [] (-> (response/response (apply str (production-template)))))
   (GET "/joke.html" [] (-> (response/response (apply str (joke-template)))))
+  (GET "/bing.html" [] (-> (response/response (apply str (bing-template)))))
   (GET "/cart.html" [] (-> (response/response (apply str (cart-template)))))
   (GET "/order.html" [] (-> (response/response (apply str (order-template)))))
   (GET "/" [] (response/redirect "/joke.html"))
@@ -105,6 +109,8 @@
   (handler/site (route/resources "/order/partials" {:root "public/order/partials"}))
   (handler/site (route/resources "/joke/javascript" {:root "public/joke/javascript"}))
   (handler/site (route/resources "/joke/partials" {:root "public/joke/partials"}))
+  (handler/site (route/resources "/bing/javascript" {:root "public/bing/javascript"}))
+  (handler/site (route/resources "/bing/partials" {:root "public/bing/partials"}))
   (handler/site (route/resources "/production/javascript" {:root "public/production/javascript"}))
   (handler/site (route/resources "/production/partials" {:root "public/production/partials"})))
 

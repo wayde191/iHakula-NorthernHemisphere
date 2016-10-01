@@ -36,5 +36,8 @@
 (defn get-joke-url []
   {:uri (join [(get-api-host) "joke/get-joke"])})
 
+(defn get-no1-url []
+  {:uri (join [(get-api-host) "wordpress/get-post"])})
+
 (defn reports-http []
   (println "fake"))
