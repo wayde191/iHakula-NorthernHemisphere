@@ -94,10 +94,12 @@ app.controller('ContentController', function ($rootScope, $scope, Bing, storageS
 
     function showDetail(){
         $("#chat").toggleClass('toggled').removeClass('hidden');
+        $(".container").addClass('hidden');
     };
 
     $scope.hideDetail = function(){
         $("#chat").toggleClass('toggled').addClass('hidden');
+        $(".container").removeClass('hidden');
     };
 });
 
