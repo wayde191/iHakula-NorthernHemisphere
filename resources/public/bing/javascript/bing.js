@@ -77,13 +77,20 @@ app.controller('SidebarController', function ($scope) {
 
 app.controller('ContentController', function ($rootScope, $scope, Bing, storageService) {
     $rootScope.dataLoaded = false;
+    $scope.dataLoaded = false;
+    $scope.tops = [];
 
     Bing.getPost({category: "tag", filter: "top"}).$promise.then(
         function (data) {
-            console.log(data);
+            $scope.tops = data;
             $rootScope.dataLoaded = true;
+            $scope.dataLoaded = true;
         }
     );
+
+    $scope.topClicked = function(index){
+        console.log(index);
+    };
 });
 
 app.controller('AboutMeController', function ($scope, Message, messageService) {

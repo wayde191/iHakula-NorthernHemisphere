@@ -2,7 +2,7 @@
 
     <div class="container">
 
-        <div class="card">
+        <div ng-show="dataLoaded" class="card">
             <div class="card-body">
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
@@ -15,17 +15,31 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <a ng-click="loadMore()"><img src="img/media/carousel/c-1.jpg" alt=""></a>
+                            <a ng-click="topClicked(1)">
+                                <img src="img/media/carousel/c-2.jpg" alt="">
+                            </a>
                             <div class="carousel-caption">
-                                <h3>First Slide Label</h3>
-                                <p>Some sample text goes here...</p>
+                                <h3>{{tops[1]['title']['rendered']}}</h3>
+                                <p>{{tops[1]['date'] | date:'yyyy/MM/dd @ h:mma'}}</p>
                             </div>
                         </div>
                         <div class="item">
-                            <img src="img/media/carousel/c-2.jpg" alt="">
+                            <a ng-click="topClicked(0)">
+                                <img src="img/media/carousel/c-1.jpg" alt="">
+                            </a>
+                            <div class="carousel-caption">
+                                <h3>{{tops[0]['title']['rendered']}}</h3>
+                                <p>{{tops[0]['date'] | date:'yyyy/MM/dd @ h:mma'}}</p>
+                            </div>
                         </div>
                         <div class="item">
-                            <img src="img/media/carousel/c-3.jpg" alt="">
+                            <a ng-click="topClicked(2)">
+                                <img src="img/media/carousel/c-3.jpg" alt="">
+                            </a>
+                            <div class="carousel-caption">
+                                <h3>{{tops[2]['title']['rendered']}}</h3>
+                                <p>{{tops[2]['date'] | date:'yyyy/MM/dd @ h:mma'}}</p>
+                            </div>
                         </div>
                     </div>
 
