@@ -75,11 +75,12 @@ app.controller('SidebarController', function ($scope) {
     });
 });
 
-app.controller('ContentController', function ($rootScope, $scope, $sce, Bing, storageService) {
+app.controller('ContentController', function ($rootScope, $scope, $sce, Bing, Comment, storageService) {
     $rootScope.dataLoaded = false;
     $scope.dataLoaded = false;
     $scope.tops = [];
     $scope.selectedPost = null;
+    $scope.selectedComments = [];
 
     Bing.getPost({category: "tag", filter: "top"}).$promise.then(
         function (data) {
@@ -89,16 +90,55 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, Bing, st
         }
     );
 
+    function getSelectedComments(){
+        var postId = $scope.selectedPost["id"];
+        Comment.getComments({postId: postId}).$promise.then(
+            function (data) {
+                var comments = data;
+                _.each(comments, function(comment, index){
+                    comment.children = [];
+                    comment.content.html = $scope.renderHtml(comment.content.rendered);
+                });
+                var firstComments = _.filter(comments, function(comment){
+                    return 0 === comment.parent;
+                });
+                var childComments = _.filter(comments, function(comment){
+                    return 0 !== comment.parent;
+                });
+
+                function getChildren(comment){
+                    var nodes = _.filter(childComments, function(node){
+                        return node.parent === comment.id;
+                    });
+                    if(0 === nodes.length){
+                        return;
+                    } else {
+                        comment.children = _.union(comment.children, nodes);
+                        childComments = _.difference(childComments, nodes);
+                        _.each(nodes, function (node) {
+                            getChildren(node);
+                        });
+                    }
+
+                };
+                _.each(firstComments, function(comment, index){
+                    getChildren(comment);
+                });
+
+                $scope.selectedComments = firstComments;
+            }
+        );
+    };
+
     $scope.topClicked = function(index){
         $scope.selectedPost = $scope.tops[index];
         showDetail();
+        getSelectedComments();
     };
 
     function showDetail(){
         $("#chat").toggleClass('toggled').removeClass('hidden');
         $(".container").addClass('hidden');
-
-
     };
 
     $scope.hideDetail = function(){
@@ -106,8 +146,7 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, Bing, st
         $(".container").removeClass('hidden');
     };
 
-    $scope.renderHtml = function(html_code)
-    {
+    $scope.renderHtml = function(html_code){
         return $sce.trustAsHtml(html_code);
     };
 });
@@ -157,5 +196,33 @@ app.controller('CalculatorController', function ($scope) {
     };
 
     $scope.go();
+});
+
+app.directive("comment", function(RecursionHelper) {
+    return {
+        restrict: "E",
+        scope: {family: '='},
+        template:
+        '<div class="media">' +
+            '<div class="pull-left" >' +
+                '<a class="tvh-user pull-left">' +
+                    '<img class="media-object" ng-src={{family["author_avatar_urls"]["48"]}} alt="">' +
+                '</a>' +
+            '</div>' +
+            '<div class="media-body">' +
+                '<a class="tvc-more pull-right" ng-href={{family.link}}><i class="md md-comment"></i>回复</a>' +
+                '<strong class="d-block">{{family["author_name"]}}</strong>' +
+                '<small class="c-gray">{{family["date"] | date:"yyyy/MM/dd @ h:mma"}}</small>' +
+                '<div class="m-t-10" ng-bind-html="family.content.html"></div>' +
+                '<div ng-repeat="child in family.children">' +
+                    '<comment family="child"></comment>' +
+                '</div>' +
+            '</div>' +
+        '</div>',
+        compile: function(element) {
+            return RecursionHelper.compile(element, function(scope, iElement, iAttrs, controller, transcludeFn){
+            });
+        }
+    };
 });
 

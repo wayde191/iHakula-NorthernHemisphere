@@ -10,3 +10,9 @@
     (merge
       {:category category
        :filter filter})))
+
+(defn get-comment [post-id]
+  (http/request-get
+    (:uri (reports/get-no1-comment-url))
+    (merge
+      {:post_id post-id})))

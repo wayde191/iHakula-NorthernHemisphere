@@ -396,62 +396,40 @@
                     </div>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="online">
+            <div role="tabpanel" style="height: 100%; overflow: auto;"
+                 class="tab-pane fade" id="online">
                 <div class="tv-comments">
                     <ul class="tvc-lists">
-                        <li class="media">
-                            <a href="#" class="tvh-user pull-left">
-                                <img class="img-responsive" src="img/profile-pics/1.jpg" alt="">
+
+                        <li class="media" ng-repeat="comment in selectedComments">
+                            <a class="tvh-user pull-left">
+                                <img class="img-responsive" ng-src={{comment['author_avatar_urls']['48']}} alt="">
                             </a>
                             <div class="media-body">
-                                <strong class="d-block">David Peiterson</strong>
-                                <small class="c-gray">April 23, 2014 at 05:10</small>
+                                <a class="tvc-more pull-right" ng-href={{comment.link}}><i class="md md-comment"></i>回复</a>
+                                <strong class="d-block">{{comment['author_name']}}</strong>
+                                <small class="c-gray">{{comment['date'] | date:'yyyy/MM/dd @ h:mma'}}</small>
+                                <div class="m-t-10" ng-bind-html="renderHtml(comment['content']['rendered'])"></div>
 
-                                <div class="m-t-10">Maecenas fermentum tellus ex, ac aliquet nisl malesuada id.</div>
-
-                            </div>
-                        </li>
-
-                        <li class="media">
-                            <a href="#" class="tvh-user pull-left">
-                                <img class="img-responsive" src="img/profile-pics/2.jpg" alt="">
-                            </a>
-                            <div class="media-body">
-                                <strong class="d-block">Wernall Parnell</strong>
-                                <small class="c-gray">April 22, 2014 at 13:00</small>
-
-                                <div class="m-t-10">Nulla vehicula erat nec odio dignissim, sit amet porttitor lorem auctor. Maecenas fermentum tellus ex, ac aliquet nisl malesuada id.</div>
-
-                            </div>
-                        </li>
-
-                        <li class="media">
-                            <a href="#" class="tvh-user pull-left">
-                                <img class="img-responsive" src="img/profile-pics/3.jpg" alt="">
-                            </a>
-                            <div class="media-body">
-                                <strong class="d-block">Shane Lee Yong</strong>
-                                <small class="c-gray">April 19, 2014 at 10:10</small>
-
-                                <div class="m-t-10">Sit amet porttitor lorem auctor. Maecenas fermentum tellus ex, ac aliquet nisl malesuada idwoon lorem ipsum.</div>
+                                <div ng-repeat="child in comment.children">
+                                    <comment family="child"></comment>
+                                </div>
                             </div>
                         </li>
 
                         <li class="p-20">
-                            <div class="fg-line">
-                                <textarea class="form-control auto-size" placeholder="Write a comment..." style="overflow: hidden; word-wrap: break-word; height: 32px;"></textarea>
-                            </div>
-
-                            <button class="m-t-15 btn btn-primary btn-sm waves-effect waves-button waves-float">Post</button>
+                            <a ng-href="{{selectedPost.link + '#commentform'}}">
+                                <button class="m-t-15 btn btn-primary btn-sm waves-effect waves-button waves-float">发表评论</button>
+                            </a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="clearfix"></div>
 
-                <div class="load-more">
-                    <a href="#"><i class="md md-refresh"></i> Load More...</a>
-                </div>
+                <!--<div class="load-more">-->
+                    <!--<a href="#"><i class="md md-refresh"></i> 加载更多...</a>-->
+                <!--</div>-->
             </div>
         </div>
     </aside>
