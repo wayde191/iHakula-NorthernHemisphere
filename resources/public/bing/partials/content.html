@@ -66,7 +66,7 @@
                     <div class="lv-item media" ng-repeat="post in postsList">
                         <div class="checkbox pull-left">
                             <a href="#">
-                                <img class="media-object" src="img/profile-pics/1.jpg" alt="">
+                                <img style="width: 60px; height: 60px;" class="media-object" ng-src={{getAvatar(post)}} alt="">
                             </a>
                         </div>
                         <div class="media-body" ng-click="listClicked(post)">

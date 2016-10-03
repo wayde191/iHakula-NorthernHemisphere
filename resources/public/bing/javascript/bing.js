@@ -189,6 +189,12 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, Bing, Po
     $scope.renderHtml = function(html_code){
         return $sce.trustAsHtml(html_code);
     };
+
+    $scope.getAvatar = function(post){
+        var imgPath = "img/profile-pics/";
+        var tag = post.tags.length > 0 ? (100 + parseInt(post.tags[0])) : '000';
+        return imgPath + tag + '.jpg';
+    };
 });
 
 app.controller('AboutMeController', function ($scope, Message, messageService) {
