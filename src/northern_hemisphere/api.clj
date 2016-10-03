@@ -40,6 +40,8 @@
               (header (response (joke/get-joke number)) "Content-Type" "text/json; charset=utf-8"))
             (GET "/:category/:filter/post.json" [category filter]
               (header (response (wordpress/get-post category filter)) "Content-Type" "text/json; charset=utf-8"))
+            (GET "/:page/post.json" [page]
+              (header (response (wordpress/get-post-by-page page)) "Content-Type" "text/json; charset=utf-8"))
             (GET "/:postId/comment.json" [postId]
               (header (response (wordpress/get-comment postId)) "Content-Type" "text/json; charset=utf-8"))
             (POST "/message.json" req

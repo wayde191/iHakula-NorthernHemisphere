@@ -11,6 +11,12 @@
       {:category category
        :filter filter})))
 
+(defn get-post-by-page [page]
+  (http/request-get
+    (:uri (reports/get-no1-post-by-page-url))
+    (merge
+      {:page page})))
+
 (defn get-comment [post-id]
   (http/request-get
     (:uri (reports/get-no1-comment-url))

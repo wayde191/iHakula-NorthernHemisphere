@@ -75,20 +75,54 @@ app.controller('SidebarController', function ($scope) {
     });
 });
 
-app.controller('ContentController', function ($rootScope, $scope, $sce, Bing, Comment, storageService) {
+app.controller('ContentController', function ($rootScope, $scope, $sce, Bing, Post, Comment, storageService) {
     $rootScope.dataLoaded = false;
     $scope.dataLoaded = false;
     $scope.tops = [];
+    $scope.postsList = [];
     $scope.selectedPost = null;
     $scope.selectedComments = [];
+
+    var topsLoaded = false, postListsLoaded = false;
+
+    function updateLoadedStatus(){
+        if(topsLoaded && postListsLoaded){
+            $rootScope.dataLoaded = true;
+            $scope.dataLoaded = true;
+        } else {
+            $rootScope.dataLoaded = false;
+            $scope.dataLoaded = false;
+        }
+    };
 
     Bing.getPost({category: "tag", filter: "top"}).$promise.then(
         function (data) {
             $scope.tops = data;
-            $rootScope.dataLoaded = true;
-            $scope.dataLoaded = true;
+            topsLoaded = true;
+            updateLoadedStatus();
         }
     );
+
+    var currentPageNumber = 1;
+    function setPage(){
+        $('.pagination li').removeClass('active');
+        $('[data-type=' + currentPageNumber + ']').addClass('active');
+    };
+    $scope.pageSelected = function(page){
+        currentPageNumber = page;
+        postListsLoaded = false;
+        $scope.postsList = [];
+        updateLoadedStatus();
+        Post.getPost({page: currentPageNumber}).$promise.then(
+            function (data) {
+                $scope.postsList = data;
+                postListsLoaded = true;
+                updateLoadedStatus();
+                setPage();
+            }
+        );
+    };
+    $scope.pageSelected(1);
 
     function getSelectedComments(){
         var postId = $scope.selectedPost["id"];
@@ -128,6 +162,12 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, Bing, Co
                 $scope.selectedComments = firstComments;
             }
         );
+    };
+
+    $scope.listClicked = function(post){
+        $scope.selectedPost = post;
+        showDetail();
+        getSelectedComments();
     };
 
     $scope.topClicked = function(index){

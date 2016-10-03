@@ -11,6 +11,17 @@ app.factory('Bing', ['$resource', function ($resource) {
     });
 }]);
 
+app.factory('Post', ['$resource', function ($resource) {
+    return $resource('/api/:page/post.json', {}, {
+        getPost: {
+            method: 'GET',
+            params: {},
+            headers: {'Content-Type': 'application/json; charset=utf-8'},
+            isArray: true
+        }
+    });
+}]);
+
 app.factory('Comment', ['$resource', function ($resource) {
     return $resource('/api/:postId/comment.json', {}, {
         getComments: {
