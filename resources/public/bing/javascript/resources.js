@@ -1,7 +1,7 @@
 var app = angular.module('bing');
 
 app.factory('Bing', ['$resource', function ($resource) {
-    return $resource('/api/:category/:filter/post.json', {}, {
+    var PostCategoryFilter = $resource('/api/:category/:filter/post.json', {}, {
         getPost: {
             method: 'GET',
             params: {},
@@ -9,10 +9,8 @@ app.factory('Bing', ['$resource', function ($resource) {
             isArray: true
         }
     });
-}]);
 
-app.factory('PostCount', ['$resource', function ($resource) {
-    return $resource('/api/post-count.json', {}, {
+    var PostCounter = $resource('/api/post-count.json', {}, {
         getPostCount: {
             method: 'GET',
             params: {},
@@ -20,10 +18,8 @@ app.factory('PostCount', ['$resource', function ($resource) {
             isArray: false
         }
     });
-}]);
 
-app.factory('Post', ['$resource', function ($resource) {
-    return $resource('/api/:page/post.json', {}, {
+    var PostPagination = $resource('/api/:page/post.json', {}, {
         getPost: {
             method: 'GET',
             params: {},
@@ -31,10 +27,8 @@ app.factory('Post', ['$resource', function ($resource) {
             isArray: true
         }
     });
-}]);
 
-app.factory('Comment', ['$resource', function ($resource) {
-    return $resource('/api/:postId/comment.json', {}, {
+    var Comment = $resource('/api/:postId/comment.json', {}, {
         getComments: {
             method: 'GET',
             params: {},
@@ -42,6 +36,13 @@ app.factory('Comment', ['$resource', function ($resource) {
             isArray: true
         }
     });
+
+    return {
+        PostCategoryFilter: PostCategoryFilter,
+        PostCounter: PostCounter,
+        PostPagination: PostPagination,
+        Comment: Comment
+    };
 }]);
 
 app.factory('Message', ['$resource', function ($resource) {

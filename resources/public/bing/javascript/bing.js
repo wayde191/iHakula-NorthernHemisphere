@@ -75,7 +75,7 @@ app.controller('SidebarController', function ($scope) {
     });
 });
 
-app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing, Post, PostCount, Comment, storageService) {
+app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing) {
     $rootScope.dataLoaded = false;
     $scope.dataLoaded = false;
     $scope.tops = [];
@@ -85,9 +85,9 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing
 
     var currentPageNumber = 1;
     $q.all({
-        post: Post.getPost({page: currentPageNumber}).$promise,
-        top: Bing.getPost({category: "tag", filter: "top"}).$promise,
-        postCount: PostCount.getPostCount().$promise
+        post: Bing.PostPagination.getPost({page: currentPageNumber}).$promise,
+        top: Bing.PostCategoryFilter.getPost({category: "tag", filter: "top"}).$promise,
+        postCount: Bing.PostCounter.getPostCount().$promise
     }).then(function(responses) {
         $scope.tops = responses.top;
         $scope.postsList = responses.post;
@@ -108,7 +108,7 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing
         currentPageNumber = page;
         $scope.postsList = [];
         $rootScope.dataLoaded = false;
-        Post.getPost({page: currentPageNumber}).$promise.then(
+        Bing.PostPagination.getPost({page: currentPageNumber}).$promise.then(
             function (data) {
                 $scope.postsList = data;
                 $rootScope.dataLoaded = true;
@@ -119,7 +119,7 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing
 
     function getSelectedComments(){
         var postId = $scope.selectedPost["id"];
-        Comment.getComments({postId: postId}).$promise.then(
+        Bing.Comment.getComments({postId: postId}).$promise.then(
             function (data) {
                 var comments = data;
                 _.each(comments, function(comment, index){
