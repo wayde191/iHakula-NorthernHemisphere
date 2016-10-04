@@ -38,16 +38,20 @@
               (response (user/getContact id)))
             (GET "/:number/joke.json" [number]
               (header (response (joke/get-joke number)) "Content-Type" "text/json; charset=utf-8"))
+
+;            ===================================
+;            wordpress
             (GET "/:category/:filter/post.json" [category filter]
-              (header (response (wordpress/get-post category filter)) "Content-Type" "text/json; charset=utf-8"))
+              (merge-header (response (wordpress/get-post category filter))))
             (GET "/:page/post.json" [page]
-              (header (response (wordpress/get-post-by-page page)) "Content-Type" "text/json; charset=utf-8"))
+              (merge-header (response (wordpress/get-post-by-page page))))
             (GET "/post-count.json" [page]
               (merge-header (response (wordpress/get-post-count))))
             (GET "/:postId/comment.json" [postId]
-              (header (response (wordpress/get-comment postId)) "Content-Type" "text/json; charset=utf-8"))
+              (merge-header (response (wordpress/get-comment postId))))
+
             (POST "/message.json" req
-              (header (response {:value 'good'}) "Content-Type" "text/json; charset=utf-8"))
+              (merge-header (response {:value 'good'})))
           ))))
     )
   )

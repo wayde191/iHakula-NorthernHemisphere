@@ -93,8 +93,6 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing
         $scope.postsList = responses.post;
         $scope.postCount = responses.postCount;
 
-        console.log($scope.postCount);
-
         $rootScope.dataLoaded = true;
         $scope.dataLoaded = true;
         setPage();
