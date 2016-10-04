@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <div class="card">
+        <div class="card" ng-show="dataLoaded">
             <div class="listview lv-bordered lv-lg">
                 <div class="lv-header-alt">
                     <h2 class="lvh-label hidden-xs">所有文章</h2>
@@ -84,9 +84,12 @@
                         <i class="md md-chevron-left"></i>
                     </a>
                 </li>
-                <li data-type="1" class="active"><a ng-click="pageSelected(1)">1</a></li>
-                <li data-type="2"><a ng-click="pageSelected(2)">2</a></li>
-                <li data-type="3"><a ng-click="pageSelected(3)">3</a></li>
+                <li data-type="{{index}}" class="active" ng-repeat-start="index in postCount" ng-if="$first">
+                    <a ng-click="pageSelected(index)">{{index}}</a>
+                </li>
+                <li data-type="{{index}}" ng-repeat-end ng-if="!$first">
+                    <a ng-click="pageSelected(index)">{{index}}</a>
+                </li>
                 <li class="disabled">
                     <a href="#" aria-label="Next">
                         <i class="md md-chevron-right"></i>

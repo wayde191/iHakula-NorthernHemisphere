@@ -91,7 +91,11 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing
     }).then(function(responses) {
         $scope.tops = responses.top;
         $scope.postsList = responses.post;
-        $scope.postCount = responses.postCount;
+
+        var total = parseInt(responses.postCount.total);
+        var page = parseInt(responses.postCount.page);
+        var count = parseInt(total / page) + (total % page > 0 ? 1 : 0);
+        $scope.postCount = _.range(1, count + 1);
 
         $rootScope.dataLoaded = true;
         $scope.dataLoaded = true;
@@ -104,13 +108,13 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing
     };
     $scope.pageSelected = function(page){
         currentPageNumber = page;
+        setPage();
         $scope.postsList = [];
         $rootScope.dataLoaded = false;
         Bing.PostPagination.getPost({page: currentPageNumber}).$promise.then(
             function (data) {
                 $scope.postsList = data;
                 $rootScope.dataLoaded = true;
-                setPage();
             }
         );
     };
