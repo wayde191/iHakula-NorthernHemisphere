@@ -75,7 +75,7 @@ app.controller('SidebarController', function ($scope) {
     });
 });
 
-app.controller('ContentController', function ($rootScope, $scope, $sce, Bing, Post, Comment, storageService) {
+app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing, Post, PostCount, Comment, storageService) {
     $rootScope.dataLoaded = false;
     $scope.dataLoaded = false;
     $scope.tops = [];
@@ -83,46 +83,39 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, Bing, Po
     $scope.selectedPost = null;
     $scope.selectedComments = [];
 
-    var topsLoaded = false, postListsLoaded = false;
-
-    function updateLoadedStatus(){
-        if(topsLoaded && postListsLoaded){
-            $rootScope.dataLoaded = true;
-            $scope.dataLoaded = true;
-        } else {
-            $rootScope.dataLoaded = false;
-            $scope.dataLoaded = false;
-        }
-    };
-
-    Bing.getPost({category: "tag", filter: "top"}).$promise.then(
-        function (data) {
-            $scope.tops = data;
-            topsLoaded = true;
-            updateLoadedStatus();
-        }
-    );
-
     var currentPageNumber = 1;
+    $q.all({
+        post: Post.getPost({page: currentPageNumber}).$promise,
+        top: Bing.getPost({category: "tag", filter: "top"}).$promise,
+        postCount: PostCount.getPostCount().$promise
+    }).then(function(responses) {
+        $scope.tops = responses.top;
+        $scope.postsList = responses.post;
+        $scope.postCount = responses.postCount;
+
+        console.log($scope.postCount);
+
+        $rootScope.dataLoaded = true;
+        $scope.dataLoaded = true;
+        setPage();
+    });
+
     function setPage(){
         $('.pagination li').removeClass('active');
         $('[data-type=' + currentPageNumber + ']').addClass('active');
     };
     $scope.pageSelected = function(page){
         currentPageNumber = page;
-        postListsLoaded = false;
         $scope.postsList = [];
-        updateLoadedStatus();
+        $rootScope.dataLoaded = false;
         Post.getPost({page: currentPageNumber}).$promise.then(
             function (data) {
                 $scope.postsList = data;
-                postListsLoaded = true;
-                updateLoadedStatus();
+                $rootScope.dataLoaded = true;
                 setPage();
             }
         );
     };
-    $scope.pageSelected(1);
 
     function getSelectedComments(){
         var postId = $scope.selectedPost["id"];

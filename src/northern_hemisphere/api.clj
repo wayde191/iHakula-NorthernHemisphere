@@ -23,7 +23,7 @@
 (defn routes [reports-get current-user]
   (cheshire.generate/add-encoder org.joda.time.base.BaseDateTime cheshire.generate/encode-str)
 
-  (letfn [(get-user-info [userId token] "fake")]
+  (letfn [(merge-header [response] (header response "Content-Type" "text/json; charset=utf-8"))]
     (handler/api
       (compojure/routes
         (wrap-json-response
@@ -42,6 +42,8 @@
               (header (response (wordpress/get-post category filter)) "Content-Type" "text/json; charset=utf-8"))
             (GET "/:page/post.json" [page]
               (header (response (wordpress/get-post-by-page page)) "Content-Type" "text/json; charset=utf-8"))
+            (GET "/post-count.json" [page]
+              (merge-header (response (wordpress/get-post-count))))
             (GET "/:postId/comment.json" [postId]
               (header (response (wordpress/get-comment postId)) "Content-Type" "text/json; charset=utf-8"))
             (POST "/message.json" req

@@ -11,6 +11,17 @@ app.factory('Bing', ['$resource', function ($resource) {
     });
 }]);
 
+app.factory('PostCount', ['$resource', function ($resource) {
+    return $resource('/api/post-count.json', {}, {
+        getPostCount: {
+            method: 'GET',
+            params: {},
+            headers: {'Content-Type': 'application/json; charset=utf-8'},
+            isArray: false
+        }
+    });
+}]);
+
 app.factory('Post', ['$resource', function ($resource) {
     return $resource('/api/:page/post.json', {}, {
         getPost: {

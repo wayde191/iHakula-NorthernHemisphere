@@ -11,6 +11,11 @@
       {:category category
        :filter filter})))
 
+(defn get-post-count []
+  (http/request-get
+    (:uri (reports/get-no1-post-count-url))
+    (merge {})))
+
 (defn get-post-by-page [page]
   (http/request-get
     (:uri (reports/get-no1-post-by-page-url))
