@@ -84,10 +84,7 @@
                         <i class="md md-chevron-left"></i>
                     </a>
                 </li>
-                <li data-type="{{index}}" class="active" ng-repeat-start="index in postCount" ng-if="$first">
-                    <a ng-click="pageSelected(index)">{{index}}</a>
-                </li>
-                <li data-type="{{index}}" ng-repeat-end ng-if="!$first">
+                <li data-type="{{index}}" ng-repeat="index in postCount">
                     <a ng-click="pageSelected(index)">{{index}}</a>
                 </li>
                 <li class="disabled">

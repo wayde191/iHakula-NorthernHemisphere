@@ -99,7 +99,8 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing
 
         $rootScope.dataLoaded = true;
         $scope.dataLoaded = true;
-        setPage();
+
+        setTimeout(setPage.bind(this), 300);
     });
 
     function setPage(){
