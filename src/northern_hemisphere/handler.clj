@@ -82,7 +82,7 @@
   (GET "/bing.html" [] (-> (response/response (apply str (bing-template)))))
   (GET "/cart.html" [] (-> (response/response (apply str (cart-template)))))
   (GET "/order.html" [] (-> (response/response (apply str (order-template)))))
-  (GET "/" [] (response/redirect "/joke.html"))
+  (GET "/" [] (response/redirect "/bing.html"))
   (GET "/index.html" [] (response/redirect "/"))
   )
 
