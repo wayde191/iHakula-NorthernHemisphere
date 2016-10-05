@@ -83,12 +83,27 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing
     $scope.selectedPost = null;
     $scope.selectedComments = [];
 
+    function setupContentType(posts){
+        _.each(posts, function(post){
+            if(_.contains(post.tags, 16)){
+                post.contentType = 'text';
+            } else if (_.contains(post.tags, 17)){
+                post.contentType = 'image';
+            } else {
+                post.contentType = 'text';
+            }
+        });
+    }
+
     var currentPageNumber = 1;
     $q.all({
         post: Bing.PostPagination.getPost({page: currentPageNumber}).$promise,
-        top: Bing.PostCategoryFilter.getPost({category: "tag", filter: "top"}).$promise,
+        top: Bing.PostCategoryFilter.getPost({category: "tag", filter: "delay"}).$promise,
         postCount: Bing.PostCounter.getPostCount().$promise
     }).then(function(responses) {
+        setupContentType(responses.top);
+        setupContentType(responses.post);
+
         $scope.tops = responses.top;
         $scope.postsList = responses.post;
 
@@ -121,9 +136,16 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing
     };
 
     function getSelectedComments(){
-        var postId = $scope.selectedPost["id"];
-        Bing.Comment.getComments({postId: postId}).$promise.then(
-            function (data) {
+        $scope.selectedComments = [];
+        $scope.commentsLoaded = false;
+
+        var promiseArray = [];
+        _.each($scope.selectedPost, function(post){
+            var promise = Bing.Comment.getComments({postId: post.id}).$promise;
+            promiseArray.push(promise);
+        });
+        $q.all(promiseArray).then(function(dataArray) {
+            _.each(dataArray, function(data){
                 var comments = data;
                 _.each(comments, function(comment, index){
                     comment.children = [];
@@ -155,19 +177,20 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing
                     getChildren(comment);
                 });
 
-                $scope.selectedComments = firstComments;
-            }
-        );
+                $scope.selectedComments = _.union($scope.selectedComments, firstComments);
+                $scope.commentsLoaded = true;
+            });
+        });
     };
 
     $scope.listClicked = function(post){
-        $scope.selectedPost = post;
+        $scope.selectedPost = [post];
         showDetail();
         getSelectedComments();
     };
 
-    $scope.topClicked = function(index){
-        $scope.selectedPost = $scope.tops[index];
+    $scope.topClicked = function(){
+        $scope.selectedPost = $scope.tops;
         showDetail();
         getSelectedComments();
     };

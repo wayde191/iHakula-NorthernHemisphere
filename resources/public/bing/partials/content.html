@@ -16,18 +16,12 @@
                             <a ng-click="topClicked(1)">
                                 <img src="img/media/carousel/c-2.jpg" alt="">
                             </a>
+                            <div class="carousel-caption">
+                                <h3>交房专题</h3>
+                                <p>为你按时间整理所有和交房相关的事件</p>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- Controls -->
-                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                        <span class="md md-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                        <span class="md md-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </div>
             </div>
         </div>
@@ -90,18 +84,18 @@
             <div role="tabpanel" style="height: 100%; overflow: auto;"
                  class="tab-pane fade in active" id="friends">
                 <div class="timeline">
-                    <div class="t-view" data-tv-type="text">
+                    <div class="t-view" data-tv-type="{{post.contentType}}" ng-repeat="post in selectedPost">
                         <div class="tv-header media">
                             <a href="#" class="tvh-user pull-left">
-                                <img class="img-responsive" src="img/profile-pics/profile-pic-2.jpg" alt="">
+                                <img class="img-responsive" src="img/profile-pics/010.png" alt="">
                             </a>
                             <div class="media-body p-t-5">
-                                <strong class="d-block">{{selectedPost['title']['rendered']}}</strong>
-                                <small class="c-gray">{{selectedPost['date'] | date:'yyyy/MM/dd @ h:mma'}}</small>
+                                <strong class="d-block">{{post['title']['rendered']}}</strong>
+                                <small class="c-gray">{{post['date'] | date:'yyyy/MM/dd @ h:mma'}}</small>
                             </div>
                         </div>
                         <div class="tv-body">
-                            <div ng-bind-html="renderHtml(selectedPost['content']['rendered'])"></div>
+                            <div ng-bind-html="renderHtml(post['content']['rendered'])"></div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -110,8 +104,10 @@
             <div role="tabpanel" style="height: 100%; overflow: auto;"
                  class="tab-pane fade" id="online">
                 <div class="tv-comments">
-                    <ul class="tvc-lists">
-
+                    <div ng-show="!commentsLoaded" class="text-center" style="padding: 100px 26px;">
+                        <h3><i class="md md-refresh"></i> 加载中...</h3>
+                    </div>
+                    <ul ng-show="commentsLoaded" class="tvc-lists">
                         <li class="media" ng-repeat="comment in selectedComments">
                             <a class="tvh-user pull-left">
                                 <img class="img-responsive" ng-src={{comment['author_avatar_urls']['48']}} alt="">
@@ -137,10 +133,6 @@
                 </div>
 
                 <div class="clearfix"></div>
-
-                <!--<div class="load-more">-->
-                    <!--<a href="#"><i class="md md-refresh"></i> 加载更多...</a>-->
-                <!--</div>-->
             </div>
         </div>
     </aside>
