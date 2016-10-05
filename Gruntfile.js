@@ -48,7 +48,8 @@ module.exports = function(grunt) {
                     'resources/public/vendors/sweet-alert/sweet-alert.min.js',
                     'resources/public/vendors/pull-refresh/idangerous.swiper.min.js',
                     'resources/public/javascript/date-utils.js',
-                    'resources/public/javascript/env.js'
+                    'resources/public/javascript/env.js',
+                    'resources/public/javascript/countdown-clock.js'
                 ],
                 dest: 'resources/public/vendor/dependencies.js'
             }

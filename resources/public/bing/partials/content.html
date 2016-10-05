@@ -8,8 +8,6 @@
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                     </ol>
 
                     <!-- Wrapper for slides -->
@@ -18,28 +16,6 @@
                             <a ng-click="topClicked(1)">
                                 <img src="img/media/carousel/c-2.jpg" alt="">
                             </a>
-                            <div class="carousel-caption">
-                                <h3>{{tops[1]['title']['rendered']}}</h3>
-                                <p>{{tops[1]['date'] | date:'yyyy/MM/dd @ h:mma'}}</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <a ng-click="topClicked(0)">
-                                <img src="img/media/carousel/c-1.jpg" alt="">
-                            </a>
-                            <div class="carousel-caption">
-                                <h3>{{tops[0]['title']['rendered']}}</h3>
-                                <p>{{tops[0]['date'] | date:'yyyy/MM/dd @ h:mma'}}</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <a ng-click="topClicked(2)">
-                                <img src="img/media/carousel/c-3.jpg" alt="">
-                            </a>
-                            <div class="carousel-caption">
-                                <h3>{{tops[2]['title']['rendered']}}</h3>
-                                <p>{{tops[2]['date'] | date:'yyyy/MM/dd @ h:mma'}}</p>
-                            </div>
                         </div>
                     </div>
 

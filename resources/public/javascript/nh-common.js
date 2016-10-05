@@ -271,11 +271,16 @@ function setupSearch() {
     });
 }
 
+function setupCountdown() {
+    $('#countdown-clock').countdownClock({date: '2016-11-28'});
+}
+
 common.directive('jokeHeader', function(nhUser, sessionStorageService, userService) {
     return {
         templateUrl: '/angular-htmls/joke-header.html',
         link: function(scope, element, attrs) {
             setupSearch();
+            setupCountdown();
         }
     };
 });
