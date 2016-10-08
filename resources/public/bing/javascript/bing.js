@@ -7,12 +7,17 @@ app.config(['$routeProvider', function ($routeProvider) {
         controller: 'dashboardController',
         reloadOnSearch: true
     }).
-        when('/page/:name', {
-            templateUrl: 'bing/partials/index.html',
-            controller: 'dashboardController',
-            reloadOnSearch: true
-        })
-        .otherwise({redirectTo: '/'});
+    when('/page/:name', {
+        templateUrl: 'bing/partials/index.html',
+        controller: 'dashboardController',
+        reloadOnSearch: true
+    }).
+    when('/page/:name/:id', {
+        templateUrl: 'bing/partials/index.html',
+        controller: 'dashboardController',
+        reloadOnSearch: true
+    })
+    .otherwise({redirectTo: '/'});
 }]);
 
 angular.bootstrap().invoke(bootstrap('bing'));
@@ -21,6 +26,7 @@ app.controller('dashboardController', function ($scope, $routeParams, pageScroll
     $scope.sidebar = 'bing/partials/sidebar.html';
     $scope.content = 'bing/partials/content.html';
     $scope.page = $routeParams.name || 'home';
+    $scope.ids = $routeParams.id || '-1';
     $scope.pageUrl = 'bing/partials/' + $scope.page + '.html';
 
     $scope.backToTop = function () {
@@ -75,7 +81,7 @@ app.controller('SidebarController', function ($scope) {
     });
 });
 
-app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing) {
+app.controller('ContentController', function ($rootScope, $scope, $sce, $q, $location, Bing) {
     $rootScope.dataLoaded = false;
     $scope.dataLoaded = false;
     $scope.tops = [];
@@ -135,74 +141,25 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing
         );
     };
 
-    function getSelectedComments(){
-        $scope.selectedComments = [];
-        $scope.commentsLoaded = false;
+    function getSelectedCommentIds(){
+        return _.map($scope.selectedPost, function(post){
+            return post.id;
+        }).join(',');
+    }
 
-        var promiseArray = [];
-        _.each($scope.selectedPost, function(post){
-            var promise = Bing.Comment.getComments({postId: post.id}).$promise;
-            promiseArray.push(promise);
-        });
-        $q.all(promiseArray).then(function(dataArray) {
-            _.each(dataArray, function(data){
-                var comments = data;
-                _.each(comments, function(comment, index){
-                    comment.children = [];
-                    comment.content.html = $scope.renderHtml(comment.content.rendered);
-                });
-                var firstComments = _.filter(comments, function(comment){
-                    return 0 === comment.parent;
-                });
-                var childComments = _.filter(comments, function(comment){
-                    return 0 !== comment.parent;
-                });
-
-                function getChildren(comment){
-                    var nodes = _.filter(childComments, function(node){
-                        return node.parent === comment.id;
-                    });
-                    if(0 === nodes.length){
-                        return;
-                    } else {
-                        comment.children = _.union(comment.children, nodes);
-                        childComments = _.difference(childComments, nodes);
-                        _.each(nodes, function (node) {
-                            getChildren(node);
-                        });
-                    }
-
-                };
-                _.each(firstComments, function(comment, index){
-                    getChildren(comment);
-                });
-
-                $scope.selectedComments = _.union($scope.selectedComments, firstComments);
-                $scope.commentsLoaded = true;
-            });
-        });
-    };
+    function jumpToDetailPage(){
+        var ids = getSelectedCommentIds();
+        window.location.href = '/bing.html#/page/detail/' + ids;
+    }
 
     $scope.listClicked = function(post){
         $scope.selectedPost = [post];
-        showDetail();
-        getSelectedComments();
+        jumpToDetailPage();
     };
 
     $scope.topClicked = function(){
         $scope.selectedPost = $scope.tops;
-        showDetail();
-        getSelectedComments();
-    };
-
-    function showDetail(){
-        $("#chat").toggleClass('toggled').removeClass('hidden');
-        $(".container").addClass('hidden');
-    };
-
-    $scope.hideDetail = function(){
-        $("#chat").toggleClass('toggled').addClass('hidden');
-        $(".container").removeClass('hidden');
+        jumpToDetailPage();
     };
 
     $scope.renderHtml = function(html_code){
@@ -214,6 +171,90 @@ app.controller('ContentController', function ($rootScope, $scope, $sce, $q, Bing
         var tag = post.tags.length > 0 ? (100 + parseInt(post.tags[0])) : '000';
         return imgPath + tag + '.jpg';
     };
+});
+
+app.controller('DetailController', function ($rootScope, $scope, Bing, $sce, $q) {
+    $scope.selectedComments = [];
+    $rootScope.dataLoaded = false;
+
+    $scope.renderHtml = function(html_code){
+        return $sce.trustAsHtml(html_code);
+    };
+    $scope.commentsLoaded = false;
+
+    $scope.selectedPost = [];
+    $scope.thePostIDs = $scope.ids !== '-1' ? $scope.ids.split(',') : [];
+
+    function setupContentType(posts){
+        _.each(posts, function(post){
+            if(_.contains(post.tags, 16)){
+                post.contentType = 'text';
+            } else if (_.contains(post.tags, 17)){
+                post.contentType = 'image';
+            } else {
+                post.contentType = 'text';
+            }
+        });
+    }
+
+    var promiseArray = [];
+    _.each($scope.thePostIDs, function(post){
+        var promise = Bing.PostID.getPost({id: post}).$promise;
+        promiseArray.push(promise);
+    });
+    _.each($scope.thePostIDs, function(post){
+        var promise = Bing.Comment.getComments({postId: post}).$promise;
+        promiseArray.push(promise);
+    });
+    $q.all(promiseArray).then(function(dataArray) {
+        $rootScope.dataLoaded = true;
+
+        var groups = _.partition(dataArray, function(obj, index){
+            return index < $scope.thePostIDs.length;
+        });
+        $scope.selectedPost = groups[0];
+        setupContentType($scope.selectedPost);
+
+        var theComments = groups[1];
+
+        _.each(theComments, function(data){
+            var comments = data;
+
+            _.each(comments, function(comment){
+                comment.children = [];
+                comment.content.html = $scope.renderHtml(comment.content.rendered);
+            });
+            var firstComments = _.filter(comments, function(comment){
+                return 0 === comment.parent;
+            });
+            var childComments = _.filter(comments, function(comment){
+                return 0 !== comment.parent;
+            });
+
+            function getChildren(comment){
+                var nodes = _.filter(childComments, function(node){
+                    return node.parent === comment.id;
+                });
+                if(0 === nodes.length){
+                    return;
+                } else {
+                    comment.children = _.union(comment.children, nodes);
+                    childComments = _.difference(childComments, nodes);
+                    _.each(nodes, function (node) {
+                        getChildren(node);
+                    });
+                }
+
+            };
+            _.each(firstComments, function(comment, index){
+                getChildren(comment);
+            });
+
+            $scope.selectedComments = _.union($scope.selectedComments, firstComments);
+            $scope.commentsLoaded = true;
+        });
+    });
+
 });
 
 app.controller('AboutMeController', function ($scope, Message, messageService) {

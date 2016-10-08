@@ -45,6 +45,8 @@
               (merge-header (response (wordpress/get-post category filter))))
             (GET "/:page/post.json" [page]
               (merge-header (response (wordpress/get-post-by-page page))))
+            (GET "/:id/single-post.json" [id]
+              (merge-header (response (wordpress/get-post-by-id id))))
             (GET "/post-count.json" [page]
               (merge-header (response (wordpress/get-post-count))))
             (GET "/:postId/comment.json" [postId]

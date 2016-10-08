@@ -28,6 +28,15 @@ app.factory('Bing', ['$resource', function ($resource) {
         }
     });
 
+    var PostID = $resource('/api/:id/single-post.json', {}, {
+        getPost: {
+            method: 'GET',
+            params: {},
+            headers: {'Content-Type': 'application/json; charset=utf-8'},
+            isArray: false
+        }
+    });
+
     var Comment = $resource('/api/:postId/comment.json', {}, {
         getComments: {
             method: 'GET',
@@ -41,6 +50,7 @@ app.factory('Bing', ['$resource', function ($resource) {
         PostCategoryFilter: PostCategoryFilter,
         PostCounter: PostCounter,
         PostPagination: PostPagination,
+        PostID: PostID,
         Comment: Comment
     };
 }]);

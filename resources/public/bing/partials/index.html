@@ -15,6 +15,9 @@
             <div ng-switch-when="calculator">
                 <div ng-include="pageUrl" ng-controller="CalculatorController"></div>
             </div>
+            <div ng-switch-when="detail">
+                <div ng-include="pageUrl" ng-controller="DetailController"></div>
+            </div>
 
             <div ng-switch-default>
                 <div ng-include="content" ng-controller="ContentController"></div>

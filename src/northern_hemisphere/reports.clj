@@ -45,6 +45,9 @@
 (defn get-no1-post-by-page-url []
   {:uri (join [(get-api-host) "wordpress/get-post-by-page"])})
 
+(defn get-no1-post-by-id-url []
+  {:uri (join [(get-api-host) "wordpress/get-post-by-id"])})
+
 (defn get-no1-comment-url []
   {:uri (join [(get-api-host) "wordpress/get-comment"])})
 

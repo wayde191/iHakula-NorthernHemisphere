@@ -22,6 +22,11 @@
     (merge
       {:page page})))
 
+(defn get-post-by-id [id]
+  (http/request-get
+    (:uri (reports/get-no1-post-by-id-url))
+    (merge {:id id})))
+
 (defn get-comment [post-id]
   (http/request-get
     (:uri (reports/get-no1-comment-url))
