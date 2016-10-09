@@ -4,7 +4,7 @@ module.exports = function(grunt) {
         jshint: {
             files: ['Gruntfile.js', 'resources/public/javascript/*.js', 'test/javascript/**/*.js'],
             options: {
-                // options here to override JSHint defaults
+                reporterOutput: "",
                 globals: {
                     jQuery: true,
                     console: true,
