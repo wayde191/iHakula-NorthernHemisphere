@@ -51,9 +51,11 @@
               (merge-header (response (wordpress/get-post-count))))
             (GET "/:postId/comment.json" [postId]
               (merge-header (response (wordpress/get-comment postId))))
-
             (POST "/message.json" req
               (merge-header (response {:value 'good'})))
+
+            (GET "/neighbour.json" []
+              (merge-header (response (wordpress/get-neighbour))))
           ))))
     )
   )

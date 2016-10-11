@@ -46,12 +46,22 @@ app.factory('Bing', ['$resource', function ($resource) {
         }
     });
 
+    var Neighbour = $resource('/api/neighbour.json', {}, {
+        getNeighbour: {
+            method: 'GET',
+            params: {},
+            headers: {'Content-Type': 'application/json; charset=utf-8'},
+            isArray: true
+        }
+    });
+
     return {
         PostCategoryFilter: PostCategoryFilter,
         PostCounter: PostCounter,
         PostPagination: PostPagination,
         PostID: PostID,
-        Comment: Comment
+        Comment: Comment,
+        Neighbour: Neighbour
     };
 }]);
 

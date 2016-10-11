@@ -51,5 +51,8 @@
 (defn get-no1-comment-url []
   {:uri (join [(get-api-host) "wordpress/get-comment"])})
 
+(defn get-no1-neighbour-url []
+  {:uri (join [(get-api-host) "tool/get-validated-neighbours"])})
+
 (defn reports-http []
   (println "fake"))

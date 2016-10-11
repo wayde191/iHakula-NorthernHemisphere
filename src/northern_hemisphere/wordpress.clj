@@ -32,3 +32,8 @@
     (:uri (reports/get-no1-comment-url))
     (merge
       {:post_id post-id})))
+
+(defn get-neighbour []
+  (http/request-get
+    (:uri (reports/get-no1-neighbour-url))
+    (merge {})))

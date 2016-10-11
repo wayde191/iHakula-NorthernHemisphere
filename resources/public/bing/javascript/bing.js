@@ -276,10 +276,44 @@ app.controller('AboutMeController', function ($scope, Message, messageService) {
     };
 });
 
-app.controller('PrivacyController', function ($scope) {
+app.controller('PrivacyController', function ($rootScope, $scope) {
+    $rootScope.dataLoaded = true;
 });
 
-app.controller('FeedbackController', function ($scope) {
+app.controller('FeedbackController', function ($rootScope, $scope) {
+    $rootScope.dataLoaded = true;
+});
+
+app.controller('NeighbourController', function ($rootScope, $scope, Bing) {
+    $rootScope.dataLoaded = false;
+    var layers = _.range(1, 35).reverse();
+    var layerCount = _.range(1, 7);
+
+    $scope.building1 = [];
+    $scope.building2 = [];
+    _.each(layers, function(layer){
+        _.each(layerCount, function(count){
+            var unit = parseInt(count / 3) + (count % 3 > 0 ? 1 : 0);
+            var number = '0' + (count % 3 == 0 ? 3 : (count % 3));
+            number = layer + '' + number;
+            $scope.building2.push('2-'+ unit +'-'+number);
+            $scope.building1.push('1-'+ unit +'-'+number);
+        });
+    });
+
+    $scope.neighbours = [];
+    Bing.Neighbour.getNeighbour({}).$promise.then(
+        function (data) {
+            $rootScope.dataLoaded = true;
+            $scope.neighbours = data;
+
+            _.each($scope.neighbours, function(neighbour){
+                var className = neighbour[2];
+                $('.' + className).removeClass('bgm-gray').addClass('bgm-deeporange');
+            });
+        }
+    );
+
 });
 
 app.controller('CalculatorController', function ($scope) {
