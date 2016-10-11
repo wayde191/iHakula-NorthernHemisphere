@@ -309,7 +309,7 @@ app.controller('NeighbourController', function ($rootScope, $scope, Bing) {
 
             _.each($scope.neighbours, function(neighbour){
                 var className = neighbour[2];
-                $('.' + className).removeClass('bgm-gray').addClass('bgm-deeporange');
+                $('.' + className).removeClass('bgm-cyan').addClass('bgm-deeporange');
             });
         }
     );
