@@ -44,12 +44,19 @@ module.exports = function(grunt) {
                     'bower_components/angular-nouislider/src/nouislider.js',
                     'bower_components/angular-chosen/chosen.js',
                     'bower_components/underscore/underscore.js',
-                    'resources/public/vendors/bootstrap-growl/bootstrap-growl.min.js',
-                    'resources/public/vendors/sweet-alert/sweet-alert.min.js',
-                    'resources/public/vendors/pull-refresh/idangerous.swiper.min.js',
+
                     'resources/public/javascript/date-utils.js',
                     'resources/public/javascript/env.js',
-                    'resources/public/javascript/countdown-clock.js'
+                    'resources/public/javascript/countdown-clock.js',
+
+                    'resources/public/vendors/flot/jquery.flot.min.js',
+                    'resources/public/vendors/flot/jquery.flot.resize.min.js',
+                    'resources/public/vendors/flot/jquery.flot.pie.min.js',
+                    'resources/public/vendors/flot/jquery.flot.tooltip.js',
+                    'resources/public/vendors/bootstrap-growl/bootstrap-growl.min.js',
+                    'resources/public/vendors/sweet-alert/sweet-alert.min.js',
+
+                    'resources/public/vendors/pull-refresh/idangerous.swiper.min.js'
                 ],
                 dest: 'resources/public/vendor/dependencies.js'
             }

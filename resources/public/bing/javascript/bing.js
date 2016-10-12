@@ -301,6 +301,9 @@ app.controller('NeighbourController', function ($rootScope, $scope, Bing) {
         });
     });
 
+    var allNeighboursCount = $scope.building1.length + $scope.building2.length;
+    var firstGroupCount = 0;
+    var secondGroupCount = 0;
     $scope.neighbours = [];
     Bing.Neighbour.getNeighbour({}).$promise.then(
         function (data) {
@@ -310,9 +313,61 @@ app.controller('NeighbourController', function ($rootScope, $scope, Bing) {
             _.each($scope.neighbours, function(neighbour){
                 var className = neighbour[2];
                 $('.' + className).removeClass('bgm-cyan').addClass('bgm-deeporange');
+
+                if( neighbour[8] === '1' ){
+                    firstGroupCount++;
+                } else if ( neighbour[8] === '2' ){
+                    secondGroupCount++;
+                }
             });
+
+            showPie();
         }
     );
+
+    function showPie() {
+        var pieData = [
+            {data: (allNeighboursCount - firstGroupCount - secondGroupCount), color: '#F44336', label: '观望'},
+            {data: firstGroupCount, color: '#03A9F4', label: '第一批'},
+            {data: secondGroupCount, color: '#8BC34A', label: '第二批'}
+        ];
+
+        /* Pie Chart */
+
+        if($('#pie-chart')[0]){
+            $.plot('#pie-chart', pieData, {
+                series: {
+                    pie: {
+                        show: true,
+                        stroke: {
+                            width: 2,
+                        },
+                    },
+                },
+                legend: {
+                    container: '.flc-pie',
+                    backgroundOpacity: 0.5,
+                    noColumns: 0,
+                    backgroundColor: "white",
+                    lineWidth: 0
+                },
+                grid: {
+                    hoverable: true,
+                    clickable: true
+                },
+                tooltip: true,
+                tooltipOpts: {
+                    content: "%y.0, %p.0%, %s", // show percentages, rounding to 2 decimal places
+                    shifts: {
+                        x: 20,
+                        y: 0
+                    },
+                    defaultTheme: false
+                }
+
+            });
+        }
+    }
 
 });
 
