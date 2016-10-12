@@ -312,12 +312,13 @@ app.controller('NeighbourController', function ($rootScope, $scope, Bing) {
 
             _.each($scope.neighbours, function(neighbour){
                 var className = neighbour[2];
-                $('.' + className).removeClass('bgm-cyan').addClass('bgm-deeporange');
 
                 if( neighbour[8] === '1' ){
                     firstGroupCount++;
+                    $('.' + className).removeClass('bgm-cyan').addClass('bgm-deeporange');
                 } else if ( neighbour[8] === '2' ){
                     secondGroupCount++;
+                    $('.' + className).removeClass('bgm-cyan').addClass('bgm-orange');
                 }
             });
 
@@ -327,9 +328,9 @@ app.controller('NeighbourController', function ($rootScope, $scope, Bing) {
 
     function showPie() {
         var pieData = [
-            {data: (allNeighboursCount - firstGroupCount - secondGroupCount), color: '#F44336', label: '观望'},
-            {data: firstGroupCount, color: '#03A9F4', label: '第一批'},
-            {data: secondGroupCount, color: '#8BC34A', label: '第二批'}
+            {data: (allNeighboursCount - firstGroupCount - secondGroupCount), color: '#00BCD4', label: '观望'},
+            {data: firstGroupCount, color: '#FF5722', label: '第一批'},
+            {data: secondGroupCount, color: '#FF9800', label: '第二批'}
         ];
 
         /* Pie Chart */
