@@ -2,7 +2,7 @@
     <div class="container">
 
         <!--Detail part-->
-        <aside id="chat" style="width:100%; height: 100%;" class="toggled">
+        <div id="chat" style="width:100%; position: relative; top: 0px;" class="toggled">
 
             <ul class="tab-nav tn-justified" role="tablist">
                 <li role="presentation" class="active"><a href="#friends" aria-controls="friends" role="tab"
@@ -29,27 +29,6 @@
                                 <div ng-bind-html="renderHtml(post['content']['rendered'])"></div>
                                 <div class="clearfix"></div>
                             </div>
-                        </div>
-
-                        <div>
-                            <!-- 多说评论框 start -->
-                            <div class="ds-thread" data-thread-key="{{selectedPost[0]['id']}}" data-title="{{selectedPost[0]['title']['rendered']}}" data-url="{{'/bing.html#/page/detail/' + selectedPost[0]['id']}}">
-                            </div>
-                            <!-- 多说评论框 end -->
-                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-                            <script type="text/javascript">
-                                var duoshuoQuery = {short_name: "ihakula"};
-                                (function () {
-                                    var ds = document.createElement('script');
-                                    ds.type = 'text/javascript';
-                                    ds.async = true;
-                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                                    ds.charset = 'UTF-8';
-                                    (document.getElementsByTagName('head')[0]
-                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
-                                })();
-                            </script>
-                            <!-- 多说公共JS代码 end -->
                         </div>
                     </div>
                 </div>
@@ -78,11 +57,30 @@
                             </li>
 
                             <li class="p-20">
-                                <a ng-href="{{selectedPost.link + '#commentform'}}">
-                                    <button class="m-t-15 btn btn-primary btn-sm waves-effect waves-button waves-float">
-                                        发表评论
-                                    </button>
-                                </a>
+                                <div>
+                                    <!-- 多说评论框 start -->
+                                    <div class="ds-thread" data-thread-key="{{selectedPost[0]['id']}}" data-title="{{selectedPost[0]['title']['rendered']}}" data-url="{{'/bing.html#/page/detail/' + selectedPost[0]['id']}}">
+                                    </div>
+                                    <!-- 多说评论框 end -->
+                                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                                    <script type="text/javascript">
+                                        var duoshuoQuery = {short_name: "ihakula"};
+                                        (function () {
+                                            var ds = document.createElement('script');
+                                            ds.type = 'text/javascript';
+                                            ds.async = true;
+                                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                            ds.charset = 'UTF-8';
+                                            (document.getElementsByTagName('head')[0]
+                                            || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                        })();
+                                    </script>
+                                    <!-- 多说公共JS代码 end -->
+                                </div>
+                            </li>
+
+                            <li class="p-20 text-center">
+                                欢迎点评
                             </li>
                         </ul>
                     </div>
@@ -90,7 +88,7 @@
                     <div class="clearfix"></div>
                 </div>
             </div>
-        </aside>
+        </div>
 
     </div>
 </section>

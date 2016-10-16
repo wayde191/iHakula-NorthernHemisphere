@@ -45,13 +45,9 @@ app.controller('SidebarController', function ($scope) {
 
     $scope.$on('$includeContentLoaded', function (event) {
         $('.main-menu li').removeClass('active');
-
         $('[data-type=' + $scope.page + ']').addClass('active');
 
-        $elem = '#sidebar';
-        $elem2 = '#menu-trigger';
-        $($elem2).removeClass('open');
-
+        $('#menu-trigger').removeClass('open');
         $('#menu-trigger').unbind('click');
         $('#menu-trigger').click(function (e) {
             e.preventDefault();
@@ -63,19 +59,6 @@ app.controller('SidebarController', function ($scope) {
 
             if (x == '#sidebar') {
                 $('#header').toggleClass('sidebar-toggled');
-            }
-
-            if ($('#header').hasClass('sidebar-toggled')) {
-                $(document).on('click', function (e) {
-                    if (($(e.target).closest($elem).length === 0) && ($(e.target).closest($elem2).length === 0)) {
-                        setTimeout(function () {
-                            $('body').removeClass('modal-open');
-                            $($elem).removeClass('toggled');
-                            $('#header').removeClass('sidebar-toggled');
-                            $($elem2).removeClass('open');
-                        });
-                    }
-                });
             }
         });
     });
@@ -257,7 +240,8 @@ app.controller('DetailController', function ($rootScope, $scope, Bing, $sce, $q)
 
 });
 
-app.controller('AboutMeController', function ($scope, Message, messageService) {
+app.controller('AboutMeController', function ($rootScope, $scope, Message, messageService) {
+    $rootScope.dataLoaded = true;
     messageService.showMessage('没错，这就是我');
     $scope.totalMessageNumber = 1563;
     $scope.message = '';
@@ -372,7 +356,8 @@ app.controller('NeighbourController', function ($rootScope, $scope, Bing) {
 
 });
 
-app.controller('CalculatorController', function ($scope) {
+app.controller('CalculatorController', function ($rootScope, $scope) {
+    $rootScope.dataLoaded = true;
     $scope.price = 800000;
     $scope.rate = 0.00017;
     $scope.oldRate = 0.00001;
