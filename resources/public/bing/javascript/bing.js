@@ -180,6 +180,26 @@ app.controller('DetailController', function ($rootScope, $scope, Bing, $sce, $q)
         });
     }
 
+    function initTalk(){
+        var thePost = $scope.selectedPost[0];
+
+        var talkHTML = window.document.createElement('div');
+        talkHTML.setAttribute('class', 'ds-thread');
+        talkHTML.setAttribute('data-thread-key', thePost.id);
+        talkHTML.setAttribute('data-title', thePost.title.rendered);
+        talkHTML.setAttribute('data-url', window.location.href);
+        document.getElementById('lets-talk').appendChild(talkHTML);
+
+        window.duoshuoQuery = {short_name: "ihakula"};
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    }
+
     var promiseArray = [];
     _.each($scope.thePostIDs, function(post){
         var promise = Bing.PostID.getPost({id: post}).$promise;
@@ -197,6 +217,7 @@ app.controller('DetailController', function ($rootScope, $scope, Bing, $sce, $q)
         });
         $scope.selectedPost = groups[0];
         setupContentType($scope.selectedPost);
+        initTalk();
 
         var theComments = groups[1];
 
