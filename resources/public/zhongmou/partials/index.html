@@ -1,0 +1,37 @@
+<div>
+    <section id="main">
+        <div ng-include="sidebar" ng-controller="SidebarController"></div>
+
+        <div ng-switch on="page">
+            <div ng-switch-when="about">
+                <div ng-include="pageUrl" ng-controller="AboutMeController"></div>
+            </div>
+            <div ng-switch-when="privacy">
+                <div ng-include="pageUrl" ng-controller="PrivacyController"></div>
+            </div>
+            <div ng-switch-when="feedback">
+                <div ng-include="pageUrl" ng-controller="FeedbackController"></div>
+            </div>
+            <div ng-switch-when="calculator">
+                <div ng-include="pageUrl" ng-controller="CalculatorController"></div>
+            </div>
+            <div ng-switch-when="detail">
+                <div ng-include="pageUrl" ng-controller="DetailController"></div>
+            </div>
+            <div ng-switch-when="neighbour">
+                <div ng-include="pageUrl" ng-controller="NeighbourController"></div>
+            </div>
+
+            <div ng-switch-default>
+                <div ng-include="content" ng-controller="ContentController"></div>
+            </div>
+
+            <p class="totop" style="position: fixed; bottom: 10px; right: 20px; z-index: 100;">
+                <button ng-click="backToTop()" style="display: none;" class="btn btn-default btn-icon waves-effect waves-button waves-float">
+                    <i class="md md-vertical-align-top"></i>
+                </button>
+            </p>
+        </div>
+
+    </section>
+</div>

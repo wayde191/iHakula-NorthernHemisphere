@@ -59,12 +59,26 @@ module.exports = function(grunt) {
                     'resources/public/vendors/pull-refresh/idangerous.swiper.min.js'
                 ],
                 dest: 'resources/public/vendor/dependencies.js'
+            },
+            js2: {
+                src: [
+                    'bower_components/jquery/dist/jquery.js',
+                    'bower_components/html5shiv/dist/html5shiv.js',
+                    'bower_components/respond/dest/respond.min.js',
+                    'bower_components/bootstrap/dist/js/bootstrap.min.js',
+                ],
+                dest: 'resources/public/vendor/dependencies2.js'
             }
         },
         uglify: {
             my_target: {
                 files: {
                     'resources/public/vendor/dependencies.min.js': ['resources/public/vendor/dependencies.js']
+                }
+            },
+            my_target2: {
+                files: {
+                    'resources/public/vendor/dependencies2.min.js': ['resources/public/vendor/dependencies2.js']
                 }
             }
         }

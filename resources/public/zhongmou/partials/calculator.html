@@ -1,0 +1,80 @@
+<section id="content">
+
+    <div class="container">
+
+        <div class="card">
+            <div class="card-header">
+                <h2>滨湖壹号延期赔偿计算器
+                    <small>公式：因赔款（元）＝ 总房价 ＊ 违约赔付比例 ＊ 实际延期天数</small>
+                </h2>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>总房价（元）</th>
+                        <th>延期交房天数</th>
+                        <th>赔付比例</th>
+                        <th>因赔款（元）</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="active">
+                        <td>{{price}}</td>
+                        <td>{{days}}</td>
+                        <td>{{rate}}</td>
+                        <td>{{pay}}</td>
+                    </tr>
+                    <tr class="">
+                        <td>{{price}}</td>
+                        <td>{{days}}</td>
+                        <td>{{oldRate}}</td>
+                        <td>{{oldPay}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>计算器
+                    <small>可任意调节: 房款总额, 赔付比例, 承诺交房日期, 实际交房日期</small>
+                </h2>
+            </div>
+
+            <div class="card-body card-padding">
+                <form class="row" role="form">
+                    <div class="col-sm-3">
+                        <div class="form-group fg-line">
+                            <input type="text" class="form-control input-sm" ng-model="$parent.price" placeholder="房款总额">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group fg-line">
+                            <input type="text" class="form-control input-sm" ng-model="rate" placeholder="赔付比例">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group fg-line">
+                            <input type="text" class="form-control input-sm" ng-model="$parent.startDate" data-mask="0000/00/00" placeholder="承诺交房日期: 2016/05/31" maxlength="10" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group fg-line">
+                            <input type="text" class="form-control input-sm" ng-model="$parent.endDate" data-mask="0000/00/00" placeholder="实际交房日期: 2016/05/31" maxlength="10" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <button type="submit" ng-click="go()" class="btn btn-primary btn-sm m-t-5 waves-effect waves-button waves-float">计算</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</section>

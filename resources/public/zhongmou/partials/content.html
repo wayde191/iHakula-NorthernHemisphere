@@ -1,0 +1,70 @@
+<section id="content">
+
+    <div class="container">
+
+        <div ng-show="dataLoaded" class="card">
+            <div class="card-body">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a ng-click="topClicked(1)">
+                                <img src="img/media/carousel/c-2.jpg" alt="">
+                            </a>
+                            <div class="carousel-caption">
+                                <h3>交房专题</h3>
+                                <p>为你按时间整理所有和交房相关的事件</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" ng-show="dataLoaded">
+            <div class="listview lv-bordered lv-lg">
+                <div class="lv-header-alt">
+                    <h2 class="lvh-label hidden-xs">所有文章</h2>
+                </div>
+
+                <div class="lv-body">
+                    <div class="lv-item media" ng-repeat="post in postsList">
+                        <div class="checkbox pull-left">
+                            <a href="#">
+                                <img style="width: 60px; height: 60px;" class="media-object" ng-src={{getAvatar(post)}} alt="">
+                            </a>
+                        </div>
+                        <div class="media-body" ng-click="listClicked(post)">
+                            <div class="lv-title" ng-bind-html="renderHtml(post['title']['rendered'])"></div>
+                            <small ng-bind-html="renderHtml(post['excerpt']['rendered'])"></small>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <ul class="pagination lv-pagination">
+                <li class="disabled">
+                    <a href="#" aria-label="Previous">
+                        <i class="md md-chevron-left"></i>
+                    </a>
+                </li>
+                <li data-type="{{index}}" ng-repeat="index in postCount">
+                    <a ng-click="pageSelected(index)">{{index}}</a>
+                </li>
+                <li class="disabled">
+                    <a href="#" aria-label="Next">
+                        <i class="md md-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</section>
