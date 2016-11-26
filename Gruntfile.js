@@ -63,9 +63,15 @@ module.exports = function(grunt) {
             js2: {
                 src: [
                     'bower_components/jquery/dist/jquery.js',
+                    'bower_components/bootstrap/dist/js/bootstrap.min.js',
+                    'bower_components/angular/angular.js',
+                    'bower_components/angular-resource/angular-resource.js',
+                    'bower_components/angular-route/angular-route.js',
+                    'bower_components/angular-sanitize/angular-sanitize.js',
                     'bower_components/html5shiv/dist/html5shiv.js',
                     'bower_components/respond/dest/respond.min.js',
-                    'bower_components/bootstrap/dist/js/bootstrap.min.js',
+                    'resources/public/javascript/date-utils.js',
+                    'resources/public/javascript/env.js'
                 ],
                 dest: 'resources/public/vendor/dependencies2.js'
             }

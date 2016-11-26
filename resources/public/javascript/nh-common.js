@@ -285,6 +285,17 @@ common.directive('jokeHeader', function(nhUser, sessionStorageService, userServi
     };
 });
 
+common.controller('SzmAuthCtrl', function($scope, $rootScope, $window, sessionStorageService, userService) {
+});
+
+common.directive('szmHeader', function(nhUser, sessionStorageService, userService) {
+    return {
+        templateUrl: '/angular-htmls/szm-header.html',
+        link: function(scope, element, attrs) {
+        }
+    };
+});
+
 common.directive('ieWarning', function(nhUser, sessionStorageService, userService) {
     return {
         templateUrl: '/angular-htmls/ie-warning.html',
