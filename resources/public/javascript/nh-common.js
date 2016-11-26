@@ -296,6 +296,14 @@ common.directive('szmHeader', function(nhUser, sessionStorageService, userServic
     };
 });
 
+common.directive('footer', function(nhUser, sessionStorageService, userService) {
+    return {
+        templateUrl: '/angular-htmls/footer.html',
+        link: function(scope, element, attrs) {
+        }
+    };
+});
+
 common.directive('ieWarning', function(nhUser, sessionStorageService, userService) {
     return {
         templateUrl: '/angular-htmls/ie-warning.html',
