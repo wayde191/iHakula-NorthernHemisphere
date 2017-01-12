@@ -1,37 +1,35 @@
-<div class="container">
-    <section id="main">
-        <div ng-include="sidebar" ng-controller="SidebarController"></div>
+<div class="">
+    <div class="splash">
+        <div class="container">
 
-        <div ng-switch on="page">
-            <div ng-switch-when="about">
-                <div ng-include="pageUrl" ng-controller="AboutMeController"></div>
-            </div>
-            <div ng-switch-when="privacy">
-                <div ng-include="pageUrl" ng-controller="PrivacyController"></div>
-            </div>
-            <div ng-switch-when="feedback">
-                <div ng-include="pageUrl" ng-controller="FeedbackController"></div>
-            </div>
-            <div ng-switch-when="calculator">
-                <div ng-include="pageUrl" ng-controller="CalculatorController"></div>
-            </div>
-            <div ng-switch-when="detail">
-                <div ng-include="pageUrl" ng-controller="DetailController"></div>
-            </div>
-            <div ng-switch-when="neighbour">
-                <div ng-include="pageUrl" ng-controller="NeighbourController"></div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- <div><img class="logo" src="assets/img/logo.png"></div> -->
+                    <h1>Free themes for Bootstrap</h1>
+                    <div id="social">
+              <span>
+                <iframe id="gh-fork" src="https://ghbtns.com/github-btn.html?user=thomaspark&repo=bootswatch&type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe>
+                <iframe id="gh-star" src="https://ghbtns.com/github-btn.html?user=thomaspark&repo=bootswatch&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+              </span>
+                        <span style="display: inline-block; width: 210px;">
+                <a href="https://twitter.com/bootswatch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="true"></a>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://bootswatch.com" data-via="bootswatch"></a>
+              </span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="sponsor">
+                                <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=bootswatchcom" id="_carbonads_js"></script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div ng-switch-default>
-                <div ng-include="content" ng-controller="ContentController"></div>
-            </div>
-
-            <p class="totop" style="position: fixed; bottom: 10px; right: 20px; z-index: 100;">
-                <button ng-click="backToTop()" style="display: none;" class="btn btn-default btn-icon waves-effect waves-button waves-float">
-                    <i class="md md-vertical-align-top"></i>
-                </button>
-            </p>
         </div>
+    </div>
 
-    </section>
+    <div style="height: 900px;">
+        hello
+    </div>
 </div>

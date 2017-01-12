@@ -6068,15 +6068,15 @@ input[type="checkbox"] {
 body {
   padding-top: 50px; }
 
-body > .navbar {
+.navbar {
   -webkit-transition: background-color .3s ease-in;
   transition: background-color 0.3s ease-in; }
 
 @media (min-width: 768px) {
-  body > .navbar-transparent {
+  .navbar-transparent {
     background-color: transparent; }
 
-  body > .navbar-transparent .navbar-nav > .open > a {
+  .navbar-transparent .navbar-nav > .open > a {
     background-color: transparent !important; } }
 #home {
   padding-top: 0; }
@@ -6141,7 +6141,8 @@ body > .navbar {
 
 .footer {
   margin: 5em 0;
-  padding: 0 2em; }
+  padding: 2em;
+  background-color: #fafafa; }
 
 .footer li {
   float: left;
@@ -6155,7 +6156,7 @@ body > .navbar {
 .splash {
   padding: 9em 0 2em;
   background-color: #141d27;
-  background-image: url(../img/bg.jpg);
+  background-image: url(/images/szm/bg.jpg);
   background-size: cover;
   background-attachment: fixed;
   color: #fff;
