@@ -20,12 +20,12 @@ install_sass() {
     mkdir -p $LOCAL_GEMS
     mkdir -p $LOCAL_GEMS_BIN
 
-    if ls $LOCAL_GEMS/gems/sass-3.2.8 &> /dev/null;
+    if ls $LOCAL_GEMS/gems/sass-3.3.14 &> /dev/null;
     then
         echo "Sass already installed"
     else
         sudo yum install --quiet --assumeyes ruby rubygems > /dev/null
-        /usr/bin/gem install sass --version '=3.2.8' --no-rdoc --no-ri --bindir $LOCAL_GEMS_BIN --install-dir $LOCAL_GEMS
+        /usr/bin/gem install sass --version '=3.3.14' --no-rdoc --no-ri --bindir $LOCAL_GEMS_BIN --install-dir $LOCAL_GEMS
     fi
 }
 
