@@ -77,11 +77,11 @@ module.exports = function(grunt) {
             }
         },
         uglify: {
-            my_target: {
-                files: {
-                    'resources/public/vendor/dependencies.min.js': ['resources/public/vendor/dependencies.js']
-                }
-            },
+            // my_target: {
+            //     files: {
+            //         'resources/public/vendor/dependencies.min.js': ['resources/public/vendor/dependencies.js']
+            //     }
+            // },
             my_target2: {
                 files: {
                     'resources/public/vendor/dependencies2.min.js': ['resources/public/vendor/dependencies2.js']
