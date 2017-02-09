@@ -12,7 +12,7 @@
 (defproject northern-hemisphere version
   :manifest {"Implementation-Version" ~version}
   :description "Northern Hemisphere - web app"
-  :url "http://www.ihakula.com"
+  :url "http://www.sunzhongmou.com"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.5.1"]
