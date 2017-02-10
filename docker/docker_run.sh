@@ -14,4 +14,4 @@ docker run \
  -v $(pwd):/var/lib/go-agent/pipelines/NorthernHemisphere/ \
  -w /var/lib/go-agent/pipelines/NorthernHemisphere/ \
  \
- centos_lein_build
+ ihakula/centos7-lein:centos_lein_build
