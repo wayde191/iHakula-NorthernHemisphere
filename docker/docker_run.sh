@@ -6,14 +6,12 @@ docker rm northern-service || true
 docker run \
  --name northern-service \
  -p 8802:3000 \
+ --privileged=true \
+ -e "container=docker" \
  -e VIRTUAL_HOST=www.sunzhongmou.com \
  -itd \
+ -v /sys/fs/cgroup:/sys/fs/cgroup \
  -v $(pwd):/var/lib/go-agent/pipelines/NorthernHemisphere/ \
  -w /var/lib/go-agent/pipelines/NorthernHemisphere/ \
  \
- ihakula/centos7-lein:latest \
- /bin/bash
-
-docker exec northern-service /var/lib/go-agent/pipelines/NorthernHemisphere/go deploy-staging
-docker exec northern-service /usr/bin/systemctl stop northern-hemisphere-dev
-docker exec northern-service /usr/bin/systemctl start northern-hemisphere-dev
+ centos_lein_build

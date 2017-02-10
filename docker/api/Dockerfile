@@ -4,9 +4,22 @@ RUN yum install --assumeyes wget
 RUN yum install --assumeyes curl
 RUN yum install --assumeyes unzip
 
+MAINTAINER "wayde.sun" <wayde.sun@gmail.com>
+ENV container docker
+RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
+systemd-tmpfiles-setup.service ] || rm -f $i; done); \
+rm -f /lib/systemd/system/multi-user.target.wants/*;\
+rm -f /etc/systemd/system/*.wants/*;\
+rm -f /lib/systemd/system/local-fs.target.wants/*; \
+rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
+rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
+rm -f /lib/systemd/system/basic.target.wants/*;\
+rm -f /lib/systemd/system/anaconda.target.wants/*;
+
+VOLUME [ "/sys/fs/cgroup" ]
+CMD ["/usr/sbin/init"]
+
 WORKDIR /var/lib/go-agent/pipelines/NorthernHemisphere/
 COPY ./docker/api/install_dev_env.sh /var/lib/go-agent/pipelines/NorthernHemisphere/install_dev_env.sh
 
 RUN /bin/bash /var/lib/go-agent/pipelines/NorthernHemisphere/install_dev_env.sh
-
-#ENTRYPOINT ["api_entry_point.sh"]
